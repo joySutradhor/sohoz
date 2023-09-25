@@ -11,7 +11,12 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+  
   },
+  {
+    path: "submitData",
+    element : <p>submit data form</p>
+  }
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

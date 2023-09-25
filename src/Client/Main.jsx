@@ -1,10 +1,9 @@
-import LoginTest from "./Login/LoginTest";
+import Login from "./Login/Login";
 
 const Main = () => {
     return (
         <div>
-            {/* <Login></Login> */}
-            <LoginTest></LoginTest>
+            <Login></Login>
         </div>
     );
 };
