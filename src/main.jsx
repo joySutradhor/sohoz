@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Main from './Client/Main';
+import SubmitData from './Client/SubmitData/SubmitData';
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
   },
   {
     path: "submitData",
-    element : <p>submit data form</p>
+    element : <SubmitData></SubmitData>
   }
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
