@@ -17,10 +17,9 @@ export default function SubmitData() {
 
 
     return (
-        <div className="grid  items-center justify-center  h-screen bg-slate-50">
-
-
-            <div className="shadow-md mx-2 bg-white rounded-md">
+        // <div className="grid  items-center justify-center  h-screen bg-slate-50">
+        // </div>
+        <div className=" mx-2 bg-white ">
                 <h1 className="font-bold text-2xl text-gray-600 text-center py-5 ">Submit Customer Data</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -39,12 +38,12 @@ export default function SubmitData() {
 
                         {/* <DatePicker {...register("date")} label="Basic date picker" /> */}
                         <div className="pt-1 mr-2">
-                            <p className="text-[14px] p-0 text-gray-600">Start Date</p>
-                            <input type="date" name="StartDate" id="" className="outline-none  border-gray-400 border-b-2 text-gray-500" />
+                            <p className=" font-roboto text-[#00000099] ">Start Date</p>
+                            <input type="date" name="StartDate" id="" className="outline-none bg-transparent  border-gray-400 border-b-[1px] text-gray-500" />
                         </div>
                         <div className="pt-1">
-                            <p className="text-[14px] text-gray-600">End Date</p>
-                            <input type="date" name="EndDate" id="" className="outline-none border-gray-400 border-b-2 text-gray-500" />
+                            <p className="font-roboto text-[#00000099]">End Date</p>
+                            <input type="date" name="EndDate" id="" className="outline-none bg-transparent border-gray-400 border-b-[1px] text-gray-500" />
                         </div>
                         <TextField id="standard-basic" {...register("diller")} label="Diller Price" variant="standard" />
                         <TextField id="standard-basic" {...register("seller")} label="Seller Price" variant="standard" />
@@ -61,12 +60,10 @@ export default function SubmitData() {
                     {errors.exampleRequired && <span>This field is required</span>}
 
 
-                    <div className="flex justify-center  items-center py-12 ">
+                    <div className="flex justify-center  items-center pt-12 pb-6 ">
                         <input className=" text-white  px-6 py-3  font-medium  bg-green-600 shadow-md  rounded " type="submit" />
                     </div>
                 </form>
             </div>
-
-        </div>
     )
 }
