@@ -17,7 +17,7 @@ export default function SubmitData() {
 
 
     return (
-        <div className="grid  justify-center items-center h-screen bg-slate-50">
+        <div className="grid  items-center justify-center  h-screen bg-slate-50">
 
 
             <div className="shadow-md mx-2 bg-white rounded-md">
@@ -38,7 +38,7 @@ export default function SubmitData() {
                         <TextField id="standard-basic" {...register("brand")} label="Brand Name" variant="standard" />
 
                         {/* <DatePicker {...register("date")} label="Basic date picker" /> */}
-                        <div className="pt-1">
+                        <div className="pt-1 mr-2">
                             <p className="text-[14px] p-0 text-gray-600">Start Date</p>
                             <input type="date" name="StartDate" id="" className="outline-none  border-gray-400 border-b-2 text-gray-500" />
                         </div>
@@ -61,7 +61,7 @@ export default function SubmitData() {
                     {errors.exampleRequired && <span>This field is required</span>}
 
 
-                    <div className="flex justify-center items-center py-12">
+                    <div className="flex justify-center  items-center py-12 ">
                         <input className=" text-white  px-6 py-3  font-medium  bg-green-600 shadow-md  rounded " type="submit" />
                     </div>
                 </form>
