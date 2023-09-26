@@ -19,11 +19,11 @@ export default function SubmitData() {
     return (
         // <div className="grid  items-center justify-center  h-screen bg-slate-50">
         // </div>
-        <div className=" mx-2 bg-white ">
-                <h1 className="font-bold text-2xl text-gray-600 text-center py-5 ">Submit Customer Data</h1>
+        <div className=" mx-4 bg-white ">
+                <h1 className="font-bold text-2xl text-gray-600 text-center py-5  ">Submit Customer Data</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
-                    <div className="grid grid-cols-2 gap-5 px-5" >
+                    <div className="grid grid-cols-2 gap-5" >
                         <TextField id="outlined-read-only-input" {...register("customerId")} defaultValue={2} label="Customer ID" InputProps={{
                             readOnly: true,
                         }} variant="standard" />
@@ -61,7 +61,7 @@ export default function SubmitData() {
 
 
                     <div className="flex justify-center  items-center pt-12 pb-6 ">
-                        <input className=" text-white  px-6 py-3  font-medium  bg-green-600 shadow-md  rounded " type="submit" />
+                        <input className=" text-white  px-10 py-3  font-medium  bg-green-600 shadow-md  rounded " type="submit" />
                     </div>
                 </form>
             </div>
