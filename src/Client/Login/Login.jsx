@@ -30,7 +30,7 @@ export default function Login() {
             position: 'center',
             icon: 'success',
             title: 'Login Successfully',
-            showConfirmButton: true,
+            showConfirmButton: false ,
             timer: 1500
           })
     }
@@ -49,7 +49,7 @@ export default function Login() {
                         }}
                     />
                 </div>
-                <div className='flex flex-col space-y-5'>
+                <div className='flex flex-col '>
                     <TextField id="standard-basic" label="User ID" variant="standard" />
                     <FormControl variant="standard">
                         <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
