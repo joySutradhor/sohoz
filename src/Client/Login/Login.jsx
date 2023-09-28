@@ -36,10 +36,10 @@ export default function Login() {
     }
 
     return (
-        <div className='flex items-center  h-screen justify-center bg-slate-100 '>
-            <div className='bg-slate-50 shadow-md rounded-md  pb-8 px-16 pt-10 mx-8'>
+        <div className='flex   h-screen justify-center items-center bg-slate-100 '>
+            <div className='bg-slate-50 shadow-md rounded-md  px-16  mx-8'>
 
-                <div className='pb-8 text-center text-2xl font-bold text-gray-600'>
+                <div className='py-10 text-center text-2xl font-bold text-gray-600'>
                     <Typewriter
                         options={{
 
