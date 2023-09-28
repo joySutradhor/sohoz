@@ -12,6 +12,8 @@ import { Button, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Typewriter from 'typewriter-effect';
 import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
+// import "./Login.css"
 
 
 
@@ -23,9 +25,18 @@ export default function Login() {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+    const { data } = useQuery({
+        queryKey: ['info'],
+        queryFn: () =>
+          fetch('http://localhost:5000/info').then(
+            (res) => res.json(),
+          ),
+      })
+      console.log(data)
 
     // Swal fire part
     const fire = () => {
+        
         Swal.fire({
             position: 'center',
             icon: 'success',
@@ -35,9 +46,11 @@ export default function Login() {
           })
     }
 
+   
+
     return (
-        <div className='flex   h-screen justify-center items-center bg-slate-100 '>
-            <div className='bg-slate-50 shadow-md rounded-md  px-16  mx-8'>
+        <div className='grid place-items-center h-screen bg-slate-100 '>
+            <div className='bg-slate-50 shadow-md rounded-md  px-16  mx-5'>
 
                 <div className='py-10 text-center text-2xl font-bold text-gray-600'>
                     <Typewriter
@@ -49,7 +62,7 @@ export default function Login() {
                         }}
                     />
                 </div>
-                <div className='flex flex-col '>
+                <div className='grid grid-cols-1 '>
                     <div className='pb-5'><TextField id="standard-basic" label="User ID" variant="standard" /></div>
                     <FormControl variant="standard">
                         <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
@@ -69,7 +82,7 @@ export default function Login() {
                             }
                         />
                     </FormControl>
-                    <div className='flex justify-center py-8'>
+                    <div className='flex justify-center py-10'>
                         <Button onClick={()=> fire()}>
                             <Link to="/submitData" className=" text-white  px-6 py-3  font-medium  bg-green-600 shadow-md  rounded ">
                            Login Now

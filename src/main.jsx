@@ -7,20 +7,27 @@ import {
 } from "react-router-dom";
 import Main from './Client/Main';
 import SubmitData from './Client/SubmitData/SubmitData';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-  
+
   },
   {
     path: "submitData",
-    element : <SubmitData></SubmitData>
+    element: <SubmitData></SubmitData>
   }
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-   <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>,
 )
