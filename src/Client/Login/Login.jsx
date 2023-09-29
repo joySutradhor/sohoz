@@ -1,5 +1,5 @@
 // import Box from '@mui/material/Box';
-// import IconButton from '@mui/material/IconButton';
+import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -7,12 +7,13 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { useState } from 'react';
-import { Button, IconButton } from '@mui/material';
-import { Link } from 'react-router-dom';
+// import { Button } from '@mui/material';
+// import { Link } from 'react-router-dom';
 import Typewriter from 'typewriter-effect';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 // import "./Login.css"
 
 
@@ -25,28 +26,50 @@ export default function Login() {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-    const { data } = useQuery({
+    const { data,  } = useQuery({
         queryKey: ['info'],
         queryFn: () =>
-          fetch('http://localhost:5000/info').then(
-            (res) => res.json(),
-          ),
-      })
-      console.log(data)
+            fetch('http://localhost:5000/info').then(
+                (res) => res.json(),
+            ),
+    })
+    //   console.log(data)
+    // const [officeInfo, setOfficeInfo] = useState("");
+
+    //   if(data?.find((d) => d.id == 100 && d.pass == "joy100" )) {
+    //     setOfficeInfo("admin")
+    //     console.log(officeInfo)
+    //     console.log("admin")
+    // }
 
     // Swal fire part
-    const fire = () => {
-        
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Login Successfully',
-            showConfirmButton: false ,
-            timer: 1500
-          })
+   
+        // if(data.id == 100){
+        //     console.log("joy")
+        // }
+
+        // Swal.fire({
+        //     position: 'center',
+        //     icon: 'success',
+        //     title: 'Login Successfully',
+        //     showConfirmButton: false ,
+        //     timer: 1500
+        //   })
+    
+    const {
+        register,
+        handleSubmit,
+    } = useForm()
+
+    const onSubmit = (formData) => {
+        console.log(formData.id , formData.password)
+        console.log(data)
+        if (data?.find((d) => d.id == formData.id  && d.pass == formData.password )) {
+            console.log("milse")
+        }
+        // window.location.href = '/submitData';
     }
 
-   
 
     return (
         <div className='grid place-items-center h-screen bg-slate-100 '>
@@ -63,32 +86,36 @@ export default function Login() {
                     />
                 </div>
                 <div className='grid grid-cols-1 '>
-                    <div className='pb-5'><TextField id="standard-basic" label="User ID" variant="standard" /></div>
-                    <FormControl variant="standard">
-                        <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-                        <Input
-                            id="standard-adornment-password"
-                            type={showPassword ? 'text' : 'password'}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                    >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                        />
-                    </FormControl>
-                    <div className='flex justify-center py-10'>
-                        <Button onClick={()=> fire()}>
-                            <Link to="/submitData" className=" text-white  px-6 py-3  font-medium  bg-green-600 shadow-md  rounded ">
-                           Login Now
-                            </Link>
-                        </Button>
-                    </div>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className='pb-5'><TextField id="standard-basic" {...register("id")} label="User ID" variant="standard" /></div>
+                        <FormControl variant="standard">
+                            <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                            <Input
+                            {...register("password")}
+                                id="standard-adornment-password"
+                                type={showPassword ? 'text' : 'password'}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                        >
+                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                            />
+                        </FormControl>
+                        <div className='flex justify-center py-10'>
+                            {/* <Button type='submit'>
+                                <Link to="/submitData"  className=" text-white   px-6 py-3 font-medium  bg-green-600 shadow-md  rounded ">
+                                    Login Now
+                                </Link>
+                            </Button> */}
+                            <input className=" text-white  px-10 py-3  font-medium  bg-green-600 shadow-md  rounded " type="submit" />
+                        </div>
+                    </form>
 
                 </div>
 
