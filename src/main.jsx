@@ -11,6 +11,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import Admin from './Dashboard/Admin/Admin';
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
@@ -22,6 +23,18 @@ const router = createBrowserRouter([
   {
     path: "submitData",
     element: <SubmitData></SubmitData>
+  }, 
+  {
+    path : "admin" ,
+    element : <Admin></Admin>
+  },
+  {
+    path : "marketing",
+    element : <p>dailm is marketing </p>
+  },
+  {
+    path : "management",
+    element : <p>ripon is management </p>
   }
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(

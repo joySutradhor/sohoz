@@ -1,4 +1,3 @@
-// import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
@@ -7,10 +6,8 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-// import { Button } from '@mui/material';
-// import { Link } from 'react-router-dom';
 import Typewriter from 'typewriter-effect';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
@@ -26,49 +23,71 @@ export default function Login() {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-    const { data,  } = useQuery({
+    const { data, } = useQuery({
         queryKey: ['info'],
         queryFn: () =>
             fetch('http://localhost:5000/info').then(
                 (res) => res.json(),
             ),
     })
-    //   console.log(data)
-    // const [officeInfo, setOfficeInfo] = useState("");
+    const [officeInfo, setOfficeInfo] = useState("");
 
-    //   if(data?.find((d) => d.id == 100 && d.pass == "joy100" )) {
-    //     setOfficeInfo("admin")
-    //     console.log(officeInfo)
-    //     console.log("admin")
-    // }
 
-    // Swal fire part
-   
-        // if(data.id == 100){
-        //     console.log("joy")
-        // }
-
-        // Swal.fire({
-        //     position: 'center',
-        //     icon: 'success',
-        //     title: 'Login Successfully',
-        //     showConfirmButton: false ,
-        //     timer: 1500
-        //   })
-    
     const {
         register,
         handleSubmit,
     } = useForm()
 
     const onSubmit = (formData) => {
-        console.log(formData.id , formData.password)
+        console.log(formData.id, formData.password)
         console.log(data)
-        if (data?.find((d) => d.id == formData.id  && d.pass == formData.password )) {
-            console.log("milse")
+        if (data?.find((d) => d.id == formData.id && d.pass == formData.password && d.role == "admin")) {
+            setOfficeInfo("admin")
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Login Successfully',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            window.location.href = '/admin';
         }
-        // window.location.href = '/submitData';
+        else if (data?.find((d) => d.id == formData.id && d.pass == formData.password && d.role == "marketing")) {
+            console.log("milse marketing")
+            setOfficeInfo("marketing")
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Login Successfully',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            window.location.href = '/marketing';
+
+        }
+        else if (data?.find((d) => d.id == formData.id && d.pass == formData.password && d.role == "management")) {
+            console.log("milse management")
+            setOfficeInfo("management")
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Login Successfully',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            window.location.href = '/management';
+
+        }
+        else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'User ID or Password Invalid!',
+                
+              })
+        }
     }
+    console.log(officeInfo)
 
 
     return (
@@ -91,7 +110,7 @@ export default function Login() {
                         <FormControl variant="standard">
                             <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
                             <Input
-                            {...register("password")}
+                                {...register("password")}
                                 id="standard-adornment-password"
                                 type={showPassword ? 'text' : 'password'}
                                 endAdornment={
@@ -108,11 +127,6 @@ export default function Login() {
                             />
                         </FormControl>
                         <div className='flex justify-center py-10'>
-                            {/* <Button type='submit'>
-                                <Link to="/submitData"  className=" text-white   px-6 py-3 font-medium  bg-green-600 shadow-md  rounded ">
-                                    Login Now
-                                </Link>
-                            </Button> */}
                             <input className=" text-white  px-10 py-3  font-medium  bg-green-600 shadow-md  rounded " type="submit" />
                         </div>
                     </form>
