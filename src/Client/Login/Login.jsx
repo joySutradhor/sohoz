@@ -41,50 +41,70 @@ export default function Login() {
     const onSubmit = (formData) => {
         console.log(formData.id, formData.password)
         console.log(data)
+
+        // using find method for admin  conditional dashboard
         if (data?.find((d) => d.id == formData.id && d.pass == formData.password && d.role == "admin")) {
             setOfficeInfo("admin")
             Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Login Successfully',
-                showConfirmButton: false,
-                timer: 1500
+                title: 'Want  to Login?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Login!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/admin';
+                }
             })
-            window.location.href = '/admin';
         }
+
+        // using find method for marketing  conditional dashboard
         else if (data?.find((d) => d.id == formData.id && d.pass == formData.password && d.role == "marketing")) {
             console.log("milse marketing")
             setOfficeInfo("marketing")
             Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Login Successfully',
-                showConfirmButton: false,
-                timer: 1500
+                title: 'Want  to Login?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Login!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/marketing';
+                }
             })
-            window.location.href = '/marketing';
 
         }
+
+        // using find method for management  conditional dashboard
         else if (data?.find((d) => d.id == formData.id && d.pass == formData.password && d.role == "management")) {
             console.log("milse management")
             setOfficeInfo("management")
             Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Login Successfully',
-                showConfirmButton: false,
-                timer: 1500
+                title: 'Want  to Login?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Login!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/management';
+                }
             })
-            window.location.href = '/management';
+
 
         }
-        else{
+        // no match conditon 
+        else {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'User ID or Password Invalid!',
-                
-              })
+
+            })
         }
     }
     console.log(officeInfo)
