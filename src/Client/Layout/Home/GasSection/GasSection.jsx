@@ -36,14 +36,14 @@ const GasSection = () => {
                                 <Typography gutterBottom variant="h6" component="div">
                                     {item.name} - {item.weight}
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary">
+                                {/* <Typography variant="body2" color="text.secondary">
                                     {item.desc}
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    Price : {item.price} Taka
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
+                                </Typography> */}
+                                <Typography variant="subtitle1" color="text.secondary">
                                     Devlivery : {item.delivery}
+                                </Typography>
+                                <Typography variant="subtitle1" color="text.secondary">
+                                    Price : {item.price} Taka
                                 </Typography>
                             </CardContent>
                             <CardActions className="flex justify-end mr-4 mb-2">
