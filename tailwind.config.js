@@ -7,8 +7,10 @@ export default {
   theme: {
     extend: {},
     fontFamily : {
-      roboto : ["Roboto"]
-    }
+      roboto : ["Roboto"],
+           poppins : ['Poppins'],
+    },
+
   },
   plugins: [],
 }

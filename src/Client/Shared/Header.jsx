@@ -164,7 +164,7 @@ export default function Header() {
       </MenuItem>
       {/* End Of callnow item */}
 
-{/* items for Login */}
+      {/* items for Login */}
       <MenuItem>
         {/* item for Login */}
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
@@ -181,81 +181,77 @@ export default function Header() {
         <p>LogOut</p>
       </MenuItem>
       {/* end of logout and login item */}
-
-
-
-
-
-
     </Menu>
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="small"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 1 }}
-          >
-            SOHOZ
-          </IconButton>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
+    <div className='pb-16'>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="fixed">
+          <Toolbar>
+            <IconButton
+              size="small"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 1 }}
+            >
+              SOHOZ
+            </IconButton>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
               </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search.."
+              <StyledInputBase
+                placeholder="Search.."
               // inputProps={{ 'aria-label': 'search' }}
               />
-          </Search>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MenuOutlinedIcon></MenuOutlinedIcon>
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </Box>
+            </Search>
+            <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                <Badge badgeContent={4} color="error">
+                  <MailIcon />
+                </Badge>
+              </IconButton>
+              <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge badgeContent={17} color="error">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            </Box>
+            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MenuOutlinedIcon></MenuOutlinedIcon>
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        {renderMobileMenu}
+        {renderMenu}
+      </Box>
+    </div>
   );
 }

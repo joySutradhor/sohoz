@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Paper from '@mui/material/Paper';
+// import Paper from '@mui/material/Paper';
 import Fab from '@mui/material/Fab';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import CallOutlinedIcon from '@material-ui/icons/CallOutlined';
@@ -32,9 +32,9 @@ export default function Footer() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Paper square sx={{ pb: '50px' }}>
+      {/* <Paper square sx={{ pb: '50px' }}>
 
-      </Paper>
+      </Paper> */}
       <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
         {/* Render all menu icon  */} 
         {/* Gap 4 means space vertical in menu icon  */}
