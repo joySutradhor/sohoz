@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import { useForm } from "react-hook-form"
 import TextField from '@mui/material/TextField';
+import Admincopy from "../Shared/Footer";
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export default function SubmitData() {
@@ -19,7 +20,9 @@ export default function SubmitData() {
     return (
         // <div className="grid  items-center justify-center  h-screen bg-slate-50">
         // </div>
-        <div className=" mx-4 bg-white ">
+        <div>
+            
+            <div className=" mx-4 bg-white ">
                 <h1 className="font-bold text-2xl text-gray-600 text-center py-5  ">Submit Customer Data</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -65,5 +68,8 @@ export default function SubmitData() {
                     </div>
                 </form>
             </div>
+            <Admincopy></Admincopy>
+        </div>
+        
     )
 }
