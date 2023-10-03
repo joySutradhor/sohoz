@@ -19,7 +19,7 @@ const GasSection = () => {
     return (
         <div className="py-6 px-2">
             <h1 className="text-[#5a6177] font-poppins text-lg font-bold text-center">Our Services </h1>
-            <div className="pb-20">
+            <div className="pb-20 grid grid-cols-2">
                 {
                     data?.map((item) => <div className="grid pt-5"
 
@@ -27,28 +27,29 @@ const GasSection = () => {
                     >
                         <Card sx={{ maxWidth: 345 }}>
                             <CardMedia
+                            
                                 component="img"
                                 alt="green iguana"
                                 height="140"
                                 image={item.img}
                             />
                             <CardContent>
-                                <Typography gutterBottom variant="h6" component="div">
+                                <Typography gutterBottom variant="p" component="div" className="text-[11px] font-poppins ">
                                     {item.name} - {item.weight}
                                 </Typography>
                                 {/* <Typography variant="body2" color="text.secondary">
                                     {item.desc}
                                 </Typography> */}
-                                <Typography variant="subtitle1" color="text.secondary">
+                                <Typography variant="p" color="text.secondary" className="text-[10px] font-poppins">
                                     Devlivery : {item.delivery}
                                 </Typography>
-                                <Typography variant="subtitle1" color="text.secondary">
-                                    Price : {item.price} Taka
+                                <Typography variant="body2" color="text.secondary" className="text-[8px] font-poppins">
+                                    Price : <span className="text-[#1976D2]">{item.price}</span> Taka
                                 </Typography>
                             </CardContent>
                             <CardActions className="flex justify-end mr-4 mb-2">
-                                <Button variant="outlined" startIcon={<AddShoppingCartIcon />}>
-                                    Buy
+                                <Button variant="outlined" size="small" startIcon={<AddShoppingCartIcon />}>
+                                    Buy Now
                                 </Button>
 
                             </CardActions>
