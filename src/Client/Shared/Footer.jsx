@@ -8,12 +8,13 @@ import IconButton from '@mui/material/IconButton';
 // import Paper from '@mui/material/Paper';
 import Fab from '@mui/material/Fab';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import CallOutlinedIcon from '@material-ui/icons/CallOutlined';
+// import CallOutlinedIcon from '@material-ui/icons/CallOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { Link } from 'react-router-dom';
 import Badge from '@mui/material/Badge';
 import DirectionsBikeOutlinedIcon from '@material-ui/icons/DirectionsBikeOutlined';
 import PhotoLibraryOutlinedIcon from '@material-ui/icons/PhotoLibraryOutlined';
+import Gif from "../../../public/call.gif"
 
 
 
@@ -28,6 +29,11 @@ const StyledFab = styled(Fab)({
 });
 
 export default function Footer() {
+
+  // to add a modal 
+  const hello = () => {
+    console.log ("hello click")
+  }
 
   return (
     <React.Fragment>
@@ -45,8 +51,9 @@ export default function Footer() {
           <IconButton color="inherit" aria-label="open drawer">
             <Link to="/"> <PhotoLibraryOutlinedIcon></PhotoLibraryOutlinedIcon> </Link>
           </IconButton>
-          <StyledFab color="secondary" aria-label="add">
-            <CallOutlinedIcon></CallOutlinedIcon>
+          <StyledFab  aria-label="add">
+            {/* <CallOutlinedIcon></CallOutlinedIcon> */}
+            <img onClick={hello} src={Gif} alt="" width="35" height="50" />
           </StyledFab>
           <Box sx={{ flexGrow: 1 }} />
           <IconButton color="inherit">

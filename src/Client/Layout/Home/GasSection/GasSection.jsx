@@ -6,6 +6,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+// import "/GasSection.css"
+import "./GasSection.css"
 
 const GasSection = () => {
     const { data } = useQuery({
@@ -17,19 +19,19 @@ const GasSection = () => {
     })
     console.log(data)
     return (
-        <div className="py-6 px-2">
-            <h1 className="text-[#5a6177] font-poppins text-lg font-bold text-center">Our Services </h1>
-            <div className="pb-20 grid grid-cols-2">
+        <div className="pt-4 px-2">
+            <h1 className="text-gray-400 font-roboto text-lg   pb-4">Cylinder Service </h1>
+            <div className=" grid grid-cols-2">
                 {
-                    data?.map((item) => <div className="grid pt-5"
+                    data?.map((item) => <div
 
                         key={item._id}
                     >
-                        <Card sx={{ maxWidth: 345 }}>
+                        <Card sx={{ maxWidth: 345 }}  className="cardShadow">
                             <CardMedia
-                            
+                                
                                 component="img"
-                                alt="green iguana"
+                                alt="gas cylinder"
                                 height="140"
                                 image={item.img}
                             />
@@ -40,11 +42,11 @@ const GasSection = () => {
                                 {/* <Typography variant="body2" color="text.secondary">
                                     {item.desc}
                                 </Typography> */}
-                                <Typography variant="p" color="text.secondary" className="text-[10px] font-poppins">
+                                <Typography variant="p" color="text.secondary" className="text-[11px] font-poppins">
                                     Devlivery : {item.delivery}
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary" className="text-[8px] font-poppins">
-                                    Price : <span className="text-[#1976D2]">{item.price}</span> Taka
+                                <Typography variant="p" color="text.secondary" className="text-[11px] font-poppins">
+                                   <br /> Price : <span className="text-[#1976D2]">{item.price}</span> Taka
                                 </Typography>
                             </CardContent>
                             <CardActions className="flex justify-end mr-4 mb-2">
