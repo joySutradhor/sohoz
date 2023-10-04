@@ -109,9 +109,9 @@ const Register = () => {
                 </div>
                 <div className=' '>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className='pb-2'><TextField id="standard-basic" {...register("name")}  label="User Name" variant="standard" /></div>
-                        <div className='pb-2'><TextField id="standard-basicTwo" {...register("email")} label="User Email" variant="standard" /></div>
-                        <div className='pb-2'><TextField id="standard-basicThree" {...register("phone")} label="User Phone" variant="standard" /></div>
+                        <div className='pb-2'><TextField id="standard-basic" {...register("name")}  label=" Name" variant="standard" /></div>
+                        <div className='pb-2'><TextField id="standard-basicTwo" {...register("email")} label=" Email" variant="standard" /></div>
+                        <div className='pb-2'><TextField id="standard-basicThree" {...register("phone")} label=" Phone" variant="standard" /></div>
                         <FormControl variant="standard"  >
                             <div className='pb-2'>
                             <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
