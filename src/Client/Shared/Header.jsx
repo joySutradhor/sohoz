@@ -127,11 +127,11 @@ export default function Header() {
       {/* item for Profile  */}
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          size="large"
+          size="small"
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
+          color="text.secondary"
         >
           <AccountCircle />
         </IconButton>
@@ -143,11 +143,11 @@ export default function Header() {
       {/* ittem for Dashboard */}
       <MenuItem>
         <IconButton
-          size="large"
+          size="samll"
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
+          color="text.secondary"
         >
           <DashboardOutlinedIcon></DashboardOutlinedIcon>
         </IconButton>
@@ -157,7 +157,7 @@ export default function Header() {
 
       {/* item for Call now */}
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="small" aria-label="call now" color="text.secondary">
           <CallOutlinedIcon></CallOutlinedIcon>
         </IconButton>
         <p>Call Now</p>
@@ -167,7 +167,7 @@ export default function Header() {
       {/* items for Login */}
       <MenuItem>
         {/* item for Login */}
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="small" aria-label="User Login " color="text.secondary">
           <KeyboardTabOutlinedIcon></KeyboardTabOutlinedIcon>
         </IconButton>
         <p>Login</p>
@@ -175,7 +175,7 @@ export default function Header() {
 
       {/* item for Logout */}
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="small" aria-label="User Logout" color="text.secondary">
           <PowerSettingsNewIcon></PowerSettingsNewIcon>
         </IconButton>
         <p>LogOut</p>

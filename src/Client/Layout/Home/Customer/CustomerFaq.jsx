@@ -53,21 +53,21 @@ export default function CustomerFaq() {
     <div className=' px-2'>
       <h1 className='py-4 text-gray-400 '>Fequently Ask Question</h1>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>Collapsible Group Item #1</Typography>
+        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" >
+          <Typography color="text.secondary">Collapsible Group Item #1</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography color="text.secondary">
             Lorem ipsum dolor sit amet, 
           </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-          <Typography>Collapsible Group Item #2</Typography>
+          <Typography color="text.secondary">Collapsible Group Item #2</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography color="text.secondary">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex,
           </Typography>
@@ -75,10 +75,10 @@ export default function CustomerFaq() {
       </Accordion>
       <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-          <Typography>Collapsible Group Item #3</Typography>
+          <Typography color="text.secondary">Collapsible Group Item #3</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography color="text.secondary">
             Lorem ipsum dolor sit amet,
           </Typography>
         </AccordionDetails>

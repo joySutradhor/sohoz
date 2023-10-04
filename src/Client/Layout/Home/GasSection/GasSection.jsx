@@ -36,7 +36,7 @@ const GasSection = () => {
                                 image={item.img}
                             />
                             <CardContent>
-                                <Typography gutterBottom variant="p" component="div" className="text-[11px] font-poppins ">
+                                <Typography gutterBottom variant="p" color="text.secondary" component="div" className="text-[11px] font-poppins ">
                                     {item.name} - {item.weight}
                                 </Typography>
                                 {/* <Typography variant="body2" color="text.secondary">
