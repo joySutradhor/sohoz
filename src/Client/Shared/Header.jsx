@@ -19,6 +19,7 @@ import KeyboardTabOutlinedIcon from '@material-ui/icons/KeyboardTabOutlined';
 import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 import { AuthContext } from './../Providers/Providers';
 import { useContext } from "react";
+import { Link } from 'react-router-dom';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -64,9 +65,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function Header() {
 
-  const { user , logout} = useContext(AuthContext)
-  console.log(user , logout)
-
+  const { user, logout } = useContext(AuthContext)
+ 
+  const handleLogout = () => {
+    logout()
+    .then ()
+    
+  }
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -131,7 +136,8 @@ export default function Header() {
     >
 
       {/* item for Profile  */}
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <Link to="/profile">
+      <MenuItem >
         <IconButton
           size="small"
           aria-label="account of current user"
@@ -143,10 +149,12 @@ export default function Header() {
         </IconButton>
         <p>Profile</p>
       </MenuItem>
+      </Link>
       {/* end of profile menu item*/}
 
 
       {/* ittem for Dashboard */}
+      <Link>
       <MenuItem>
         <IconButton
           size="samll"
@@ -159,34 +167,41 @@ export default function Header() {
         </IconButton>
         <p>Dashborad</p>
       </MenuItem>
+      </Link>
       {/* End Of Dashbord Item */}
 
       {/* item for Call now */}
+      <Link>
       <MenuItem>
         <IconButton size="small" aria-label="call now" color="text.secondary">
           <CallOutlinedIcon></CallOutlinedIcon>
         </IconButton>
         <p>Call Now</p>
       </MenuItem>
+      </Link>
       {/* End Of callnow item */}
+      {
+        user ? <Link to="/">
+        <MenuItem onClick={handleLogout}>
+          <IconButton size="small" aria-label="User Logout" color="text.secondary">
+            <PowerSettingsNewIcon></PowerSettingsNewIcon>
+          </IconButton>
+          <p>LogOut</p>
+        </MenuItem>
+        </Link> : <Link to="/login">
+        
+        <MenuItem>
 
-      {/* items for Login */}
-      <MenuItem>
-        {/* item for Login */}
-        <IconButton size="small" aria-label="User Login " color="text.secondary">
-          <KeyboardTabOutlinedIcon></KeyboardTabOutlinedIcon>
-        </IconButton>
-        <p>Login</p>
-      </MenuItem>
-
-      {/* item for Logout */}
-      <MenuItem>
-        <IconButton size="small" aria-label="User Logout" color="text.secondary">
-          <PowerSettingsNewIcon></PowerSettingsNewIcon>
-        </IconButton>
-        <p>LogOut</p>
-      </MenuItem>
+          {/* item for Login */}
+          <IconButton size="small" aria-label="User Login " color="text.secondary">
+            <KeyboardTabOutlinedIcon></KeyboardTabOutlinedIcon>
+          </IconButton>
+          <p>Login</p>
+        </MenuItem>
+        </Link>
+      }
       {/* end of logout and login item */}
+
     </Menu>
   );
 

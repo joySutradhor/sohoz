@@ -1,3 +1,4 @@
 # force install package : 
 1. firebase 
 2. React keen slider 
+3. npm install react-icons

@@ -16,6 +16,11 @@ import Admincopy from './Client/Shared/Footer';
 import Main from './Client/Layout/Main';
 import Home from './Client/Layout/Home/Home';
 import AuthProviders from './Client/Providers/Providers';
+import Profile from './Client/Layout/Pages/Profile';
+import Login from './Client/Layout/Pages/Login';
+// import Register from './Client/Layout/Pages/Register';
+// import RegisterTest from './Client/Layout/Pages/RegisterTest';
+import Register from './Client/Layout/Pages/Register';
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
@@ -26,6 +31,18 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>
+      },
+      {
+        path : "profile",
+        element : <Profile></Profile>
+      },
+      {
+        path : "login",
+        element : <Login></Login>
+      },
+      {
+        path : "register" ,
+        element : <Register></Register>
       }
     ]
 
