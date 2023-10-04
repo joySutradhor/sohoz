@@ -21,9 +21,8 @@ export default function CallModal() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>
-      <img  src={Gif} alt="" width="35" height="50" />
-      </Button>
+      <img onClick={handleClickOpen} src={Gif} alt="This call button" width="35" height="50" />
+
       <Dialog
 
         open={open}

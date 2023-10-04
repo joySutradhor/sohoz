@@ -1,0 +1,3 @@
+# force install package : 
+1. firebase 
+2. React keen slider 

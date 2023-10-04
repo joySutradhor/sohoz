@@ -15,6 +15,7 @@ import Admin from './Dashboard/Admin/Admin';
 import Admincopy from './Client/Shared/Footer';
 import Main from './Client/Layout/Main';
 import Home from './Client/Layout/Home/Home';
+import AuthProviders from './Client/Providers/Providers';
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
@@ -54,8 +55,10 @@ const router = createBrowserRouter([
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <AuthProviders>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </AuthProviders>
   </React.StrictMode>,
 )

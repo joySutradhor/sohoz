@@ -17,6 +17,8 @@ import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import CallOutlinedIcon from '@material-ui/icons/CallOutlined';
 import KeyboardTabOutlinedIcon from '@material-ui/icons/KeyboardTabOutlined';
 import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
+import { AuthContext } from './../Providers/Providers';
+import { useContext } from "react";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -61,6 +63,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Header() {
+
+  const { user , logout} = useContext(AuthContext)
+  console.log(user , logout)
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
