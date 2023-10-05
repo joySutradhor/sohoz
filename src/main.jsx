@@ -21,6 +21,7 @@ import Login from './Client/Layout/Pages/Login';
 // import Register from './Client/Layout/Pages/Register';
 // import RegisterTest from './Client/Layout/Pages/RegisterTest';
 import Register from './Client/Layout/Pages/Register';
+import Dashboard from './Client/Layout/Pages/Dashboard';
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path : "register" ,
         element : <Register></Register>
+      },
+      {
+        path : "dashboard" ,
+        element : <Dashboard></Dashboard>
       }
     ]
 

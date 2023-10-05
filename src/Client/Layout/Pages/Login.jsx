@@ -33,12 +33,11 @@ const Login = () => {
     };
 
     const onSubmit = data => {
-        console.log(data)
+        // console.log(data)
         handleloginUser(data.email, data.password)
-            .then(result => {
-                const data = result.user;
-                console.log(data)
-                reset()
+            .then(() => {
+                // const data = result.user;
+                // console.log(data)
                 Swal.fire({
                     position: 'top-center',
                     icon: 'success',
@@ -47,6 +46,7 @@ const Login = () => {
                     timer: 1500
                 })
                 navigate(from, { replace: true })
+                reset()
             })
     };
 

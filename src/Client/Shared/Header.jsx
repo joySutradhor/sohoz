@@ -154,7 +154,7 @@ export default function Header() {
 
 
       {/* ittem for Dashboard */}
-      <Link>
+      <Link to="/dashboard">
       <MenuItem>
         <IconButton
           size="samll"
