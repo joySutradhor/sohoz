@@ -93,7 +93,7 @@ export default function RegisterPage() {
                 <MuiTelInput id="outlined-helperText"
                   label="Phone"
                   required
-                  {...register("phone" , { required: true, maxLength: 11 })}
+                  {...register("phone" , { required: true, maxLength: 20 })}
                   fullWidth
                   defaultCountry="BD" 
                   value={phone} 
@@ -108,7 +108,7 @@ export default function RegisterPage() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  {...register("email" , { required: true, maxLength: 20 })}
+                  {...register("email" , { required: true })}
                 />
               </Grid>
               <Grid item xs={12}>
