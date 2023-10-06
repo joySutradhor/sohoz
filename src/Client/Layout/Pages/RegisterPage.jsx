@@ -12,9 +12,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import { useForm } from 'react-hook-form';
 import { MuiTelInput } from 'mui-tel-input'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FormControl from '@mui/material/FormControl';
 // import Input from '@mui/material/Input';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -26,6 +26,8 @@ import IconButton from '@mui/material/IconButton';
 
 import 'react-toastify/dist/ReactToastify.css';
 import Social from '../../Components/Social/Social';
+import { AuthContext } from '../../Providers/Providers';
+import Swal from 'sweetalert2';
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -81,10 +83,69 @@ export default function RegisterPage() {
     });
   }
 
+  // for post method 
+  const { handleRegisterUser , handleUpdateProfile } = useContext(AuthContext);
+  const Navigate = useNavigate() ;
+
+
   // collect data using react hook form 
   const onSubmit = (data) => {
-    console.log(data)
-  }
+    // console.log(data)
+    // console.log(data.name , data.phone , data.email, data.password , data.confirmPassword)
+ 
+    if (data.password == data.confirmPassword) {
+
+        const email = data.email;
+        const password = data.password;
+        // console.log(email , password)
+
+        handleRegisterUser(email, password)
+            .then(result => {
+                console.log(result)
+                const registeredUser = result.user;
+                console.log(registeredUser)
+                // toDo uddate profile pic add korte hobe .
+                handleUpdateProfile(data.name)
+                    .then(() => {
+                        const saveUser = {name: data.name , phone : data.phone , email : data.email , role : "user"}
+                        console.log(saveUser)
+                        fetch("http://localhost:5000/users" , {
+                            method : "POST" , 
+                            headers : {
+                                "content-type" : "application/json"
+                            }, 
+                            body : JSON.stringify(saveUser)
+                        })
+                        .then(res => res.json())
+                        .then(user => {
+                            console.log(user , "user create")
+                            if(user.insertedId){
+                                reset()
+                                Swal.fire({
+                                    position: 'top-center',
+                                    icon: 'success',
+                                    title: 'Registation Completed',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                Navigate("/")
+                            }
+                        } )
+
+
+                     })
+               
+            })
+    }
+    else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Password Not Match!',
+        })
+    }
+    // console.log(data.password, data.confirmPassword)
+};
 
   
 
