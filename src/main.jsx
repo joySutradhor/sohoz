@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import {
@@ -22,6 +22,7 @@ import Login from './Client/Layout/Pages/Login';
 // import RegisterTest from './Client/Layout/Pages/RegisterTest';
 import Register from './Client/Layout/Pages/Register';
 import Dashboard from './Client/Layout/Pages/Dashboard';
+import RegisterPage from './Client/Layout/Pages/RegisterPage';
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path : "dashboard" ,
         element : <Dashboard></Dashboard>
+      },
+      {
+        path : "registerPage",
+        element : <RegisterPage></RegisterPage>
       }
     ]
 
@@ -76,11 +81,9 @@ const router = createBrowserRouter([
 
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <AuthProviders>
+  <AuthProviders>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
       </QueryClientProvider>
     </AuthProviders>
-  </React.StrictMode>,
 )

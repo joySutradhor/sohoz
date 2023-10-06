@@ -51,7 +51,7 @@ const Login = () => {
     };
 
     return (
-        <div >
+        <div className='h-screen'>
             <div className='flex justify-center items-center flex-col  px-10  mx-2'>
 
                 <div className='pt-10 pb-5 text-center text-2xl font-bold text-gray-600'>
@@ -88,7 +88,7 @@ const Login = () => {
                         </FormControl>
                         <div className='flex flex-col justify-center py-10'>
                             <input className=" text-white  px-10 py-3  font-medium  bg-green-600 shadow-md  rounded " type="submit" />
-                            <p className=' text-sm py-4'>New this site ? <Link className='text-indigo-800 w-full' to="/register">Register</Link></p>
+                            <p className=' text-sm py-4'>New this site ? <Link className='text-indigo-800 w-full' to="/registerPage">Register</Link></p>
                             <Social></Social>
                         </div>
                     </form>
