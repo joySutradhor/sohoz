@@ -64,7 +64,7 @@ export default function LoginPage() {
     };
     const onSubmit = data => {
         console.log(data)
-        handleloginUser(data.email, data.password)
+        handleloginUser(data.loginEmail, data.loginPassword)
             .then((result) => {
                 const data = result.user;
                 console.log(data)
