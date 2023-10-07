@@ -188,7 +188,7 @@ export default function Header() {
           </IconButton>
           <p>LogOut</p>
         </MenuItem>
-        </Link> : <Link to="/login">
+        </Link> : <Link to="/loginPage">
         
         <MenuItem>
 

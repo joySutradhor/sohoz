@@ -13,7 +13,7 @@ import Avatar from '@mui/material/Avatar';
 import { useForm } from 'react-hook-form';
 import { MuiTelInput } from 'mui-tel-input'
 import { useContext, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import FormControl from '@mui/material/FormControl';
 // import Input from '@mui/material/Input';
@@ -35,7 +35,7 @@ import Swal from 'sweetalert2';
 const defaultTheme = createTheme();
 
 export default function RegisterPage() {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset,  } = useForm();
 
   // using for phone field 
   const [phone, setPhone] = useState('')
@@ -56,32 +56,7 @@ export default function RegisterPage() {
   };
 
   
-  // using if condition for show errors 
-  if (errors.name?.type === 'required') {
-    toast.error('Name is required', {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 3000, // Close the notification after 3 seconds (adjust as needed)
-    });
-  }
-  if (errors.email?.type === 'required') {
-    toast.error('Email address can not be empty', {
-      position: toast.POSITION.RIGHT_CENTER,
-      autoClose: 3000, // Close the notification after 3 seconds (adjust as needed)
-    });
-  }
-
-  if (errors.password?.type === 'required') {
-    toast.error('Password can not be empty', {
-      position: toast.POSITION.TOP_LEFT,
-      autoClose: 3000, // Close the notification after 3 seconds (adjust as needed)
-    });
-  }
-  if (errors.confirmPassword?.type === 'required') {
-    toast.error('Please confirm your Password', {
-      position: toast.POSITION.TOP_LEFT,
-      autoClose: 3000, // Close the notification after 3 seconds (adjust as needed)
-    });
-  }
+  
 
   // for post method 
   const { handleRegisterUser , handleUpdateProfile } = useContext(AuthContext);
@@ -144,22 +119,19 @@ export default function RegisterPage() {
             text: 'Password Not Match!',
         })
     }
-    // console.log(data.password, data.confirmPassword)
+    console.log(data.password, data.confirmPassword)
+
 };
 
-  
-
-
-  
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <ToastContainer />
-      <Container component="main" maxWidth="xs">
+      <Container  component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 4,
+            marginTop: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -209,12 +181,12 @@ export default function RegisterPage() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControl variant="outlined" fullWidth>
-                  <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                <FormControl variant="outlined" fullWidth required>
+                  <InputLabel htmlFor="outlined-adornment-password  ">Password</InputLabel>
                   <OutlinedInput
                   // fullWidth
                   autoComplete="new-password"
-                  {...register("password", { required: true, minLength: 6 })}
+                  {...register("password", { required: true, minLength: 4 })}
                     id="outlined-adornment-password"
                     type={showPassword ? 'text' : 'password'}
                     endAdornment={
@@ -231,14 +203,15 @@ export default function RegisterPage() {
                     }
                     label="Password"
                   />
+                  {/* {errors.password?.lenght>= ? && <p role="alert">passis small is required</p> : ""}  */}
                 </FormControl>
               </Grid>
               <Grid item xs={12}>
-                <FormControl  variant="outlined" fullWidth>
+                <FormControl  variant="outlined" fullWidth required>
                   <InputLabel htmlFor="outlined-adornment-passwordTwo">Confirm Password</InputLabel>
                   <OutlinedInput
                   autoComplete="new-password"
-                  {...register("confirmPassword", { required: true, minLength: 6 })}
+                  {...register("confirmPassword", { required: true, minLength: 4 })}
                   
                     id="outlined-adornment-passwordTwo"
                     type={showPasswordTwo ? 'text' : 'password'}
@@ -274,7 +247,7 @@ export default function RegisterPage() {
                 {/* <Link  variant="body2">
                   Already have an account? Sign in
                 </Link> */}
-                <Link className='text-[#2976d2] font-roboto underline' to="/loginPage"> Already have an account? Sign in</Link>
+                <Link className='text-[#1976d2] text-[13px] font-roboto underline' to="/loginPage"> Already have an account? Sign in</Link>
               </Grid>
             </Grid>
           </Box>

@@ -5,7 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -24,15 +24,16 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Providers/Providers';
 import { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+import Social from '../../Components/Social/Social';
 
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
+            {'Developed By © '}
+            <Link className = "text-[#2976d2] underline font-semibold text-[12px]" to="https://www.facebook.com/joysutradhoor">
+                Joy Sutradhor
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -46,7 +47,7 @@ const defaultTheme = createTheme();
 
 export default function LoginPage() {
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const { handleloginUser } = useContext(AuthContext);
     const [isError, setIsError] = useState(false);
 
@@ -81,19 +82,16 @@ export default function LoginPage() {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode, errorMessage)
-                // toast.error('Please confirm your Password', {
-                //     position: toast.POSITION.TOP_LEFT,
-                //     autoClose: 3000, // Close the notification after 3 seconds (adjust as needed)
-                //   });
-                // // ..
                 setIsError(true)
             });
+            if(isError){
+                toast.error('Password or Email is invalid', {
+                    position: toast.POSITION.BOTTOM_LEFT,
+                    autoClose: 2000, // Close the notification after 3 seconds (adjust as needed)
+                });
+                console.log(isError)
+            }
     };
-    isError && toast.error('Password or Email is invalid', {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 2000, // Close the notification after 3 seconds (adjust as needed)
-    });
-    console.log(isError)
 
 
     return (
@@ -113,7 +111,7 @@ export default function LoginPage() {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        Login
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
                         <TextField
@@ -160,23 +158,25 @@ export default function LoginPage() {
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Sign In
+                            Login
                         </Button>
-                        <Grid container>
+                        <Grid container className='text-[14px] underline font-roboto text-[#1976d2]'>
                             <Grid item xs>
-                                <Link href="#" variant="body2">
+                                <Link to="" variant="body2">
                                     Forgot password?
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
+                                <Link to="/registerPage" variant="body2">
+                                    {"Go to Sign Up"}
                                 </Link>
                             </Grid>
                         </Grid>
+                        <p className='text-center mb-1 text-gray-400'>or</p>
+                        <Social></Social>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
+                <Copyright sx={{ mt: 4, mb: 2 }} />
             </Container>
         </ThemeProvider>
     );
