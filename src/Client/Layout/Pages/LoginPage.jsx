@@ -1,11 +1,9 @@
-// import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-// import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -13,7 +11,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FormControl from '@mui/material/FormControl';
-// import Input from '@mui/material/Input';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -49,7 +46,6 @@ export default function LoginPage() {
 
     const { register, handleSubmit, reset } = useForm();
     const { handleloginUser } = useContext(AuthContext);
-    const [isError, setIsError] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -82,16 +78,13 @@ export default function LoginPage() {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode, errorMessage)
-                setIsError(true)
-            });
-            if(isError){
                 toast.error('Password or Email is invalid', {
                     position: toast.POSITION.BOTTOM_LEFT,
                     autoClose: 2000, // Close the notification after 3 seconds (adjust as needed)
                 });
-                console.log(isError)
-            }
-    };
+            });
+        };
+
 
 
     return (
@@ -128,7 +121,7 @@ export default function LoginPage() {
                         <FormControl variant="outlined" fullWidth>
                             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                             <OutlinedInput
-                                // fullWidth
+                       
                                 autoComplete="new-password"
                                 {...register("loginPassword", { required: true, minLength: 6 })}
                                 id="outlined-adornment-password"
