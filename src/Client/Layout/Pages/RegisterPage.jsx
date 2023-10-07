@@ -274,7 +274,7 @@ export default function RegisterPage() {
                 {/* <Link  variant="body2">
                   Already have an account? Sign in
                 </Link> */}
-                <Link className='text-[#2976d2] font-roboto underline' to="/login"> Already have an account? Sign in</Link>
+                <Link className='text-[#2976d2] font-roboto underline' to="/loginPage"> Already have an account? Sign in</Link>
               </Grid>
             </Grid>
           </Box>

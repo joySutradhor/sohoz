@@ -17,12 +17,13 @@ import Main from './Client/Layout/Main';
 import Home from './Client/Layout/Home/Home';
 import AuthProviders from './Client/Providers/Providers';
 import Profile from './Client/Layout/Pages/Profile';
-import Login from './Client/Layout/Pages/Login';
+// import Login from './Client/Layout/Pages/Login';
 // import Register from './Client/Layout/Pages/Register';
 // import RegisterTest from './Client/Layout/Pages/RegisterTest';
 import Register from './Client/Layout/Pages/Register';
 import Dashboard from './Client/Layout/Pages/Dashboard';
 import RegisterPage from './Client/Layout/Pages/RegisterPage';
+import LoginPage from './Client/Layout/Pages/LoginPage';
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
@@ -39,8 +40,8 @@ const router = createBrowserRouter([
         element : <Profile></Profile>
       },
       {
-        path : "login",
-        element : <Login></Login>
+        path : "loginPage",
+        element : <LoginPage></LoginPage>
       },
       {
         path : "register" ,
