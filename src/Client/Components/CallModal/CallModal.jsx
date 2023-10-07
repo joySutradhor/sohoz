@@ -6,6 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Gif from "../../../../public/call.gif"
+import CallUs from '../CallUs/CallUs';
 
 export default function CallModal() {
   const [open, setOpen] = React.useState(false);
@@ -30,20 +31,19 @@ export default function CallModal() {
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title">
-          {"Use Google's location service?"}
+          {"Please Call For Order"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+            <CallUs></CallUs>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
-            Disagree
+            OK
           </Button>
           <Button onClick={handleClose} autoFocus>
-            Agree
+            Close
           </Button>
         </DialogActions>
       </Dialog>
