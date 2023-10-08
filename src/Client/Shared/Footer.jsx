@@ -6,12 +6,12 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Fab from '@mui/material/Fab';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import AddHomeOutlinedIcon from '@mui/icons-material/AddHomeOutlined';
 import { Link } from 'react-router-dom';
 import Badge from '@mui/material/Badge';
-import DirectionsBikeOutlinedIcon from '@material-ui/icons/DirectionsBikeOutlined';
-import PhotoLibraryOutlinedIcon from '@material-ui/icons/PhotoLibraryOutlined';
+import DirectionsBikeOutlinedIcon from '@mui/icons-material/DirectionsBikeOutlined';
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import PhotoLibraryOutlinedIcon from '@mui/icons-material/PhotoLibraryOutlined';
 import CallModal from '../Components/CallModal/CallModal';
 
 
@@ -38,7 +38,7 @@ export default function Footer() {
         {/* Gap 4 means space vertical in menu icon  */}
         <Toolbar className='pt-1 gap-x-4'>
           <IconButton color="inherit" aria-label="open drawer">
-            <Link to="/"> <HomeOutlinedIcon></HomeOutlinedIcon> </Link>
+            <Link to="/"> <AddHomeOutlinedIcon></AddHomeOutlinedIcon> </Link>
           </IconButton>
           <IconButton color="inherit" aria-label="open drawer">
             <Link to="/"> <PhotoLibraryOutlinedIcon></PhotoLibraryOutlinedIcon> </Link>
@@ -52,7 +52,7 @@ export default function Footer() {
           </IconButton>
           <IconButton color="inherit">
             <Badge badgeContent={1} color="error">
-              <Link to=""><ShoppingCartOutlinedIcon /></Link>
+              <Link to=""><AddShoppingCartOutlinedIcon /></Link>
             </Badge>
           </IconButton>
 

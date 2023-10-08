@@ -5,8 +5,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Gif from "../../../../public/call.gif"
 import CallUs from '../CallUs/CallUs';
+import Gif from "../../../assets/call.gif"
 
 export default function CallModal() {
   const [open, setOpen] = React.useState(false);
@@ -22,7 +22,7 @@ export default function CallModal() {
 
   return (
     <div>
-      <img onClick={handleClickOpen} src={Gif} alt="This call button" width="35" height="50" />
+      <img onClick={handleClickOpen} src={Gif}  alt="This call button" width="35" height="50" />
 
       <Dialog
 

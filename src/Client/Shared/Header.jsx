@@ -12,11 +12,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
-import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import CallOutlinedIcon from '@material-ui/icons/CallOutlined';
-import KeyboardTabOutlinedIcon from '@material-ui/icons/KeyboardTabOutlined';
-import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOutlined';
+import KeyboardTabOutlinedIcon from '@mui/icons-material/KeyboardTabOutlined';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import AddIcCallOutlinedIcon from '@mui/icons-material/AddIcCallOutlined';
+// import CallOutlinedIcon from '@material-ui/icons/CallOutlined';
+// import KeyboardTabOutlinedIcon from '@material-ui/icons/KeyboardTabOutlined';
+// import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 import { AuthContext } from './../Providers/Providers';
 import { useContext } from "react";
 import { Link } from 'react-router-dom';
@@ -174,7 +177,7 @@ export default function Header() {
       <Link>
       <MenuItem>
         <IconButton size="small" aria-label="call now" color="text.secondary">
-          <CallOutlinedIcon></CallOutlinedIcon>
+          <AddIcCallOutlinedIcon></AddIcCallOutlinedIcon>
         </IconButton>
         <p>Call Now</p>
       </MenuItem>
@@ -184,7 +187,7 @@ export default function Header() {
         user ? <Link to="/">
         <MenuItem onClick={handleLogout}>
           <IconButton size="small" aria-label="User Logout" color="text.secondary">
-            <PowerSettingsNewIcon></PowerSettingsNewIcon>
+            <PowerSettingsNewOutlinedIcon></PowerSettingsNewOutlinedIcon>
           </IconButton>
           <p>LogOut</p>
         </MenuItem>

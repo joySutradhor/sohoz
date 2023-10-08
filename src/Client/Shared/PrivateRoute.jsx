@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable  */
 
 import { useContext } from "react";
 import { AuthContext } from "../Providers/Providers";

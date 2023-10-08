@@ -5,6 +5,7 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
+// import Test from '../Test/Test';
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -51,6 +52,7 @@ export default function CustomerFaq() {
 
   return (
     <div className=' px-2'>
+      {/* <Test></Test> */}
       <h1 className='py-4 text-gray-400 '>Fequently Ask Question</h1>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" >
