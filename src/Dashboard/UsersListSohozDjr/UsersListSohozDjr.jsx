@@ -128,10 +128,10 @@ export default function UsersListSohozDjr() {
 
                                     <span className='text-gray-400 '>
                                         <span className='pt-1 flex flex-col'>{email}</span>
-                                        <span>{phone}</span>
+                                        <span >{phone}</span>
                                     </span>
                                 } />
-                                <div className='ml-[150px] space-y-2'>
+                                <div className='flex flex-col space-y-2 '>
                                     <button onClick={() => handleMakeAdmin(_id, name)}><AdminPanelSettingsOutlinedIcon sx={{ color: "#4D88A8" }}></AdminPanelSettingsOutlinedIcon></button>
                                     <button onClick={() => handleMakeManager(_id, name)}><ManageAccountsOutlinedIcon sx={{ color: "#4D88A8" }} ></ManageAccountsOutlinedIcon></button>
                                     <button onClick={() => handleDelete(_id, name)}><DeleteOutlineOutlinedIcon sx={{ color: "#F88379" }} ></DeleteOutlineOutlinedIcon></button>
