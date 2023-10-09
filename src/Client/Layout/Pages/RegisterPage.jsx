@@ -103,7 +103,7 @@ export default function RegisterPage() {
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
-                                Navigate("/")
+                                Navigate("/loginPage")
                             }
                         } )
 
