@@ -13,7 +13,7 @@ const SearchButton = () => {
 
                     <div className="relative">
                         <Link to="/dashboardHomeSohozDjr"><KeyboardArrowLeftIcon className="absolute  text-gray-400 top-4 left-4"></KeyboardArrowLeftIcon></Link>
-                        <input type="text" placeholder='Search Id' className=" h-14 w-full px-12  focus:outline-none hover:cursor-pointer" name="" />
+                        <input type="text" placeholder='Search Email' className=" h-14 w-full px-12  focus:outline-none hover:cursor-pointer" name="" />
                             <span onClick={handleSearch} className="absolute top-1 right-5 border-l pl-4">
                             <SearchIcon  className=" text-[#4D88A8] hover:cursor-pointer" ></SearchIcon> </span>
                     </div>
