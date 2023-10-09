@@ -135,15 +135,15 @@ export default function UsersListSohozDjr() {
                                     <Avatar alt="Profile Picture" src={url} />
                                 </ListItemAvatar>
                                 <ListItemText primary={
-                                    <span className='flex space-x-4'>
+                                    <span className='flex items-center space-x-4'>
                                         <span>{name}</span>
-                                        <span className='text-gray-400'>{role}</span>
+                                        <span className='text-gray-400 text-sm'>{role}</span>
                                     </span>
                                 } secondary={
 
-                                    <span className='space-y-0'>
+                                    <span className='text-gray-400 '>
                                         <span className='pt-1 flex flex-col'>{email}</span>
-                                        <span>0445454545454</span>
+                                        <span>{phone}</span>
                                     </span>
                                 } />
                                 <div className='ml-[150px] space-y-2'>
