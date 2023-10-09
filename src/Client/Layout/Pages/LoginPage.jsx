@@ -23,7 +23,8 @@ import { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-import Social from '../../Components/Social/Social';
+// import Social from '../../Components/Social/Social';
+import SocialLogin from '../../Components/Social/SocialLogin';
 
 function Copyright(props) {
     return (
@@ -166,7 +167,7 @@ export default function LoginPage() {
                             </Grid>
                         </Grid>
                         <p className='text-center mb-1 text-gray-400'>or</p>
-                        <Social></Social>
+                        <SocialLogin></SocialLogin>
                     </Box>
                 </Box>
                 <Copyright sx={{ mt: 4, mb: 2 }} />
