@@ -17,7 +17,9 @@ import Profile from './Client/Layout/Pages/Profile';
 import Dashboard from './Dashboard/Dashboard';
 import RegisterPage from './Client/Layout/Pages/RegisterPage';
 import LoginPage from './Client/Layout/Pages/LoginPage';
-import DashboardHome from './Dashboard/DashboardHome';
+import DashboardHomeSohozDjr from './Dashboard/DashboardHomeSohozDjr';
+import UsersListSohozDjr from './Dashboard/UsersListSohozDjr/UsersListSohozDjr';
+// import DashboardHome from './Dashboard/DashboardHomeSohozDjr';
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
@@ -46,8 +48,12 @@ const router = createBrowserRouter([
         element : <RegisterPage></RegisterPage>
       },
       {
-        path : "dashboardHome",
-        element : <DashboardHome></DashboardHome>
+        path : "dashboardHomeSohozDjr",
+        element : <DashboardHomeSohozDjr></DashboardHomeSohozDjr>
+      },
+      {
+        path : "usersListSohozDjr",
+        element : <UsersListSohozDjr></UsersListSohozDjr>
       }
     ]
 

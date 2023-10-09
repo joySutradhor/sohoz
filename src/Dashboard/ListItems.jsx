@@ -57,12 +57,14 @@ export const ListItems = () => {
       </Link>
 
       {
-        isAdmin === "admin" && <ListItemButton>
-          <ListItemIcon>
-            <Groups2OutlinedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Users List" />
-        </ListItemButton>
+        isAdmin === "admin" && <Link to="/usersListSohozDjr">
+          <ListItemButton>
+            <ListItemIcon>
+              <Groups2OutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Users List" />
+          </ListItemButton>
+        </Link>
       }
 
       <ListItemButton>
