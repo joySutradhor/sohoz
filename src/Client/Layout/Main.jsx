@@ -6,7 +6,7 @@ const Main = () => {
     const location = useLocation();
   
     // Define an array of pathnames where you want to hide the Header and Footer.
-    const pathsToHideHeaderFooter = ['/loginPage', '/usersListSohozDjr', '/registerPage', '/updateProfile', "/dashboardHomeSohozDjr" ];
+    const pathsToHideHeaderFooter = ['/loginPage', '/usersListSohozDjr', "/collectDataSohozDjr" , "/usersSohozDjr" ,  '/registerPage', '/updateProfile', "/dashboardHomeSohozDjr" ];
   
     // Check if the current pathname is in the array of paths to hide Header and Footer.
     const shouldHideHeaderFooter = pathsToHideHeaderFooter.includes(location.pathname);

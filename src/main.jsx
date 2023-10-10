@@ -19,6 +19,8 @@ import RegisterPage from './Client/Layout/Pages/RegisterPage';
 import LoginPage from './Client/Layout/Pages/LoginPage';
 import DashboardHomeSohozDjr from './Dashboard/DashboardHomeSohozDjr';
 import UsersListSohozDjr from './Dashboard/UsersListSohozDjr/UsersListSohozDjr';
+import UsersSohozDjr from './Dashboard/UsersSohozDjr/UsersSohozDjr';
+import CollectDataSohozDjr from './Dashboard/CollectDataSohozDjr/CollectDataSohozDjr';
 // import DashboardHome from './Dashboard/DashboardHomeSohozDjr';
 const queryClient = new QueryClient()
 
@@ -32,39 +34,48 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path : "profile",
-        element : <Profile></Profile>
+        path: "profile",
+        element: <Profile></Profile>
       },
       {
-        path : "loginPage",
-        element : <LoginPage></LoginPage>
+        path: "loginPage",
+        element: <LoginPage></LoginPage>
       },
       {
-        path : "dashboard" ,
-        element : <Dashboard></Dashboard>
+        path: "dashboard",
+        element: <Dashboard></Dashboard>
       },
       {
-        path : "registerPage",
-        element : <RegisterPage></RegisterPage>
+        path: "registerPage",
+        element: <RegisterPage></RegisterPage>
       },
       {
-        path : "dashboardHomeSohozDjr",
-        element : <DashboardHomeSohozDjr></DashboardHomeSohozDjr>
+        path: "dashboardHomeSohozDjr",
+        element: <DashboardHomeSohozDjr></DashboardHomeSohozDjr>
       },
       {
-        path : "usersListSohozDjr",
-        element : <UsersListSohozDjr></UsersListSohozDjr>
+        path: "usersListSohozDjr",
+        element: <UsersListSohozDjr></UsersListSohozDjr>
+      },
+      {
+        path: "usersSohozDjr",
+        element: <UsersSohozDjr></UsersSohozDjr>
+      },
+      {
+        path: "collectDataSohozDjr",
+        element: <CollectDataSohozDjr></CollectDataSohozDjr>
       }
+
     ]
 
   },
-  
+
 
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProviders>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
-    </AuthProviders>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  </AuthProviders>
 )

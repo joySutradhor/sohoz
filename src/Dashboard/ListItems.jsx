@@ -68,19 +68,23 @@ export const ListItems = () => {
         </Link>
       }
 
-      <ListItemButton>
-        <ListItemIcon>
-          <GroupAddIcon />
-        </ListItemIcon>
-        <ListItemText primary="Users" />
-      </ListItemButton>
+      <Link to="/usersSohozDjr">
+        <ListItemButton>
+          <ListItemIcon>
+            <GroupAddIcon />
+          </ListItemIcon>
+          <ListItemText primary="Users" />
+        </ListItemButton>
+      </Link>
 
-      <ListItemButton>
-        <ListItemIcon>
-          <PersonAddAltOutlinedIcon />
-        </ListItemIcon>
-        <ListItemText primary="Collect Data" />
-      </ListItemButton>
+      <Link to="/collectDataSohozDjr">
+        <ListItemButton>
+          <ListItemIcon>
+            <PersonAddAltOutlinedIcon />
+          </ListItemIcon>
+          <ListItemText primary="Collect Data" />
+        </ListItemButton>
+      </Link>
 
       <ListItemButton>
         <ListItemIcon>
