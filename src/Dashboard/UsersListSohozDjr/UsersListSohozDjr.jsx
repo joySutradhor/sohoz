@@ -105,7 +105,7 @@ export default function UsersListSohozDjr() {
     return (
         <>
             <CssBaseline />
-            <Paper square sx={{ backgroundColor: "#F3F6FC", height: "100vh", border: "none" }} >
+            <Paper square sx={{ backgroundColor: "#F5F5F5", height: "100vh", border: "none" }} >
 
                 <ListSubheader sx={{ width: "full", padding: "0", paddingTop: "0" }}>
 

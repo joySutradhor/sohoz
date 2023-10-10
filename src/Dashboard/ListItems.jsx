@@ -7,9 +7,10 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AddHomeOutlinedIcon from '@mui/icons-material/AddHomeOutlined';
 import Groups2OutlinedIcon from '@mui/icons-material/Groups2Outlined';
-import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
+// import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import DirectionsBikeOutlinedIcon from '@mui/icons-material/DirectionsBikeOutlined';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 // import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
 // import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 // import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
@@ -69,7 +70,7 @@ export const ListItems = () => {
 
       <ListItemButton>
         <ListItemIcon>
-          <PeopleOutlineOutlinedIcon />
+          <GroupAddIcon />
         </ListItemIcon>
         <ListItemText primary="Users" />
       </ListItemButton>

@@ -23,22 +23,7 @@ import Deposits from './Deposits';
 import { ListItems  } from './ListItems';
 import Orders from './Orders';
 import { useState } from 'react';
-// import { AuthContext } from '../Client/Providers/Providers';
-// import { useContext, useEffect, useState } from 'react';
-// import DashboardHooks from '../Client/Components/Hooks/IsAdminHooks/IsAdminHooks';
 
-// function Copyright(props) {
-//   return (
-//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://mui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
 
 const drawerWidth = 240;
 
@@ -99,12 +84,14 @@ export default function DashboardHomeSohozDjr() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex' , backgroundColor : "red" }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <AppBar position="absolute" open={open} sx={{ boxShadow: '0px 1px 0px rgba(0, 0, 0, 0.1)' }}>
           <Toolbar
             sx={{
-              pr: '24px', // keep right padding when drawer closed
+              pr: '24px',
+              backgroundColor:"#FFF",
+              
             }}
           >
             <IconButton
@@ -117,12 +104,12 @@ export default function DashboardHomeSohozDjr() {
                 ...(open && { display: 'none' }),
               }}
             >
-              <MenuIcon />
+              <MenuIcon sx={{color: "gray" }} />
             </IconButton>
             <Typography
               component="h1"
               variant="h6"
-              color="inherit"
+              color="gray"
               noWrap
               sx={{ flexGrow: 1 }}
             >
@@ -130,7 +117,7 @@ export default function DashboardHomeSohozDjr() {
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
+                <NotificationsIcon sx={{color: "gray" }} />
               </Badge>
             </IconButton>
           </Toolbar>
@@ -144,6 +131,15 @@ export default function DashboardHomeSohozDjr() {
               px: [1],
             }}
           >
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              sx={{ flexGrow: 1 , marginLeft : "20px" , color: "gray"}}
+            >
+               Dashboard
+            </Typography>
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>
