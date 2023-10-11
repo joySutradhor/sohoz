@@ -95,7 +95,7 @@ export default function UsersListSohozDjr() {
 
     // Filter users based on email search
     const filteredUsers = data?.filter((user) =>
-        user.email.toLowerCase().includes(emailSearch.toLowerCase())
+        user?.email?.toLowerCase().includes(emailSearch.toLowerCase())
     );
 
     const handleEmailSearch = (event) => {
