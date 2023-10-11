@@ -1,67 +1,79 @@
-// import * as React from 'react';import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-// import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Avatar from '@mui/material/Avatar';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { MuiTelInput } from 'mui-tel-input'
-import { useState } from 'react';
-import { ToastContainer } from 'react-toastify';
-// import { Link, useNavigate } from 'react-router-dom';
-// import FormControl from '@mui/material/FormControl';
-// import Input from '@mui/material/Input';
-// import OutlinedInput from '@mui/material/OutlinedInput';
-// import InputLabel from '@mui/material/InputLabel';
-// import InputAdornment from '@mui/material/InputAdornment';
-// import Visibility from '@mui/icons-material/Visibility';
-// import VisibilityOff from '@mui/icons-material/VisibilityOff';
-// import IconButton from '@mui/material/IconButton';
-
 import 'react-toastify/dist/ReactToastify.css';
-// import Social from '../../Components/Social/Social';
-// import { AuthContext } from '../../Providers/Providers';
-// import Swal from 'sweetalert2';
-
-
-// TODO remove, this demo shouldn't need to reset the theme.
+import { Button, Container, CssBaseline, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { Avatar, Box, FormControl, Alert } from '@mui/material'; // Import Alert
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { MuiTelInput } from 'mui-tel-input';
+import { ToastContainer } from 'react-toastify';
 
 const defaultTheme = createTheme();
 
 export default function UsersSohozDjr() {
-    const { register, handleSubmit, reset, } = useForm();
+    const { register, handleSubmit } = useForm();
 
-    // using for phone field 
-    const [phone, setPhone] = useState('')
-    const handleChange = (newPhone) => {
-        setPhone(newPhone)
-    }
-
-
-
-
-
-
-    // for post method 
-    //   const { handleRegisterUser , handleUpdateProfile } = useContext(AuthContext);
-    //   const Navigate = useNavigate() ;
-
-
-    // collect data using react hook form 
-    const onSubmit = (data) => {
-        // console.log(data)
-
-
-        console.log(data.password, data.confirmPassword)
-
+    const [age, setAge] = useState('');
+    const handleChangeAge = (event) => {
+        setAge(event.target.value);
     };
 
+    const [phone, setPhone] = useState('');
+    const handleChange = (newPhone) => {
+        setPhone(newPhone);
+    }
+
+    const [profit, setProfit] = useState('');
+    const [showAlert, setShowAlert] = useState(false); // State to control the alert
+
+    const handleDealerPriceChange = (event) => {
+        const dealerPrice = parseFloat(event.target.value);
+        const sellerPrice = parseFloat(document.getElementById('sellerPrice').value);
+
+        if (!isNaN(dealerPrice) && !isNaN(sellerPrice)) {
+            if (sellerPrice < dealerPrice) {
+                setShowAlert(true); // Show the alert
+            } else {
+                setShowAlert(false); // Hide the alert
+                const calculatedProfit = dealerPrice - sellerPrice;
+                setProfit(calculatedProfit.toFixed(2));
+            }
+        }
+    };
+
+    const handleSellerPriceChange = (event) => {
+        const sellerPrice = parseFloat(event.target.value);
+        const dealerPrice = parseFloat(document.getElementById('dillerPrice').value);
+
+        if (!isNaN(dealerPrice) && !isNaN(sellerPrice)) {
+            if (sellerPrice < dealerPrice) {
+                setShowAlert(true); // Show the alert
+            } else {
+                setShowAlert(false); // Hide the alert
+                const calculatedProfit = sellerPrice - dealerPrice;
+                setProfit(calculatedProfit.toFixed(2));
+            }
+        }
+    };
+
+    const onSubmit = (data) => {
+        const dealerPrice = parseFloat(data.dillerPrice);
+        const sellerPrice = parseFloat(data.sellerPrice);
+
+        if (!isNaN(dealerPrice) && !isNaN(sellerPrice)) {
+            if (sellerPrice < dealerPrice) {
+                setShowAlert(true); // Show the alert
+            } else {
+                setShowAlert(false); // Hide the alert
+                const calculatedProfit = sellerPrice - dealerPrice;
+                setProfit(calculatedProfit.toFixed(2));
+                data.profit = calculatedProfit.toFixed(2); // Include profit in the form data
+            }
+        }
+
+        console.log(data);
+        // Now you can send data, including the profit, to your backend or database.
+    };
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -84,14 +96,34 @@ export default function UsersSohozDjr() {
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12}>
+                            <Grid item xs={6}>
                                 <TextField
                                     required
-                                    fullWidth
                                     id="userId"
-                                    label="User ID"                                 
+                                    label="User ID"
                                     {...register("userId", { required: true })}
+                                    fullWidth
+                                    autoFocus
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <FormControl fullWidth>
+                                    <InputLabel id="demo-simple-select-label">Brand Name</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={age}
+                                        label="Brand Name"
+                                        onChange={handleChangeAge}
+                                    >
+                                        <MenuItem value={10}>Omera</MenuItem>
+                                        <MenuItem value={20}>Petromax</MenuItem>
+                                        <MenuItem value={30}>Beximco</MenuItem>
+                                        <MenuItem value={40}>Basundhara</MenuItem>
+                                        <MenuItem value={50}>Jmi</MenuItem>
+                                        <MenuItem value={60}>Fresh</MenuItem>
+                                    </Select>
+                                </FormControl>
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -101,12 +133,10 @@ export default function UsersSohozDjr() {
                                     fullWidth
                                     id="firstName"
                                     label="Full Name"
-                                    autoFocus
+                                    
                                 />
-                                {/* {errors.name?.type === 'required' && <p role="alert">First name is required</p>} */}
                             </Grid>
                             <Grid item xs={12} sm={6}>
-
                                 <MuiTelInput id="outlined-helperText"
                                     label="Phone"
                                     required
@@ -114,16 +144,7 @@ export default function UsersSohozDjr() {
                                     fullWidth
                                     defaultCountry="BD"
                                     value={phone}
-                                    onChange={handleChange} />
-
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="adress"
-                                    label="User Address"
-                                    {...register("adress", { required: true })}
+                                    onChange={handleChange}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -135,8 +156,41 @@ export default function UsersSohozDjr() {
                                     {...register("adress", { required: true })}
                                 />
                             </Grid>
-
-
+                            <Grid item xs={6}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="dillerPrice"
+                                    label="Dealer Price"
+                                    {...register("dillerPrice", { required: true })}
+                                    onChange={handleDealerPriceChange}
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="sellerPrice"
+                                    label="Seller Price"
+                                    {...register("sellerPrice", { required: true })}
+                                    onChange={handleSellerPriceChange}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    fullWidth
+                                    id="profit"
+                                    label="Profit"
+                                    value={profit}
+                                    {...register("profit")}
+                                    disabled
+                                />
+                            </Grid>
+                            {showAlert && (
+                                <Grid item xs={12}>
+                                    <Alert severity="error">Dealer Price cannot more than seller price !</Alert>
+                                </Grid>
+                            )}
                         </Grid>
                         <Button
                             type="submit"
