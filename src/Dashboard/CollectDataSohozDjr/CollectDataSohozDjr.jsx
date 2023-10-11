@@ -12,10 +12,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import { useForm } from 'react-hook-form';
 import { MuiTelInput } from 'mui-tel-input'
-import {  useState } from 'react';
+import { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import WestIcon from '@mui/icons-material/West';
 // import FormControl from '@mui/material/FormControl';
 // import Input from '@mui/material/Input';
 // import OutlinedInput from '@mui/material/OutlinedInput';
@@ -26,6 +27,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 // import IconButton from '@mui/material/IconButton';
 
 import 'react-toastify/dist/ReactToastify.css';
+
 // import Social from '../../Components/Social/Social';
 // import { AuthContext } from '../../Providers/Providers';
 // import Swal from 'sweetalert2';
@@ -36,7 +38,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const defaultTheme = createTheme();
 
 export default function CollectDataSohozDjr() {
-  const { register, handleSubmit, reset,  } = useForm();
+  const { register, handleSubmit, reset, } = useForm();
 
   // using for phone field 
   const [phone, setPhone] = useState('')
@@ -44,43 +46,46 @@ export default function CollectDataSohozDjr() {
     setPhone(newPhone)
   }
 
- 
 
-  
-  
+
+
+
 
   // for post method 
-  const Navigate = useNavigate() ;
+  const Navigate = useNavigate();
 
 
   // collect data using react hook form 
   const onSubmit = (data) => {
     // console.log(data)
-    console.log(data.name , data.phone , data.brandName)
-    const saveUser = {name: data.name , phone : data.phone , brand : data.brandName , role : "marketting"}
+    console.log(data.name, data.phone, data.brandName)
+    const saveUser = { name: data.name, phone: data.phone, brand: data.brandName, role: "marketting" }
     console.log(saveUser)
-    fetch("http://localhost:5000/collectData" , {
-        method : "POST" , 
-        headers : {
-            "content-type" : "application/json"
-        }, 
-        body : JSON.stringify(saveUser)
+    fetch("http://localhost:5000/collectData", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(saveUser)
     })
     reset()
 
     alert("ok submited data")
     Navigate("/dashboardHomeSohozDjr")
-};
+  };
 
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <ToastContainer />
-      <Container  component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
+        <Link to="/dashboardHomeSohozDjr">
+          <WestIcon sx={{ mt: -3, ml: 1, position: 'absolute' }}></WestIcon>
+        </Link>
         <Box
           sx={{
-            marginTop: 2,
+            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -90,7 +95,7 @@ export default function CollectDataSohozDjr() {
             <PersonOutlineOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Collected Data 
+            Collected Data
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
             <Grid container spacing={3}>
@@ -112,7 +117,7 @@ export default function CollectDataSohozDjr() {
                   fullWidth
                   id="brand"
                   label="Brand Name"
-                
+
                 />
                 {/* {errors.name?.type === 'required' && <p role="alert">First name is required</p>} */}
               </Grid>
