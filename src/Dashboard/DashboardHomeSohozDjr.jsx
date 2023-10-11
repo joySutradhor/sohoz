@@ -23,6 +23,7 @@ import Deposits from './Deposits';
 import { ListItems  } from './ListItems';
 import Orders from './Orders';
 import { useState } from 'react';
+import sohoz from "./././../././../public/sohoz.png"
 
 
 const drawerWidth = 240;
@@ -84,7 +85,7 @@ export default function DashboardHomeSohozDjr() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Box sx={{ display: 'flex' , backgroundColor : "red" }}>
+      <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="absolute" open={open} sx={{ boxShadow: '0px 1px 0px rgba(0, 0, 0, 0.1)' }}>
           <Toolbar
@@ -136,9 +137,9 @@ export default function DashboardHomeSohozDjr() {
               variant="h6"
               color="inherit"
               noWrap
-              sx={{ flexGrow: 1 , marginLeft : "20px" , color: "gray"}}
+              sx={{ flexGrow: 1 , marginLeft : "0px" , color: "gray"}}
             >
-               Dashboard
+               <img src={sohoz} alt="sohoz logo " className='h-[45px]' />
             </Typography>
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />

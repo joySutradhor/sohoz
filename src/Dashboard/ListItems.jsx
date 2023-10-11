@@ -85,6 +85,14 @@ export const ListItems = () => {
           <ListItemText primary="Collect Data" />
         </ListItemButton>
       </Link>
+      <Link to="/ridersOrderrdersSohozDjr">
+        <ListItemButton>
+          <ListItemIcon>
+            <PersonAddAltOutlinedIcon />
+          </ListItemIcon>
+          <ListItemText primary="Orders" />
+        </ListItemButton>
+      </Link>
 
       <ListItemButton>
         <ListItemIcon>

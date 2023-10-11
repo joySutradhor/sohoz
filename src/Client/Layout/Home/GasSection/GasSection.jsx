@@ -27,7 +27,7 @@ const GasSection = () => {
 
                         key={item._id}
                     >
-                        <Card sx={{ maxWidth: 345 }}  className="cardShadow">
+                        <Card sx={{ maxWidth: 345 , }}  className="cardShadow ">
                             <CardMedia
                                 
                                 component="img"

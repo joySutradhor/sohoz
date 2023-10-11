@@ -4,7 +4,7 @@ import Marquee from "./MarqueeSection/MarqueeSection";
 
 const Home = () => {
     return (
-        <div>
+        <div >
             <Marquee></Marquee>
             <GasSection></GasSection>
             <CustomerFaq></CustomerFaq>

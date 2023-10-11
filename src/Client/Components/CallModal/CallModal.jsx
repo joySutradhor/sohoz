@@ -22,7 +22,7 @@ export default function CallModal() {
 
   return (
     <div>
-      <img onClick={handleClickOpen} src={Gif}  alt="This call button" width="35" height="50" />
+      <img className='bg-transparent' onClick={handleClickOpen} src={Gif}  alt="This call button" width="35" height="50" />
 
       <Dialog
 

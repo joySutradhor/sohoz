@@ -33,24 +33,24 @@ export default function Footer() {
     <React.Fragment>
       <CssBaseline />
 
-      <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
+      <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 , background: "white" }}>
         {/* Render all menu icon  */} 
         {/* Gap 4 means space vertical in menu icon  */}
         <Toolbar className='pt-1 gap-x-4'>
-          <IconButton color="inherit" aria-label="open drawer">
+          <IconButton color="inherit" sx={{ mr: 1 , color: "#777" }} aria-label="open drawer">
             <Link to="/"> <AddHomeOutlinedIcon></AddHomeOutlinedIcon> </Link>
           </IconButton>
-          <IconButton color="inherit" aria-label="open drawer">
+          <IconButton color="inherit" sx={{ mr: 1 , color: "#777" }} aria-label="open drawer">
             <Link to="/"> <PhotoLibraryOutlinedIcon></PhotoLibraryOutlinedIcon> </Link>
           </IconButton>
-          <StyledFab  aria-label="add">
+          <StyledFab  aria-label="add" sx={{ background: "white" }}>
             <CallModal></CallModal>
           </StyledFab>
           <Box sx={{ flexGrow: 1 }} />
-          <IconButton color="inherit">
+          <IconButton sx={{ mr: 1 , color: "#777" }} color="inherit">
             <Link to=""><DirectionsBikeOutlinedIcon /></Link>
           </IconButton>
-          <IconButton color="inherit">
+          <IconButton sx={{ mr: 1 , color: "#777" }} color="inherit">
             <Badge badgeContent={1} color="error">
               <Link to=""><AddShoppingCartOutlinedIcon /></Link>
             </Badge>

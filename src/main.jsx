@@ -21,6 +21,7 @@ import DashboardHomeSohozDjr from './Dashboard/DashboardHomeSohozDjr';
 import UsersListSohozDjr from './Dashboard/UsersListSohozDjr/UsersListSohozDjr';
 import UsersSohozDjr from './Dashboard/UsersSohozDjr/UsersSohozDjr';
 import CollectDataSohozDjr from './Dashboard/CollectDataSohozDjr/CollectDataSohozDjr';
+import RidersOrdersSohozDjr from './Dashboard/RidersOrdersSohozDjr/RidersOrdersSohozDjr';
 // import DashboardHome from './Dashboard/DashboardHomeSohozDjr';
 const queryClient = new QueryClient()
 
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "collectDataSohozDjr",
         element: <CollectDataSohozDjr></CollectDataSohozDjr>
+      },
+      {
+        path : "ridersOrderrdersSohozDjr",
+        element:<RidersOrdersSohozDjr/>,
       }
 
     ]
