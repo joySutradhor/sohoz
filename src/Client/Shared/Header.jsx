@@ -141,7 +141,7 @@ export default function Header() {
 
       {/* item for Profile  */}
       <Link to="/profile">
-      <MenuItem >
+      <MenuItem  sx={{ color: "#777" }}>
         <IconButton
           size="small"
           aria-label="account of current user"
@@ -159,7 +159,7 @@ export default function Header() {
 
       {/* ittem for Dashboard */}
       <Link to="/dashboardHomeSohozDjr">
-      <MenuItem>
+      <MenuItem sx={{ color: "#777" }}>
         <IconButton
           size="samll"
           aria-label="account of current user"
@@ -176,7 +176,7 @@ export default function Header() {
 
       {/* item for Call now */}
       <Link>
-      <MenuItem>
+      <MenuItem sx={{ color: "#777" }}>
         <IconButton size="small" aria-label="call now" color="text.secondary">
           <AddIcCallOutlinedIcon></AddIcCallOutlinedIcon>
         </IconButton>
@@ -186,7 +186,7 @@ export default function Header() {
       {/* End Of callnow item */}
       {
         user ? <Link to="/">
-        <MenuItem onClick={handleLogout}>
+        <MenuItem onClick={handleLogout} sx={{ color: "#777" }}>
           <IconButton size="small" aria-label="User Logout" color="text.secondary">
             <PowerSettingsNewOutlinedIcon></PowerSettingsNewOutlinedIcon>
           </IconButton>
@@ -194,7 +194,7 @@ export default function Header() {
         </MenuItem>
         </Link> : <Link to="/loginPage">
         
-        <MenuItem>
+        <MenuItem sx={{ color: "#777" }}>
 
           {/* item for Login */}
           <IconButton size="small" aria-label="User Login " color="text.secondary">
@@ -223,15 +223,6 @@ export default function Header() {
             >
               <Link to="/"> <img src={sohoz} alt="sohoz Logo" className='h-[45px]' /></Link>
             </IconButton>
-            {/* <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search.."
-              
-              />
-            </Search> */}
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <IconButton size="large" aria-label="show 4 new mails" color="inherit">

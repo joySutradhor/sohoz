@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState,  } from 'react';
 import { useForm } from 'react-hook-form';
 import 'react-toastify/dist/ReactToastify.css';
 import {
@@ -6,22 +6,30 @@ import {
     Container,
     CssBaseline,
     Grid,
+    InputAdornment,
     InputLabel,
     MenuItem,
     Select,
     TextField,
     Typography,
+    FormControl,
+    Alert,
+    Box,
+    Avatar,
 } from '@mui/material';
-import { Avatar, Box, FormControl, Alert } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { MuiTelInput } from 'mui-tel-input';
 import { ToastContainer } from 'react-toastify';
-
+import AutorenewOutlinedIcon from '@mui/icons-material/AutorenewOutlined';
+import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
+import DoneAllOutlinedIcon from '@mui/icons-material/DoneAllOutlined';
 const defaultTheme = createTheme();
 
 export default function UsersSohozDjr() {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, setValue ,} = useForm();
+    const [serverMessage, setServerMessage] = useState(""); // Server message state
+    const orderIdRef = useRef(); // Create a ref for the orderId input field
 
     const [brand, setBrand] = useState(''); // State to capture the selected brand name
     const [phone, setPhone] = useState('');
@@ -62,7 +70,43 @@ export default function UsersSohozDjr() {
         }
     };
 
-    const onSubmit = (data) => {
+    const [generatedOrderId, setGeneratedOrderId] = useState(''); // State for the generated Order ID
+    const [isCopied, setIsCopied] = useState(false); // State to track if the Order ID is copied
+
+    const generateRandomOrderId = () => {
+        checkAndGenerateOrderId().then(() => {
+            setIsCopied(false);
+            setServerMessage(""); // Clear any existing error message
+
+            // Update the orderId input field using setValue
+            if (orderIdRef.current) {
+                setValue('orderId', generatedOrderId);
+            }
+        });
+    };
+
+
+    const checkAndGenerateOrderId = async () => {
+        const getRandomOrderId = async () => {
+            const randomOrderId = Math.floor(Math.random() * (10 - 5 + 1) + 10);
+            const response = await fetch(`http://localhost:5000/temporaryNewCustomer/${randomOrderId}`);
+            const responseData = await response.json();
+            console.log(responseData.exists);
+
+            if (!responseData.exists) {
+                return randomOrderId.toString();
+            } else {
+                // If the order ID already exists, try again recursively
+                return getRandomOrderId();
+            }
+        };
+
+        const generatedOrderId = await getRandomOrderId();
+        setGeneratedOrderId(generatedOrderId);
+    };
+
+
+    const onSubmit = async (data) => {
         const dealerPrice = parseFloat(data.dillerPrice);
         const sellerPrice = parseFloat(data.sellerPrice);
 
@@ -74,21 +118,57 @@ export default function UsersSohozDjr() {
                 const calculatedProfit = sellerPrice - dealerPrice;
                 setProfit(calculatedProfit.toFixed(2));
                 data.profit = calculatedProfit.toFixed(2);
-                data.brandName = brand; // Include the selected brand name
+                data.brandName = brand;
 
-                const saveUser = { userId: data.userId, brandName: data.brandName, name: data.name, phone: data.phone, address: data.address, dillerPrice: data.dillerPrice, sellerPrice: data.sellerPrice, profit: data.profit, role: "pending" }
+                const saveUser = {
+                    userId: data.userId,
+                    orderId: data.orderId,
+                    brandName: data.brandName,
+                    name: data.name,
+                    phone: data.phone,
+                    address: data.address,
+                    dillerPrice: data.dillerPrice,
+                    sellerPrice: data.sellerPrice,
+                    profit: data.profit,
+                    role: "pending",
+                };
                 console.log(saveUser)
-                fetch("http://localhost:5000/temporaryNewCustomer", {
+                const response = await fetch("http://localhost:5000/temporaryNewCustomer", {
                     method: "POST",
                     headers: {
-                        "content-type": "application/json"
+                        "content-type": "application/json",
                     },
-                    body: JSON.stringify(saveUser)
-                })
-                console.log(data);
+                    body: JSON.stringify(saveUser),
+                });
+
+                const responseData = await response.json();
+
+                if (responseData.message === "already have user") {
+                    setServerMessage("User exists. Change order ID.");
+                } else {
+                    setServerMessage("");
+                }
             }
         }
     };
+
+
+    // copy generate order id
+    const copyToClipboard = () => {
+        // Create a new text area element
+        const textField = document.createElement('textarea');
+        textField.value = generatedOrderId;
+        document.body.appendChild(textField);
+        textField.select();
+        document.execCommand('copy');
+        document.body.removeChild(textField);
+        setIsCopied(true); // Reset the "Copied" message when generating a new Order ID
+    };
+
+    // handle handleRefreshPage
+    const handleRefreshPage = () => {
+        window.location.reload(); 
+    }
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -97,7 +177,7 @@ export default function UsersSohozDjr() {
                 <CssBaseline />
                 <Box
                     sx={{
-                        marginTop: 2,
+                        marginTop: 0,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -111,6 +191,38 @@ export default function UsersSohozDjr() {
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
+                            <Grid item xs={6} sx={{ mt: 1, mb: 1 }}>
+                                <Button variant="contained" onClick={generateRandomOrderId}>Generate</Button>
+                            </Grid>
+                            <Grid item xs={6} sx={{ mt: 1, mb: 1, }}>
+
+                                {/* <Button variant="contained"> Refresh </Button> */}
+                                {serverMessage && (
+                                    <Button variant="contained" onClick={handleRefreshPage}>
+                                        <AutorenewOutlinedIcon /> Refresh
+                                    </Button>
+                                )}
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    id="orderId"
+                                    label="Order ID"
+                                    ref={orderIdRef} // Attach the ref to the input field
+                                    {...register("orderId", { required: true })}
+                                    fullWidth
+                                    value={generatedOrderId}
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <Button onClick={copyToClipboard} disabled={isCopied}>
+                                                    {isCopied ? <DoneAllOutlinedIcon></DoneAllOutlinedIcon> : <ContentCopyOutlinedIcon></ContentCopyOutlinedIcon>}
+                                                </Button>
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
+                            </Grid>
                             <Grid item xs={6}>
                                 <TextField
                                     required
@@ -118,7 +230,6 @@ export default function UsersSohozDjr() {
                                     label="User ID"
                                     {...register("userId", { required: true })}
                                     fullWidth
-                                    autoFocus
                                 />
                             </Grid>
                             <Grid item xs={6}>
@@ -205,6 +316,12 @@ export default function UsersSohozDjr() {
                             {showAlert && (
                                 <Grid item xs={12}>
                                     <Alert severity="error">Dealer Price cannot be more than seller price!</Alert>
+                                </Grid>
+                            )}
+
+                            {serverMessage && (
+                                <Grid item xs={12}>
+                                    <Alert severity="error">{serverMessage}</Alert>
                                 </Grid>
                             )}
                         </Grid>
