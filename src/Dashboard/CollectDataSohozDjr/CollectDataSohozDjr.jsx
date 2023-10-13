@@ -81,11 +81,12 @@ export default function CollectDataSohozDjr() {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Link to="/dashboardHomeSohozDjr">
-          <WestIcon sx={{ mt: -3, ml: 1, position: 'absolute' }}></WestIcon>
+          <WestIcon sx={{ mt: 6, ml: 1, position: 'absolute' }}></WestIcon>
         </Link>
         <Box
           sx={{
-            marginTop: 8,
+            paddingTop: 8,
+            height : "100vh",
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',

@@ -16,9 +16,9 @@ import {
     Alert,
     Box,
     Avatar,
-    
+
 } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { MuiTelInput } from 'mui-tel-input';
 import { ToastContainer } from 'react-toastify';
@@ -26,6 +26,9 @@ import { ToastContainer } from 'react-toastify';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import DoneAllOutlinedIcon from '@mui/icons-material/DoneAllOutlined';
 import Swal from 'sweetalert2'
+import { Link } from 'react-router-dom';
+import WestIcon from '@mui/icons-material/West';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 const defaultTheme = createTheme();
 
 export default function UsersSohozDjr() {
@@ -147,7 +150,7 @@ export default function UsersSohozDjr() {
                 const responseData = await response.json();
 
                 if (responseData.message === "already have user") {
-                    
+
                     // set message for already have order id 
                     Swal.fire({
                         text: `Already have user 
@@ -157,14 +160,14 @@ export default function UsersSohozDjr() {
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Yes, Got it!'
-                      }).then((result) => {
+                    }).then((result) => {
                         if (result.isConfirmed) {
                             window.location.reload();
                         }
-                        else  {
+                        else {
                             window.location.reload()
                         }
-                      })
+                    })
                 } else {
                     // setServerMessage("");
                     // setShowSuccessAlert(true); // Display the success alert
@@ -178,14 +181,14 @@ export default function UsersSohozDjr() {
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Yes, Got it!'
-                      }).then((result) => {
+                    }).then((result) => {
                         if (result.isConfirmed) {
                             window.location.reload();
                         }
-                        else  {
+                        else {
                             window.location.reload()
                         }
-                      })
+                    })
 
                 }
             }
@@ -215,16 +218,20 @@ export default function UsersSohozDjr() {
             <ToastContainer />
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
+                <Link to="/dashboardHomeSohozDjr">
+                    <WestIcon sx={{ mt: 6, ml: 1, position: 'absolute' , color : "#1976E5" }}></WestIcon>
+                </Link>
                 <Box
                     sx={{
-                        marginTop: 0,
+                        paddingTop:6,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
+
+                    <Avatar sx={{ m: 1, background : "#1976E5" }}>
+                        <AddShoppingCartIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         New Customer
