@@ -1,4 +1,4 @@
-import { useRef, useState,  } from 'react';
+import { useRef, useState, } from 'react';
 import { useForm } from 'react-hook-form';
 import 'react-toastify/dist/ReactToastify.css';
 import {
@@ -16,19 +16,22 @@ import {
     Alert,
     Box,
     Avatar,
+    
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { MuiTelInput } from 'mui-tel-input';
 import { ToastContainer } from 'react-toastify';
-import AutorenewOutlinedIcon from '@mui/icons-material/AutorenewOutlined';
+// import AutorenewOutlinedIcon from '@mui/icons-material/AutorenewOutlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import DoneAllOutlinedIcon from '@mui/icons-material/DoneAllOutlined';
+import Swal from 'sweetalert2'
 const defaultTheme = createTheme();
 
 export default function UsersSohozDjr() {
-    const { register, handleSubmit, setValue ,} = useForm();
-    const [serverMessage, setServerMessage] = useState(""); // Server message state
+    const { register, handleSubmit, setValue } = useForm();
+    // const [serverMessage, setServerMessage] = useState(""); // Server message state
+    // const [showSuccessAlert, setShowSuccessAlert] = useState(false);
     const orderIdRef = useRef(); // Create a ref for the orderId input field
 
     const [brand, setBrand] = useState(''); // State to capture the selected brand name
@@ -76,7 +79,7 @@ export default function UsersSohozDjr() {
     const generateRandomOrderId = () => {
         checkAndGenerateOrderId().then(() => {
             setIsCopied(false);
-            setServerMessage(""); // Clear any existing error message
+            // setServerMessage(""); // Clear any existing error message
 
             // Update the orderId input field using setValue
             if (orderIdRef.current) {
@@ -144,9 +147,46 @@ export default function UsersSohozDjr() {
                 const responseData = await response.json();
 
                 if (responseData.message === "already have user") {
-                    setServerMessage("User exists. Change order ID.");
+                    
+                    // set message for already have order id 
+                    Swal.fire({
+                        text: `Already have user 
+                                Generate new Id !`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, Got it!'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
+                        else  {
+                            window.location.reload()
+                        }
+                      })
                 } else {
-                    setServerMessage("");
+                    // setServerMessage("");
+                    // setShowSuccessAlert(true); // Display the success alert
+                    // setTimeout(() => {
+                    //     window.location.reload();
+                    // }, 1000);
+                    Swal.fire({
+                        text: `Order Submited`,
+                        icon: 'success',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, Got it!'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
+                        else  {
+                            window.location.reload()
+                        }
+                      })
+
                 }
             }
         }
@@ -166,9 +206,9 @@ export default function UsersSohozDjr() {
     };
 
     // handle handleRefreshPage
-    const handleRefreshPage = () => {
-        window.location.reload(); 
-    }
+    // const handleRefreshPage = () => {
+    //     window.location.reload();
+    // }
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -197,11 +237,11 @@ export default function UsersSohozDjr() {
                             <Grid item xs={6} sx={{ mt: 1, mb: 1, }}>
 
                                 {/* <Button variant="contained"> Refresh </Button> */}
-                                {serverMessage && (
+                                {/* {serverMessage && (
                                     <Button variant="contained" onClick={handleRefreshPage}>
                                         <AutorenewOutlinedIcon /> Refresh
                                     </Button>
-                                )}
+                                )} */}
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
@@ -319,11 +359,19 @@ export default function UsersSohozDjr() {
                                 </Grid>
                             )}
 
-                            {serverMessage && (
+                            {/* {serverMessage && (
                                 <Grid item xs={12}>
                                     <Alert severity="error">{serverMessage}</Alert>
                                 </Grid>
-                            )}
+                            )} */}
+                            {/* {showSuccessAlert && (
+                                <Grid item xs={12}>
+                                    <Alert severity="success">
+                                        <AlertTitle>Success</AlertTitle>
+                                        You successfully posted an order.
+                                    </Alert>
+                                </Grid>
+                            )} */}
                         </Grid>
                         <Button
                             type="submit"
