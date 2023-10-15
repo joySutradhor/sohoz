@@ -18,11 +18,9 @@ import {
     Avatar,
 
 } from '@mui/material';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { MuiTelInput } from 'mui-tel-input';
 import { ToastContainer } from 'react-toastify';
-// import AutorenewOutlinedIcon from '@mui/icons-material/AutorenewOutlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import DoneAllOutlinedIcon from '@mui/icons-material/DoneAllOutlined';
 import Swal from 'sweetalert2'
@@ -33,8 +31,6 @@ const defaultTheme = createTheme();
 
 export default function UsersSohozDjr() {
     const { register, handleSubmit, setValue } = useForm();
-    // const [serverMessage, setServerMessage] = useState(""); // Server message state
-    // const [showSuccessAlert, setShowSuccessAlert] = useState(false);
     const orderIdRef = useRef(); // Create a ref for the orderId input field
 
     const [brand, setBrand] = useState(''); // State to capture the selected brand name
@@ -82,7 +78,7 @@ export default function UsersSohozDjr() {
     const generateRandomOrderId = () => {
         checkAndGenerateOrderId().then(() => {
             setIsCopied(false);
-            // setServerMessage(""); // Clear any existing error message
+
 
             // Update the orderId input field using setValue
             if (orderIdRef.current) {
@@ -136,7 +132,7 @@ export default function UsersSohozDjr() {
                     dillerPrice: data.dillerPrice,
                     sellerPrice: data.sellerPrice,
                     profit: data.profit,
-                    role: "pending",
+                    status: "pending",
                 };
                 console.log(saveUser)
                 const response = await fetch("http://localhost:5000/temporaryNewCustomer", {
@@ -169,11 +165,6 @@ export default function UsersSohozDjr() {
                         }
                     })
                 } else {
-                    // setServerMessage("");
-                    // setShowSuccessAlert(true); // Display the success alert
-                    // setTimeout(() => {
-                    //     window.location.reload();
-                    // }, 1000);
                     Swal.fire({
                         text: `Order Submited`,
                         icon: 'success',
@@ -208,10 +199,6 @@ export default function UsersSohozDjr() {
         setIsCopied(true); // Reset the "Copied" message when generating a new Order ID
     };
 
-    // handle handleRefreshPage
-    // const handleRefreshPage = () => {
-    //     window.location.reload();
-    // }
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -240,15 +227,6 @@ export default function UsersSohozDjr() {
                         <Grid container spacing={2}>
                             <Grid item xs={6} sx={{ mt: 1, mb: 1 }}>
                                 <Button variant="contained" onClick={generateRandomOrderId}>Generate</Button>
-                            </Grid>
-                            <Grid item xs={6} sx={{ mt: 1, mb: 1, }}>
-
-                                {/* <Button variant="contained"> Refresh </Button> */}
-                                {/* {serverMessage && (
-                                    <Button variant="contained" onClick={handleRefreshPage}>
-                                        <AutorenewOutlinedIcon /> Refresh
-                                    </Button>
-                                )} */}
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
@@ -365,20 +343,6 @@ export default function UsersSohozDjr() {
                                     <Alert severity="error">Dealer Price cannot be more than seller price!</Alert>
                                 </Grid>
                             )}
-
-                            {/* {serverMessage && (
-                                <Grid item xs={12}>
-                                    <Alert severity="error">{serverMessage}</Alert>
-                                </Grid>
-                            )} */}
-                            {/* {showSuccessAlert && (
-                                <Grid item xs={12}>
-                                    <Alert severity="success">
-                                        <AlertTitle>Success</AlertTitle>
-                                        You successfully posted an order.
-                                    </Alert>
-                                </Grid>
-                            )} */}
                         </Grid>
                         <Button
                             type="submit"

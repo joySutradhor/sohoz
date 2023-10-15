@@ -88,9 +88,9 @@ export const ListItems = () => {
       <Link to="/ridersOrderrdersSohozDjr">
         <ListItemButton>
           <ListItemIcon>
-            <PersonAddAltOutlinedIcon />
+            <ShoppingCartIcon />
           </ListItemIcon>
-          <ListItemText primary="Orders" />
+          <ListItemText primary="Your Orders" />
         </ListItemButton>
       </Link>
 
@@ -119,7 +119,7 @@ export const ListItems = () => {
         <ListItemIcon>
           <ShoppingCartIcon />
         </ListItemIcon>
-        <ListItemText primary="Orders List" />
+        <ListItemText primary="Orders dsdfd" />
       </ListItemButton>
 
       <Divider></Divider>
