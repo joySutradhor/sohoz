@@ -68,14 +68,24 @@ export const ListItems = () => {
         </Link>
       }
 
+      <Link to="/customerDataSohozDjr">
+        <ListItemButton>
+          <ListItemIcon>
+            <GroupAddIcon />
+          </ListItemIcon>
+          <ListItemText primary="Customers" />
+        </ListItemButton>
+      </Link>
+
       <Link to="/usersSohozDjr">
         <ListItemButton>
           <ListItemIcon>
             <GroupAddIcon />
           </ListItemIcon>
-          <ListItemText primary="Users" />
+          <ListItemText primary="Post Order" />
         </ListItemButton>
       </Link>
+
 
       <Link to="/collectDataSohozDjr">
         <ListItemButton>

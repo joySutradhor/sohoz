@@ -47,6 +47,8 @@ export default function CompletedRiderOrderSohozDjr() {
 
     const { orderId } = useParams();
 
+    // todo neeed to get single data form server 
+
     const { data, isLoading, isError, refetch } = useQuery(["temporaryNewCustomer"], async () => {
         const res = await fetch(`http://localhost:5000/temporaryNewCustomer`);
         const rawData = await res.json();
@@ -87,42 +89,42 @@ export default function CompletedRiderOrderSohozDjr() {
         console.log(completeOrder , "total order")
 
 
-        // Swal.fire({
-        //     text: "Do You want submit Order",
-        //     icon: 'warning',
-        //     showCancelButton: true,
-        //     confirmButtonColor: '#3085d6',
-        //     cancelButtonColor: '#d33',
-        //     confirmButtonText: 'Yes, submit it!'
-        // }).then((result) => {
-        //     if (result.isConfirmed) {
-        //         fetch("http://localhost:5000/completerOrderData", {
-        //             method: "POST",
-        //             headers: {
-        //                 "content-type": "application/json",
-        //             },
-        //             body: JSON.stringify(formData),
-        //         });
-        //         fetch(`http://localhost:5000/temporaryNewCustomer/completed/${data._id}`, {
-        //             method: 'PATCH',
-        //         })
-        //         .then((res) => res.json())
-        //         .then((userData) => {
-        //             refetch();
-        //             if (userData.modifiedCount) {
-        //                 Swal.fire({
-        //                     title: 'Success',
-        //                     text: 'Order successfully Done',
-        //                     icon: 'success',
-        //                 }).then(() => {
-        //                     // Navigate to the dynamic route
-        //                     navigate(`/ridersOrderrdersSohozDjr`);
-        //                 });
-        //             }
-        //         });
+        Swal.fire({
+            text: "Do You want submit Order",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, submit it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch("http://localhost:5000/completerOrderData", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify(completeOrder),
+                });
+                fetch(`http://localhost:5000/temporaryNewCustomer/completed/${data._id}`, {
+                    method: 'PATCH',
+                })
+                .then((res) => res.json())
+                .then((userData) => {
+                    refetch();
+                    if (userData.modifiedCount) {
+                        Swal.fire({
+                            title: 'Success',
+                            text: 'Order successfully Done',
+                            icon: 'success',
+                        }).then(() => {
+                            // Navigate to the dynamic route
+                            navigate(`/ridersOrderrdersSohozDjr`);
+                        });
+                    }
+                });
 
-        //     }
-        // })
+            }
+        })
 
 
     };
@@ -208,6 +210,7 @@ export default function CompletedRiderOrderSohozDjr() {
                                     <DemoContainer components={['DatePicker']}>
                                         <Controller
                                             name="startDate" // Provide a name attribute
+                                            rules={{ required: 'Start Date is required' }}
                                             control={control}
                                             render={({ field }) => (
                                                 <DatePicker
