@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import 'react-toastify/dist/ReactToastify.css';
 import {
     Button,
@@ -30,11 +30,12 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { DatePicker } from '@mui/x-date-pickers';
 // import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import dayjs from 'dayjs';
 
 const defaultTheme = createTheme();
 
 export default function CompletedRiderOrderSohozDjr() {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit , control } = useForm();
     const orderIdRef = useRef();
     const [manualBrand, setManualBrand] = useState('');
     const [UserPhone, setUserPhone] = useState('');
@@ -46,7 +47,7 @@ export default function CompletedRiderOrderSohozDjr() {
 
     const { orderId } = useParams();
 
-    const { data, isLoading, isError , refetch } = useQuery(["temporaryNewCustomer"], async () => {
+    const { data, isLoading, isError, refetch } = useQuery(["temporaryNewCustomer"], async () => {
         const res = await fetch(`http://localhost:5000/temporaryNewCustomer`);
         const rawData = await res.json();
 
@@ -60,45 +61,68 @@ export default function CompletedRiderOrderSohozDjr() {
     console.log(data);
 
     const onSubmit = (formData) => {
-        console.log(formData, "from this");
+        // console.log(formData, "from this");
+        const startDate = formData.startDate ;
+        const endDate = formData.endDate ;
+        const formattedStartDate = dayjs(startDate ).format('DD-MM-YYYY'); 
+        const formattedEndDate = dayjs(endDate ).format('DD-MM-YYYY'); 
+        console.log(formattedStartDate , formattedEndDate)
+        const completeOrder = {
+            userId : formData.userId ,
+            orderId : formData.orderId ,
+            name : formData.name, 
+            phone: formData.phone,
+            brandName : formData.brandName,
+            monthlyNeed : formData.monthlyNeed ,
+            startDate : formattedStartDate ,
+            endDate : formattedEndDate ,
+            dillerPrice : formData.dillerPrice,
+            sellerPrice : formData.sellerPrice ,
+            profit : formData.profit,
+            dilerPoint : formData.dilerPoint ,
+            doneBy : formData.doneBy ,
+            address : formData.address,
+            addressCode : formData.addressCode
+        }
+        console.log(completeOrder , "total order")
 
 
-        Swal.fire({
-            text: "Do You want submit Order",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, submit it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch("http://localhost:5000/completerOrderData", {
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
-                });
-                fetch(`http://localhost:5000/temporaryNewCustomer/completed/${data._id}`, {
-                    method: 'PATCH',
-                })
-                .then((res) => res.json())
-                .then((userData) => {
-                    refetch();
-                    if (userData.modifiedCount) {
-                        Swal.fire({
-                            title: 'Success',
-                            text: 'Order successfully Done',
-                            icon: 'success',
-                        }).then(() => {
-                            // Navigate to the dynamic route
-                            navigate(`/ridersOrderrdersSohozDjr`);
-                        });
-                    }
-                });
-                
-            }
-        })
+        // Swal.fire({
+        //     text: "Do You want submit Order",
+        //     icon: 'warning',
+        //     showCancelButton: true,
+        //     confirmButtonColor: '#3085d6',
+        //     cancelButtonColor: '#d33',
+        //     confirmButtonText: 'Yes, submit it!'
+        // }).then((result) => {
+        //     if (result.isConfirmed) {
+        //         fetch("http://localhost:5000/completerOrderData", {
+        //             method: "POST",
+        //             headers: {
+        //                 "content-type": "application/json",
+        //             },
+        //             body: JSON.stringify(formData),
+        //         });
+        //         fetch(`http://localhost:5000/temporaryNewCustomer/completed/${data._id}`, {
+        //             method: 'PATCH',
+        //         })
+        //         .then((res) => res.json())
+        //         .then((userData) => {
+        //             refetch();
+        //             if (userData.modifiedCount) {
+        //                 Swal.fire({
+        //                     title: 'Success',
+        //                     text: 'Order successfully Done',
+        //                     icon: 'success',
+        //                 }).then(() => {
+        //                     // Navigate to the dynamic route
+        //                     navigate(`/ridersOrderrdersSohozDjr`);
+        //                 });
+        //             }
+        //         });
+
+        //     }
+        // })
 
 
     };
@@ -180,17 +204,35 @@ export default function CompletedRiderOrderSohozDjr() {
                             </Grid>
 
                             <Grid item xs={12} sm={6} sx={{ marginTop: -1 }}>
-                                <LocalizationProvider dateAdapter={AdapterDayjs} >
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
                                     <DemoContainer components={['DatePicker']}>
-                                        <DatePicker label="Start Date" />
+                                        <Controller
+                                            name="startDate" // Provide a name attribute
+                                            control={control}
+                                            render={({ field }) => (
+                                                <DatePicker
+                                                    label="Start Date"
+                                                    {...field}
+                                                />
+                                            )}
+                                        />
                                     </DemoContainer>
                                 </LocalizationProvider>
                             </Grid>
 
                             <Grid item xs={12} sm={6} sx={{ marginTop: -1 }}>
-                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
                                     <DemoContainer components={['DatePicker']}>
-                                        <DatePicker label="End Date" />
+                                        <Controller
+                                            name="endDate" // Provide a name attribute
+                                            control={control}
+                                            render={({ field }) => (
+                                                <DatePicker
+                                                    label="End Date"
+                                                    {...field}
+                                                />
+                                            )}
+                                        />
                                     </DemoContainer>
                                 </LocalizationProvider>
                             </Grid>
