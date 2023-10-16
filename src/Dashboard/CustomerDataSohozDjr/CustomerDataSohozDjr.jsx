@@ -21,19 +21,13 @@ import { ToastContainer } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import WestIcon from '@mui/icons-material/West';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-// import { useQuery } from '@tanstack/react-query';
-// import Loading from '../../Client/Components/Loading/Loading';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { DatePicker } from '@mui/x-date-pickers';
-// import Snackbar from '@mui/material/Snackbar';
-// import Alert from '@mui/material/Alert';
-// import { useHistory } from 'react-router-dom';
-// import Swal from 'sweetalert2';
+
 import dayjs from 'dayjs';
 import Swal from 'sweetalert2';
-// import { useQuery } from '@tanstack/react-query';
 import Loading from '../../Client/Components/Loading/Loading';
 import UseLastSixUserIds from '../../Client/Components/Hooks/IsAdminHooks/UselastSixUsersIds';
 
@@ -43,7 +37,8 @@ export default function CustomerDataSohozDjr() {
     const { register, handleSubmit, control } = useForm();
     const [manualBrand, setManualBrand] = useState('');
     const [UserPhone, setUserPhone] = useState('');
-    // const [isSnackbarOpen, setSnackbarOpen] = useState(false);
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
     const navigate = useNavigate();
 
     const handleChange = (newPhone) => {
@@ -53,12 +48,10 @@ export default function CustomerDataSohozDjr() {
     const { userIds, isLoading, isError, refetch } = UseLastSixUserIds();
 
     const onSubmit = (formData) => {
-        console.log(formData, "from this");
         const startDate = formData.startDate;
         const endDate = formData.endDate;
         const formattedStartDate = dayjs(startDate).format('DD-MM-YYYY');
         const formattedEndDate = dayjs(endDate).format('DD-MM-YYYY');
-        console.log(formattedStartDate, formattedEndDate);
         const completeOrder = {
             userId: formData.userId,
             name: formData.name,
@@ -156,8 +149,8 @@ export default function CustomerDataSohozDjr() {
                     <Typography component="h1" variant="h5" sx={{ color: "gray" }}>
                         Add a Customer
                     </Typography>
-                    <Typography component="h1" variant="p" sx={{ color: "gray" , mt: 1 }}>
-                       Last ID : {userIds}
+                    <Typography component="h1" variant="p" sx={{ color: "gray", mt: 1 , fontSize: "14px" }}>
+                        Last ID : {userIds}
                     </Typography>
 
                     <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
@@ -260,13 +253,16 @@ export default function CustomerDataSohozDjr() {
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                                     <DemoContainer components={['DatePicker']}>
                                         <Controller
-                                            name="startDate" // Provide a name attribute
-                                            rules={{ required: 'Start Date is required' }}
+                                            name="startDate"
                                             control={control}
                                             render={({ field }) => (
                                                 <DatePicker
                                                     label="Start Date"
-                                                    {...field}
+                                                    value={startDate} // Use the controlled value here
+                                                    onChange={(date) => {
+                                                        setStartDate(date); // Update the controlled value when the date changes
+                                                        field.onChange(date); // Update the field controller
+                                                    }}
                                                 />
                                             )}
                                         />
@@ -277,13 +273,17 @@ export default function CustomerDataSohozDjr() {
                             <Grid item xs={12} sm={6} sx={{ marginTop: -1 }}>
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                                     <DemoContainer components={['DatePicker']}>
-                                        <Controller
-                                            name="endDate" // Provide a name attribute
+                                    <Controller
+                                            name="endDate"
                                             control={control}
                                             render={({ field }) => (
                                                 <DatePicker
                                                     label="End Date"
-                                                    {...field}
+                                                    value={endDate} // Use the controlled value here
+                                                    onChange={(date) => {
+                                                        setEndDate(date); // Update the controlled value when the date changes
+                                                        field.onChange(date); // Update the field controller
+                                                    }}
                                                 />
                                             )}
                                         />
