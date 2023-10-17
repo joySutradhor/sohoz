@@ -35,10 +35,12 @@ import dayjs from 'dayjs';
 const defaultTheme = createTheme();
 
 export default function CompletedRiderOrderSohozDjr() {
-    const { register, handleSubmit , control } = useForm();
+    const { register, handleSubmit, control } = useForm();
     const orderIdRef = useRef();
     const [manualBrand, setManualBrand] = useState('');
     const [UserPhone, setUserPhone] = useState('');
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
     const navigate = useNavigate();
 
     const handleChange = (newPhone) => {
@@ -64,29 +66,29 @@ export default function CompletedRiderOrderSohozDjr() {
 
     const onSubmit = (formData) => {
         // console.log(formData, "from this");
-        const startDate = formData.startDate ;
-        const endDate = formData.endDate ;
-        const formattedStartDate = dayjs(startDate ).format('DD-MM-YYYY'); 
-        const formattedEndDate = dayjs(endDate ).format('DD-MM-YYYY'); 
-        console.log(formattedStartDate , formattedEndDate)
+        const startDate = formData.startDate;
+        const endDate = formData.endDate;
+        const formattedStartDate = dayjs(startDate).format('DD-MM-YYYY');
+        const formattedEndDate = dayjs(endDate).format('DD-MM-YYYY');
+        console.log(formattedStartDate, formattedEndDate)
         const completeOrder = {
-            userId : formData.userId ,
-            orderId : formData.orderId ,
-            name : formData.name, 
+            userId: formData.userId,
+            orderId: formData.orderId,
+            name: formData.name,
             phone: formData.phone,
-            brandName : formData.brandName,
-            monthlyNeed : formData.monthlyNeed ,
-            startDate : formattedStartDate ,
-            endDate : formattedEndDate ,
-            dillerPrice : formData.dillerPrice,
-            sellerPrice : formData.sellerPrice ,
-            profit : formData.profit,
-            dilerPoint : formData.dilerPoint ,
-            doneBy : formData.doneBy ,
-            address : formData.address,
-            addressCode : formData.addressCode
+            brandName: formData.brandName,
+            monthlyNeed: formData.monthlyNeed,
+            startDate: formattedStartDate,
+            endDate: formattedEndDate,
+            dillerPrice: formData.dillerPrice,
+            sellerPrice: formData.sellerPrice,
+            profit: formData.profit,
+            dilerPoint: formData.dilerPoint,
+            doneBy: formData.doneBy,
+            address: formData.address,
+            addressCode: formData.addressCode
         }
-        console.log(completeOrder , "total order")
+        console.log(completeOrder, "total order")
 
 
         Swal.fire({
@@ -108,20 +110,20 @@ export default function CompletedRiderOrderSohozDjr() {
                 fetch(`http://localhost:5000/temporaryNewCustomer/completed/${data._id}`, {
                     method: 'PATCH',
                 })
-                .then((res) => res.json())
-                .then((userData) => {
-                    refetch();
-                    if (userData.modifiedCount) {
-                        Swal.fire({
-                            title: 'Success',
-                            text: 'Order successfully Done',
-                            icon: 'success',
-                        }).then(() => {
-                            // Navigate to the dynamic route
-                            navigate(`/ridersOrderrdersSohozDjr`);
-                        });
-                    }
-                });
+                    .then((res) => res.json())
+                    .then((userData) => {
+                        refetch();
+                        if (userData.modifiedCount) {
+                            Swal.fire({
+                                title: 'Success',
+                                text: 'Order successfully Done',
+                                icon: 'success',
+                            }).then(() => {
+                                // Navigate to the dynamic route
+                                navigate(`/ridersOrderrdersSohozDjr`);
+                            });
+                        }
+                    });
 
             }
         })
@@ -209,13 +211,16 @@ export default function CompletedRiderOrderSohozDjr() {
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                                     <DemoContainer components={['DatePicker']}>
                                         <Controller
-                                            name="startDate" // Provide a name attribute
-                                            rules={{ required: 'Start Date is required' }}
+                                            name="startDate"
                                             control={control}
                                             render={({ field }) => (
                                                 <DatePicker
                                                     label="Start Date"
-                                                    {...field}
+                                                    value={startDate} // Use the controlled value here
+                                                    onChange={(date) => {
+                                                        setStartDate(date); // Update the controlled value when the date changes
+                                                        field.onChange(date); // Update the field controller
+                                                    }}
                                                 />
                                             )}
                                         />
@@ -224,15 +229,19 @@ export default function CompletedRiderOrderSohozDjr() {
                             </Grid>
 
                             <Grid item xs={12} sm={6} sx={{ marginTop: -1 }}>
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
                                     <DemoContainer components={['DatePicker']}>
                                         <Controller
-                                            name="endDate" // Provide a name attribute
+                                            name="endDate"
                                             control={control}
                                             render={({ field }) => (
                                                 <DatePicker
                                                     label="End Date"
-                                                    {...field}
+                                                    value={endDate} // Use the controlled value here
+                                                    onChange={(date) => {
+                                                        setEndDate(date); // Update the controlled value when the date changes
+                                                        field.onChange(date); // Update the field controller
+                                                    }}
                                                 />
                                             )}
                                         />
@@ -250,7 +259,8 @@ export default function CompletedRiderOrderSohozDjr() {
                                     placeholder='Diler Point ID '
                                 />
                             </Grid>
-
+                            {/* todo some feild need to hide  */}
+                            
                             <Grid item xs={6}>
                                 <TextField
                                     required
