@@ -41,6 +41,7 @@ export default function CompletedRiderOrderSohozDjr() {
     const [UserPhone, setUserPhone] = useState('');
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
+    const [payment , setPayment ] = useState("cash")
     const navigate = useNavigate();
 
     const handleChange = (newPhone) => {
@@ -77,7 +78,7 @@ export default function CompletedRiderOrderSohozDjr() {
             name: formData.name,
             phone: formData.phone,
             brandName: formData.brandName,
-            monthlyNeed: formData.monthlyNeed,
+            quantity: formData.quantity,
             startDate: formattedStartDate,
             endDate: formattedEndDate,
             dillerPrice: formData.dillerPrice,
@@ -86,7 +87,8 @@ export default function CompletedRiderOrderSohozDjr() {
             dilerPoint: formData.dilerPoint,
             doneBy: formData.doneBy,
             address: formData.address,
-            addressCode: formData.addressCode
+            addressCode: formData.addressCode,
+            payment : formData.payment
         }
         console.log(completeOrder, "total order")
 
@@ -200,10 +202,10 @@ export default function CompletedRiderOrderSohozDjr() {
                                 <TextField
                                     required
                                     fullWidth
-                                    id="monthlyNeed"
-                                    label="Monthly Need "
-                                    {...register("monthlyNeed", { required: true })}
-                                    defaultValue={data ? data.addressCode : ""}
+                                    id="quantity"
+                                    label="Quantity"
+                                    {...register("quantity", { required: true })}
+                                    defaultValue={data ? data.quantity : ""}
                                 />
                             </Grid>
 
@@ -260,7 +262,7 @@ export default function CompletedRiderOrderSohozDjr() {
                                 />
                             </Grid>
                             {/* todo some feild need to hide  */}
-                            
+
                             <Grid item xs={6}>
                                 <TextField
                                     required
@@ -270,6 +272,27 @@ export default function CompletedRiderOrderSohozDjr() {
                                     fullWidth
                                     placeholder='Your Code '
                                 />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <FormControl fullWidth>
+                                    <InputLabel id="demo-simple-select-label">Payment</InputLabel>
+                                    <Select
+                                        required
+                                        {...register("payment", { required: true })}
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={payment}
+                                        label="Payment"
+                                        onChange={(event) => {
+                                            setPayment(event.target.value);
+                                        }}
+                                    >
+                                        <MenuItem value="cash">Cash</MenuItem>
+                                        <MenuItem value="bkash">Bkash</MenuItem>
+                                        <MenuItem value="nagad">Nagad</MenuItem>
+
+                                    </Select>
+                                </FormControl>
                             </Grid>
 
                             <Grid item xs={6}>
@@ -340,6 +363,8 @@ export default function CompletedRiderOrderSohozDjr() {
                                     {...register("orderId", { required: true })}
                                     fullWidth
                                     defaultValue={data ? data.orderId : ""}
+                                    style={{ display: 'none', visibility: 'hidden' }}
+
                                 />
                             </Grid>
 
@@ -351,6 +376,8 @@ export default function CompletedRiderOrderSohozDjr() {
                                     label="Dealer Price"
                                     {...register("dillerPrice", { required: true })}
                                     defaultValue={data ? data.dillerPrice : ""}
+                                    style={{ display: 'none', visibility: 'hidden' }}
+
                                 />
                             </Grid>
 
@@ -362,6 +389,8 @@ export default function CompletedRiderOrderSohozDjr() {
                                     label="Seller Price"
                                     {...register("sellerPrice", { required: true })}
                                     defaultValue={data ? data.sellerPrice : ""}
+                                    style={{ display: 'none', visibility: 'hidden' }}
+
                                 />
                             </Grid>
 
@@ -372,6 +401,8 @@ export default function CompletedRiderOrderSohozDjr() {
                                     label="Profit"
                                     {...register("profit")}
                                     defaultValue={data ? data.profit : ""}
+                                    style={{ display: 'none', visibility: 'hidden' }}
+
                                 />
                             </Grid>
                         </Grid>
@@ -379,7 +410,7 @@ export default function CompletedRiderOrderSohozDjr() {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 1 }}
+                            sx={{ mt: -1, mb: 1 }}
                         >
                             Submit Data
                         </Button>

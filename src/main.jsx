@@ -22,8 +22,10 @@ import UsersListSohozDjr from './Dashboard/UsersListSohozDjr/UsersListSohozDjr';
 import UsersSohozDjr from './Dashboard/UsersSohozDjr/UsersSohozDjr';
 import CollectDataSohozDjr from './Dashboard/CollectDataSohozDjr/CollectDataSohozDjr';
 import RidersOrdersSohozDjr from './Dashboard/RidersOrdersSohozDjr/RidersOrdersSohozDjr';
-import CompletedRiderOrderSohozDjr from './Dashboard/RidersOrdersSohozDjr/completedRiderOrderSohozDjr';
+// import CompletedRiderOrderSohozDjr from './Dashboard/RidersOrdersSohozDjr/src/Dashboard/RidersOrdersSohozDjr/RidersAcceptedOrdersSohozDjr.jsx';
 import CustomerDataSohozDjr from './Dashboard/CustomerDataSohozDjr/CustomerDataSohozDjr';
+import RidersAcceptedOrdersSohozDjr from './Dashboard/RidersOrdersSohozDjr/RidersAcceptedOrdersSohozDjr/RidersAcceptedOrdersSohozDjr';
+import CompletedRiderOrderSohozDjr from './Dashboard/RidersOrdersSohozDjr/CompletedRiderOrderSohozDjr';
 // import SubmitRiderOderSohozDjr from './Dashboard/RidersOrdersSohozDjr/CompletedRiderOrderSohozDjr';
 // import DashboardHome from './Dashboard/DashboardHomeSohozDjr';
 const queryClient = new QueryClient()
@@ -81,6 +83,10 @@ const router = createBrowserRouter([
       {
         path : "customerDataSohozDjr",
         element : <CustomerDataSohozDjr></CustomerDataSohozDjr>
+      },
+      {
+        path : "ridersAcceptedOrdersSohozDjr",
+        element : <RidersAcceptedOrdersSohozDjr></RidersAcceptedOrdersSohozDjr>
       }
 
     ]

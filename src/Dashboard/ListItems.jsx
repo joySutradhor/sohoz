@@ -111,12 +111,15 @@ export const ListItems = () => {
         <ListItemText primary="Today Cost" />
       </ListItemButton>
 
-      <ListItemButton>
-        <ListItemIcon>
-          <DirectionsBikeOutlinedIcon />
-        </ListItemIcon>
-        <ListItemText primary="Track Rider" />
-      </ListItemButton>
+      <Link to="/ridersAcceptedOrdersSohozDjr">
+        <ListItemButton>
+          <ListItemIcon>
+            <DirectionsBikeOutlinedIcon />
+          </ListItemIcon>
+          <ListItemText primary="Accepted Orders" />
+        </ListItemButton>
+      </Link>
+
 
       <ListItemButton>
         <ListItemIcon>

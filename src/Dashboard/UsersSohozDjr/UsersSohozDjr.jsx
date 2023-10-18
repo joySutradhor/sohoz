@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 import 'react-toastify/dist/ReactToastify.css';
 import {
     Button,
@@ -27,19 +27,26 @@ import { Link } from 'react-router-dom';
 import WestIcon from '@mui/icons-material/West';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import UseLastSixUserIds from '../../Client/Components/Hooks/IsAdminHooks/UselastSixUsersIds';
+// import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 const defaultTheme = createTheme();
 
 export default function UsersSohozDjr() {
-    const { register, handleSubmit, setValue } = useForm();
+    // const { register, handleSubmit, setValue } = useForm();
     const orderIdRef = useRef();
 
     const [brand, setBrand] = useState('');
-    const [manualBrand, setManualBrand] = useState(null);
+    // const [manualBrand, setManualBrand] = useState(null);
     const [phone, setPhone] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
-    const [searchResults, setSearchResults] = useState({});
-    const [userId , setUserId] = useState("")
+    // const [searchResults, setSearchResults] = useState({});
+    const [userId, setUserId] = useState("");
+    const [fullName, setFullName] = useState("");
+    const [address, setAddress] = useState("");
+    const [addressCode, setAddressCode] = useState("");
+    const [quantity, setQuantity] = useState("");
     const handleChange = (newPhone) => {
         setPhone(newPhone);
     };
@@ -84,9 +91,9 @@ export default function UsersSohozDjr() {
         checkAndGenerateOrderId().then(() => {
             setIsCopied(false);
 
-            if (orderIdRef.current) {
-                setValue('orderId', generatedOrderId);
-            }
+            // if (orderIdRef.current) {
+            //     setValue('orderId', generatedOrderId);
+            // }
         });
     };
 
@@ -109,10 +116,22 @@ export default function UsersSohozDjr() {
 
     const { userIds } = UseLastSixUserIds();
 
-    const onSubmit = async (data) => {
-        console.log(data , "form data")
-        const dealerPrice = parseFloat(data.dillerPrice);
-        const sellerPrice = parseFloat(data.sellerPrice);
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const dealerPrice = parseFloat(document.getElementById('dillerPrice').value);
+        const sellerPrice = parseFloat(document.getElementById('sellerPrice').value);
+        // const orderId = generatedOrderId;
+        // const user = userId ;
+        // const brandName = brand;
+        // const name = fullName;
+        // const userPhone = phone;
+        // const userAddress = address;
+        // const addressCodeValue = addressCode;
+        // const quantityValue = quantity;
+        // const profitValue = profit;
+        // console.log( dealerPrice ,sellerPrice , orderId ,  brandName ,name , userPhone ,userAddress , addressCodeValue ,quantityValue  , profitValue , user )
+        // const dealerPrice = parseFloat(data.dillerPrice);
+        // const sellerPrice = parseFloat(data.sellerPrice);
 
         if (!isNaN(dealerPrice) && !isNaN(sellerPrice)) {
             if (sellerPrice < dealerPrice) {
@@ -121,19 +140,21 @@ export default function UsersSohozDjr() {
                 setShowAlert(false);
                 const calculatedProfit = sellerPrice - dealerPrice;
                 setProfit(calculatedProfit.toFixed(2));
-                data.profit = calculatedProfit.toFixed(2);
-                data.brandName = brand;
+                // data.profit = calculatedProfit.toFixed(2);
+                // data.brandName = brand;
 
                 const saveUser = {
-                    userId: data.userId,
-                    orderId: data.orderId,
-                    brandName: data.brandName,
-                    name: data.name,
-                    phone: data.phone,
-                    address: data.address,
-                    dillerPrice: data.dillerPrice,
-                    sellerPrice: data.sellerPrice,
-                    profit: data.profit,
+                    userId: userId,
+                    orderId: generatedOrderId,
+                    brandName: brand,
+                    name: fullName,
+                    phone: phone,
+                    address: address,
+                    addressCode: addressCode,
+                    dillerPrice: parseFloat(document.getElementById('dillerPrice').value),
+                    sellerPrice: parseFloat(document.getElementById('sellerPrice').value),
+                    profit: profit,
+                    quantity : quantity ,
                     status: "pending",
                 };
 
@@ -198,23 +219,24 @@ export default function UsersSohozDjr() {
             const response = await fetch(`http://localhost:5000/customerDataSohozDjr/${searchQuery}`);
             if (response.ok) {
                 const userData = await response.json();
-                setSearchResults(userData);
+                // setSearchResults(userData);
                 setPhone(userData?.phone);
                 setUserId(userData?.userId);
-            } else {
-                setSearchResults({ name: searchQuery, phone: '', address: '' });
-                setPhone('');
-                setUserId('');
+                setFullName(userData?.name);
+                setAddress(userData?.address);
+                setAddressCode(userData?.addressCode);
+                setBrand(userData?.brandName);
+                setQuantity(userData?.monthlyNeed);
+                // setUserId(userData?.userId);
+
             }
         } catch (error) {
             console.error(error);
         }
     };
-    console.log(searchResults)
+    // console.log(searchResults.userId)
 
-    // const handleSetValue = (newValue) => {
-    //     setManualBrand(newValue);
-    // }
+
 
 
     return (
@@ -242,7 +264,7 @@ export default function UsersSohozDjr() {
                     <Typography component="h1" variant="p" sx={{ color: "gray", mt: 1, fontSize: "14px" }}>
                         Last ID: {userIds}
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <div className="">
@@ -285,7 +307,7 @@ export default function UsersSohozDjr() {
                                     id="orderId"
                                     label="Order ID"
                                     ref={orderIdRef}
-                                    {...register("orderId", { required: true })}
+                                    // {...register("orderId", { required: true })}
                                     fullWidth
                                     value={generatedOrderId}
                                     InputProps={{
@@ -305,9 +327,10 @@ export default function UsersSohozDjr() {
                                     id="userId"
                                     label="User ID"
                                     value={userId || ""}
-                                    {...register("userId", { required: true })}
+                                    onChange={(e) => setUserId(e.target.value)}
+                                    // {...register("userId", { required: true })}
                                     fullWidth
-                                    
+
                                 // Set the default value based on search results
 
                                 />
@@ -318,11 +341,11 @@ export default function UsersSohozDjr() {
                                     <Select
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
-                                        value={manualBrand || (searchResults?.brandName || '')}
+                                        value={brand || ''}
                                         // {...register("brandName")}
                                         label="Brand Name"
                                         onChange={(event) => {
-                                            setManualBrand(event.target.value);
+                                            setBrand(event.target.value);
                                         }}
                                     >
                                         <MenuItem value="">Select an option</MenuItem> {/* You can add an empty option as a default */}
@@ -338,12 +361,15 @@ export default function UsersSohozDjr() {
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     autoComplete="given-name"
-                                    {...register("name", { required: true, maxLength: 30 })}
-                                    value={searchResults?.name || ''}
+                                    // {...register("name", { required: true, maxLength: 30 })}
+                                    value={fullName || ''}
                                     required
                                     fullWidth
                                     id="firstName"
                                     label="Full Name"
+                                    onChange={(event) => {
+                                        setFullName(event.target.value);
+                                    }}
 
                                 />
                             </Grid>
@@ -352,8 +378,8 @@ export default function UsersSohozDjr() {
                                     id="outlined-helperText"
                                     label="Phone"
                                     required
-                                    {...register("phone", { required: true, maxLength: 20 })}
-                                    value={searchResults?.phone || ''}
+                                    // {...register("phone", { required: true, maxLength: 20 })}
+                                    value={phone || ''}
                                     fullWidth
                                     defaultCountry="BD"
                                     onChange={handleChange}
@@ -365,8 +391,38 @@ export default function UsersSohozDjr() {
                                     fullWidth
                                     id="address"
                                     label="User Address"
-                                    {...register("address", { required: true })}
-                                    value={searchResults?.address || ''}
+                                    // {...register("address", { required: true })}
+                                    value={address || ''}
+                                    onChange={(event) => {
+                                        setAddress(event.target.value);
+                                    }}
+
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="addressCode"
+                                    label="Address Code"
+                                    // {...register("address", { required: true })}
+                                    value={addressCode || ''}
+                                    onChange={(event) => {
+                                        setAddressCode(event.target.value);
+                                    }}
+
+                                />
+                            </Grid>
+                            <Grid item xs={6} sm={6}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="quantity"
+                                    label="Quantity"
+                                    value={quantity || ""}
+                                    onChange={(event) => {
+                                        setQuantity(event.target.value);
+                                    }}
 
                                 />
                             </Grid>
@@ -376,7 +432,7 @@ export default function UsersSohozDjr() {
                                     fullWidth
                                     id="dillerPrice"
                                     label="Dealer Price"
-                                    {...register("dillerPrice", { required: true })}
+                                    // {...register("dillerPrice", { required: true })}
                                     onChange={handleDealerPriceChange}
                                 />
                             </Grid>
@@ -386,7 +442,7 @@ export default function UsersSohozDjr() {
                                     fullWidth
                                     id="sellerPrice"
                                     label="Seller Price"
-                                    {...register("sellerPrice", { required: true })}
+                                    // {...register("sellerPrice", { required: true })}
                                     onChange={handleSellerPriceChange}
                                 />
                             </Grid>
@@ -396,7 +452,7 @@ export default function UsersSohozDjr() {
                                     id="profit"
                                     label="Profit"
                                     value={profit}
-                                    {...register("profit")}
+                                    // {...register("profit")}
                                     style={{ display: 'none' }}
                                 />
                             </Grid>
