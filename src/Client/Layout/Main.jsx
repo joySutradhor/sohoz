@@ -6,13 +6,14 @@ const Main = () => {
   const location = useLocation();
 
   // Define an array of pathnames where you want to hide the Header and Footer.
-  const pathsToHideHeaderFooter = ['/loginPage',"/customerDataSohozDjr" , "/ridersAcceptedOrdersSohozDjr", '/usersListSohozDjr', "/collectDataSohozDjr", "/completedRiderOrderSohozDjr", "/usersSohozDjr", '/registerPage', '/updateProfile', "/dashboardHomeSohozDjr", "/ridersOrderrdersSohozDjr"];
+  const pathsToHideHeaderFooter = ['/loginPage',"/customerDataSohozDjr" , "/ridersAcceptedOrdersSohozDjr", '/usersListSohozDjr', "/collectDataSohozDjr", "/completedRiderOrderSohozDjr", "/usersSohozDjr", '/registerPage', '/updateProfile', "/dashboardHomeSohozDjr", "/ridersOrderrdersSohozDjr" , "/userPlaceOrderSohozDjr"];
 
   // Check if the current pathname is in the array of paths to hide Header and Footer.
-  const shouldHideHeaderFooter = pathsToHideHeaderFooter.includes(location.pathname) || location.pathname.includes("/completedRiderOrderSohozDjr");
+  const shouldHideHeaderFooter = pathsToHideHeaderFooter.includes(location.pathname) || location.pathname.includes("/completedRiderOrderSohozDjr") || location.pathname.includes("/userPlaceOrderSohozDjr") ;
+  
 
   return (
-    <div className="bg-[#F5F5F5]">
+    <div className="bg-slate-100">
       {!shouldHideHeaderFooter && <Header />}
       <Outlet />
       {!shouldHideHeaderFooter && <Footer />}

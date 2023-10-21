@@ -26,6 +26,7 @@ import RidersOrdersSohozDjr from './Dashboard/RidersOrdersSohozDjr/RidersOrdersS
 import CustomerDataSohozDjr from './Dashboard/CustomerDataSohozDjr/CustomerDataSohozDjr';
 import RidersAcceptedOrdersSohozDjr from './Dashboard/RidersOrdersSohozDjr/RidersAcceptedOrdersSohozDjr/RidersAcceptedOrdersSohozDjr';
 import CompletedRiderOrderSohozDjr from './Dashboard/RidersOrdersSohozDjr/CompletedRiderOrderSohozDjr';
+import CheckOutSohozDjr from './Client/Layout/Home/OrderProcess/CheckOutSohozDjr/CheckOutSohozDjr';
 // import SubmitRiderOderSohozDjr from './Dashboard/RidersOrdersSohozDjr/CompletedRiderOrderSohozDjr';
 // import DashboardHome from './Dashboard/DashboardHomeSohozDjr';
 const queryClient = new QueryClient()
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
       {
         path : "ridersAcceptedOrdersSohozDjr",
         element : <RidersAcceptedOrdersSohozDjr></RidersAcceptedOrdersSohozDjr>
+      },
+      {
+        path : "userPlaceOrderSohozDjr/:id",
+        element : <CheckOutSohozDjr></CheckOutSohozDjr>
       }
 
     ]

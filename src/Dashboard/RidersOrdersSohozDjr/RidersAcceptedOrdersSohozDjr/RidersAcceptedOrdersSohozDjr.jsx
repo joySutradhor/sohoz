@@ -1,21 +1,23 @@
 import { List, ListItem, ListItemText } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Loading from '../../../Client/Components/Loading/Loading';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../Client/Providers/Providers';
 
 const RidersAcceptedOrdersSohozDjr = () => {
     const [acceptedData, setAcceptedData] = useState([]);
     const navigate = useNavigate(); // Initialize the navigate function
+    const {user } = useContext(AuthContext);
+    console.log(user)
 
     useEffect(() => {
         // Fetch the progress data
         fetch("http://localhost:5000/temporaryNewCustomer/progress")
             .then((res) => res.json())
             .then((data) => {
-                // Filter the data based on the email being "progress"
-                const progressData = data.filter((item) => item.email === "joysutradhorcmt@gmail.com");
-                setAcceptedData(progressData);
+                setAcceptedData(data);
+                console.log(data)
             });
     }, []);
 

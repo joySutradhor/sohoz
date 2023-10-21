@@ -23,7 +23,8 @@ import Deposits from './Deposits';
 import { ListItems  } from './ListItems';
 import Orders from './Orders';
 import { useState } from 'react';
-import sohoz from "./././../././../public/sohoz.png"
+import  sohoz  from '../assets/sohoz.png';
+
 
 
 const drawerWidth = 240;

@@ -33,7 +33,7 @@ export default function Footer() {
     <React.Fragment>
       <CssBaseline />
 
-      <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 , background: "white" }}>
+      <AppBar position="fixed"  sx={{ top: 'auto', bottom: 0  , background: "white" }}>
         {/* Render all menu icon  */} 
         {/* Gap 4 means space vertical in menu icon  */}
         <Toolbar className='pt-1 gap-x-4'>

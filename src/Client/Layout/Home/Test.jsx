@@ -1,7 +1,6 @@
 
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useQuery } from '@tanstack/react-query';
-import { Link } from 'react-router-dom';
 const Test = () => {
     const { data } = useQuery({
         queryKey: ['cylinders'],
@@ -31,7 +30,7 @@ const Test = () => {
                                 {data?.price} Taka
                             </p>
                         </div>
-                        <Link to={`/userPlaceOrderSohozDjr/${data._id}`}><button className="text-sm text-green-600 font-semibold ">Place Order<KeyboardArrowRightIcon></KeyboardArrowRightIcon></button></Link>
+                        <button className="text-sm text-green-600 font-semibold ">Order Now <KeyboardArrowRightIcon></KeyboardArrowRightIcon></button>
                     </div>
                 </div>
             </div>)

@@ -23,49 +23,8 @@ import AddIcCallOutlinedIcon from '@mui/icons-material/AddIcCallOutlined';
 import { AuthContext } from './../Providers/Providers';
 import { useContext } from "react";
 import { Link } from 'react-router-dom';
-import sohoz from "../../../public/sohoz.png"
+import  sohoz  from  "../../assets/sohoz.png"
 
-
-// const Search = styled('div')(({ theme }) => ({
-//   position: 'relative',
-//   borderRadius: theme.shape.borderRadius,
-//   backgroundColor: alpha(theme.palette.common.white, 0.15),
-//   '&:hover': {
-//     backgroundColor: alpha(theme.palette.common.white, 0.25),
-//   },
-//   marginRight: theme.spacing(2),
-//   marginLeft: 0,
-//   width: '100%',
-//   [theme.breakpoints.up('sm')]: {
-//     marginLeft: theme.spacing(3),
-//     width: 'auto',
-//   },
-// }));
-
-// const SearchIconWrapper = styled('div')(({ theme }) => ({
-//   padding: theme.spacing(0, 2),
-//   height: '100%',
-//   position: 'absolute',
-//   pointerEvents: 'none',
-//   display: 'flex',
-//   alignItems: 'center',
-//   justifyContent: 'center',
-
-// }));
-
-// const StyledInputBase = styled(InputBase)(({ theme }) => ({
-//   color: 'inherit',
-//   '& .MuiInputBase-input': {
-//     padding: theme.spacing(1, 1, 1, 0),
-//     // vertical padding + font size from searchIcon
-//     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-//     transition: theme.transitions.create('width'),
-//     width: '100%',
-//     [theme.breakpoints.up('md')]: {
-//       width: '20ch',
-//     },
-//   },
-// }));
 
 export default function Header() {
 
@@ -210,7 +169,7 @@ export default function Header() {
   );
 
   return (
-    <div className='pb-20'>
+    <div className='pb-[57px]'>
       <Box sx={{ flexGrow: 1  }}>
         <AppBar position="fixed" sx={{ background: "white" , boxShadow: '0px 1px 0px rgba(0, 0, 0, 0.1)'   }}>
           <Toolbar>
