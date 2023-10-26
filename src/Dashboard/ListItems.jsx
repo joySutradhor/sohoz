@@ -52,7 +52,7 @@ export const ListItems = () => {
       </Link>
 
       {
-        isAdmin ==="admin" && <Link to="/usersListSohozDjr">
+        isAdmin === "admin" && <Link to="/usersListSohozDjr">
           <ListItemButton>
             <ListItemIcon>
               <Groups2OutlinedIcon />
@@ -63,7 +63,7 @@ export const ListItems = () => {
       }
 
       {
-        (isAdmin ==="admin" || isAdmin ==="manager") && <Link to="/customerDataSohozDjr">
+        (isAdmin === "admin" || isAdmin === "manager") && <Link to="/customerDataSohozDjr">
           <ListItemButton>
             <ListItemIcon>
               <GroupAddIcon />
@@ -74,7 +74,7 @@ export const ListItems = () => {
       }
 
       {
-        (isAdmin ==="admin" || isAdmin ==="manager") && <Link to="/usersSohozDjr">
+        (isAdmin === "admin" || isAdmin === "manager") && <Link to="/usersSohozDjr">
           <ListItemButton>
             <ListItemIcon>
               <GroupAddIcon />
@@ -85,7 +85,7 @@ export const ListItems = () => {
       }
 
       {
-        (isAdmin ==="admin" || isAdmin ==="manager") && <Link to="/collectDataSohozDjr">
+        (isAdmin === "admin" || isAdmin === "manager") && <Link to="/collectDataSohozDjr">
           <ListItemButton>
             <ListItemIcon>
               <PersonAddAltOutlinedIcon />
@@ -96,7 +96,7 @@ export const ListItems = () => {
       }
 
       {
-        isAdmin ==="rider" && <Link to="/ridersOrderrdersSohozDjr">
+        isAdmin === "rider" && <Link to="/ridersOrderrdersSohozDjr">
           <ListItemButton>
             <ListItemIcon>
               <ShoppingCartIcon />
@@ -107,7 +107,7 @@ export const ListItems = () => {
       }
 
       {
-        (isAdmin ==="admin" || isAdmin ==="manager" || isAdmin ==="rider") && <Link to="/CostDetailsSohozDjr">
+        (isAdmin === "admin" || isAdmin === "manager" || isAdmin === "rider") && <Link to="/CostDetailsSohozDjr">
           <ListItemButton>
             <ListItemIcon>
               <CurrencyExchangeIcon />
@@ -118,7 +118,7 @@ export const ListItems = () => {
       }
 
       {
-        isAdmin ==="rider" && <Link to="/ridersAcceptedOrdersSohozDjr">
+        isAdmin === "rider" && <Link to="/ridersAcceptedOrdersSohozDjr">
           <ListItemButton>
             <ListItemIcon>
               <DirectionsBikeOutlinedIcon />
@@ -129,18 +129,19 @@ export const ListItems = () => {
       }
 
       {
-        (isAdmin ==="admin" || isAdmin ==="manager") &&
+        (isAdmin === "admin" || isAdmin === "manager") && <Link to="/SummerySohozDjr">
         <ListItemButton>
-          <ListItemIcon>
-            <BarChartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Summary" />
-        </ListItemButton>
+            <ListItemIcon>
+              <BarChartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Summary" />
+          </ListItemButton>
+        </Link>
 
       }
 
       {
-        (isAdmin ==="user") && <Link to="/myprofileSohozDjr">
+        (isAdmin === "user") && <Link to="/myprofileSohozDjr">
           <ListItemButton>
             <ListItemIcon>
               <AccountCircleIcon />
@@ -151,7 +152,7 @@ export const ListItems = () => {
       }
 
       {
-        (isAdmin ==="user") && <Link to="/ordersStatusSohozDjr">
+        (isAdmin === "user") && <Link to="/ordersStatusSohozDjr">
           <ListItemButton>
             <ListItemIcon>
               <ShoppingCartIcon />
@@ -162,7 +163,7 @@ export const ListItems = () => {
       }
 
       {
-        (isAdmin ==="user") && <Link to="/trackRiderSohozDjr">
+        (isAdmin === "user") && <Link to="/trackRiderSohozDjr">
 
           <ListItemButton>
             <ListItemIcon>

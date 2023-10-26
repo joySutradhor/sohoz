@@ -34,6 +34,7 @@ import MyProfileSohozDjr from './Dashboard/UserDashboard/MyProfileSohozDjr';
 import OrdersStatusSohozDjr from './Dashboard/UserDashboard/OrdersStatusSohozDjr';
 import TrackRiderSohozDjr from './Dashboard/UserDashboard/TrackRiderSohozDjr';
 import CostDetailsSohozDjr from './Dashboard/CostDetailsSohozDjr/CostDetailsSohozDjr';
+import SummerySohozDjr from './Dashboard/SummerySohozDjr/SummerySohozDjr';
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
@@ -109,6 +110,10 @@ const router = createBrowserRouter([
       {
         path : "CostDetailsSohozDjr",
         element : <CostDetailsSohozDjr></CostDetailsSohozDjr>
+      },
+      {
+        path : "SummerySohozDjr",
+        element : <SummerySohozDjr></SummerySohozDjr>
       }
 
     ]
