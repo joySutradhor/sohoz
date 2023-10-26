@@ -23,17 +23,18 @@ import AddIcCallOutlinedIcon from '@mui/icons-material/AddIcCallOutlined';
 import { AuthContext } from './../Providers/Providers';
 import { useContext } from "react";
 import { Link } from 'react-router-dom';
-import  sohoz  from  "../../assets/sohoz.png"
+import sohoz from "../../assets/sohoz.png"
+import Swal from 'sweetalert2';
 
 
 export default function Header() {
 
   const { user, logout } = useContext(AuthContext)
- 
+
   const handleLogout = () => {
     logout()
-    .then ()
-    
+      .then()
+
   }
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -100,67 +101,87 @@ export default function Header() {
 
       {/* item for Profile  */}
       <Link to="/profile">
-      <MenuItem  sx={{ color: "#777" }}>
-        <IconButton
-          size="small"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="text.secondary"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+        <MenuItem sx={{ color: "#777" }}>
+          <IconButton
+            size="small"
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="text.secondary"
+          >
+            <AccountCircle />
+          </IconButton>
+          <p>Profile</p>
+        </MenuItem>
       </Link>
       {/* end of profile menu item*/}
 
 
       {/* ittem for Dashboard */}
       <Link to="/dashboardHomeSohozDjr">
-      <MenuItem sx={{ color: "#777" }}>
-        <IconButton
-          size="samll"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="text.secondary"
-        >
-          <DashboardOutlinedIcon></DashboardOutlinedIcon>
-        </IconButton>
-        <p>Dashborad</p>
-      </MenuItem>
+        <MenuItem sx={{ color: "#777" }}>
+          <IconButton
+            size="samll"
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="text.secondary"
+          >
+            <DashboardOutlinedIcon></DashboardOutlinedIcon>
+          </IconButton>
+          <p>Dashborad</p>
+        </MenuItem>
       </Link>
       {/* End Of Dashbord Item */}
 
       {/* item for Call now */}
       <Link>
-      <MenuItem sx={{ color: "#777" }}>
-        <IconButton size="small" aria-label="call now" color="text.secondary">
-          <AddIcCallOutlinedIcon></AddIcCallOutlinedIcon>
-        </IconButton>
-        <p>Call Now</p>
-      </MenuItem>
+        <MenuItem sx={{ color: "#777" }}>
+          <IconButton size="small" aria-label="call now" color="text.secondary">
+            <AddIcCallOutlinedIcon></AddIcCallOutlinedIcon>
+          </IconButton>
+          <p>Call Now</p>
+        </MenuItem>
       </Link>
       {/* End Of callnow item */}
       {
         user ? <Link to="/">
-        <MenuItem onClick={handleLogout} sx={{ color: "#777" }}>
-          <IconButton size="small" aria-label="User Logout" color="text.secondary">
-            <PowerSettingsNewOutlinedIcon></PowerSettingsNewOutlinedIcon>
-          </IconButton>
-          <p>LogOut</p>
-        </MenuItem>
+          <MenuItem onClick={() => {
+            Swal.fire({
+              text: 'want to log out?',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, log out'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                // Handle the logout action here
+                handleLogout();
+                Swal.fire(
+                  'Log Out!',
+                  'Log Out Successfully',
+                  'success'
+                )
+              }
+            });
+          }}
+            sx={{ color: "#777" }}>
+            <IconButton size="small" aria-label="User Logout" color="text.secondary">
+              <PowerSettingsNewOutlinedIcon></PowerSettingsNewOutlinedIcon>
+            </IconButton>
+            <p>LogOut</p>
+          </MenuItem>
         </Link> : <Link to="/loginPage">
-        
-        <MenuItem sx={{ color: "#777" }}>
 
-          {/* item for Login */}
-          <IconButton size="small" aria-label="User Login " color="text.secondary">
-            <KeyboardTabOutlinedIcon></KeyboardTabOutlinedIcon>
-          </IconButton>
-          <p>Login</p>
-        </MenuItem>
+          <MenuItem sx={{ color: "#777" }}>
+
+            {/* item for Login */}
+            <IconButton size="small" aria-label="User Login " color="text.secondary">
+              <KeyboardTabOutlinedIcon></KeyboardTabOutlinedIcon>
+            </IconButton>
+            <p>Login</p>
+          </MenuItem>
         </Link>
       }
       {/* end of logout and login item */}
@@ -170,15 +191,15 @@ export default function Header() {
 
   return (
     <div className='pb-[57px]'>
-      <Box sx={{ flexGrow: 1  }}>
-        <AppBar position="fixed" sx={{ background: "white" , boxShadow: '0px 1px 0px rgba(0, 0, 0, 0.1)'   }}>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="fixed" sx={{ background: "white", boxShadow: '0px 1px 0px rgba(0, 0, 0, 0.1)' }}>
           <Toolbar>
             <IconButton
               size="small"
               edge="start"
               color="inherit"
               aria-label="open drawer"
-              sx={{ mr: 1 , color: "#333333" }}
+              sx={{ mr: 1, color: "#333333" }}
             >
               <Link to="/"> <img src={sohoz} alt="sohoz Logo" className='h-[45px]' /></Link>
             </IconButton>
@@ -193,7 +214,7 @@ export default function Header() {
                 size="large"
                 aria-label="show 17 new notifications"
                 color="inherit"
-                
+
               >
                 <Badge badgeContent={17} color="error">
                   <NotificationsIcon />
@@ -219,7 +240,7 @@ export default function Header() {
                 aria-haspopup="true"
                 onClick={handleMobileMenuOpen}
                 color="inherit"
-                sx={{ mr: 1 , color: "#777" }}
+                sx={{ mr: 1, color: "#777" }}
               >
                 <MenuOutlinedIcon></MenuOutlinedIcon>
               </IconButton>

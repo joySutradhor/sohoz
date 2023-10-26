@@ -1,7 +1,8 @@
 import Banner from "./Banner/Banner";
-import CustomerFaq from "./Customer/CustomerFaq";
+// import CustomerFaq from "./Customer/CustomerFaq";
 import GasSection from "./GasSection/GasSection";
 import Instraction from "./Instraction/Instraction";
+import Upcoming from "./Upcoming/Upcoming";
 // import Test from "./Test";
 
 const Home = () => {
@@ -11,7 +12,8 @@ const Home = () => {
             {/* <Marquee></Marquee> */}
             <Instraction></Instraction>
             <GasSection></GasSection>
-            <CustomerFaq></CustomerFaq>
+            {/* <CustomerFaq></CustomerFaq> */}
+            <Upcoming></Upcoming>
             {/* <Test></Test> */}
             
         </div>

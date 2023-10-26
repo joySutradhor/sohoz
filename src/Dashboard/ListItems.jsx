@@ -7,22 +7,16 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AddHomeOutlinedIcon from '@mui/icons-material/AddHomeOutlined';
 import Groups2OutlinedIcon from '@mui/icons-material/Groups2Outlined';
-// import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import DirectionsBikeOutlinedIcon from '@mui/icons-material/DirectionsBikeOutlined';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
-// import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
-// import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
-// import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
-// import PropaneTankOutlinedIcon from '@mui/icons-material/PropaneTankOutlined';
-// import HourglassBottomOutlinedIcon from '@mui/icons-material/HourglassBottomOutlined';
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import { Link } from 'react-router-dom';
 import { Divider } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
-// import { Divider } from '@mui/material';
 import { AuthContext } from './../Client/Providers/Providers';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export const ListItems = () => {
 
@@ -58,7 +52,7 @@ export const ListItems = () => {
       </Link>
 
       {
-        isAdmin === "admin" && <Link to="/usersListSohozDjr">
+        isAdmin ==="admin" && <Link to="/usersListSohozDjr">
           <ListItemButton>
             <ListItemIcon>
               <Groups2OutlinedIcon />
@@ -68,93 +62,142 @@ export const ListItems = () => {
         </Link>
       }
 
-      <Link to="/customerDataSohozDjr">
+      {
+        (isAdmin ==="admin" || isAdmin ==="manager") && <Link to="/customerDataSohozDjr">
+          <ListItemButton>
+            <ListItemIcon>
+              <GroupAddIcon />
+            </ListItemIcon>
+            <ListItemText primary="Customers" />
+          </ListItemButton>
+        </Link>
+      }
+
+      {
+        (isAdmin ==="admin" || isAdmin ==="manager") && <Link to="/usersSohozDjr">
+          <ListItemButton>
+            <ListItemIcon>
+              <GroupAddIcon />
+            </ListItemIcon>
+            <ListItemText primary="Post Order" />
+          </ListItemButton>
+        </Link>
+      }
+
+      {
+        (isAdmin ==="admin" || isAdmin ==="manager") && <Link to="/collectDataSohozDjr">
+          <ListItemButton>
+            <ListItemIcon>
+              <PersonAddAltOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Collect Data" />
+          </ListItemButton>
+        </Link>
+      }
+
+      {
+        isAdmin ==="rider" && <Link to="/ridersOrderrdersSohozDjr">
+          <ListItemButton>
+            <ListItemIcon>
+              <ShoppingCartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Your Orders" />
+          </ListItemButton>
+        </Link>
+      }
+
+      {
+        (isAdmin ==="admin" || isAdmin ==="manager" || isAdmin ==="rider") && <Link to="/CostDetailsSohozDjr">
+          <ListItemButton>
+            <ListItemIcon>
+              <CurrencyExchangeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Today Cost" />
+          </ListItemButton>
+        </Link>
+      }
+
+      {
+        isAdmin ==="rider" && <Link to="/ridersAcceptedOrdersSohozDjr">
+          <ListItemButton>
+            <ListItemIcon>
+              <DirectionsBikeOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Accepted Orders" />
+          </ListItemButton>
+        </Link>
+      }
+
+      {
+        (isAdmin ==="admin" || isAdmin ==="manager") &&
         <ListItemButton>
           <ListItemIcon>
-            <GroupAddIcon />
+            <BarChartIcon />
           </ListItemIcon>
-          <ListItemText primary="Customers" />
+          <ListItemText primary="Summary" />
         </ListItemButton>
-      </Link>
 
-      <Link to="/usersSohozDjr">
-        <ListItemButton>
-          <ListItemIcon>
-            <GroupAddIcon />
-          </ListItemIcon>
-          <ListItemText primary="Post Order" />
-        </ListItemButton>
-      </Link>
+      }
 
+      {
+        (isAdmin ==="user") && <Link to="/myprofileSohozDjr">
+          <ListItemButton>
+            <ListItemIcon>
+              <AccountCircleIcon />
+            </ListItemIcon>
+            <ListItemText primary="My Profile" />
+          </ListItemButton>
+        </Link>
+      }
 
-      <Link to="/collectDataSohozDjr">
-        <ListItemButton>
-          <ListItemIcon>
-            <PersonAddAltOutlinedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Collect Data" />
-        </ListItemButton>
-      </Link>
-      <Link to="/ridersOrderrdersSohozDjr">
-        <ListItemButton>
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Your Orders" />
-        </ListItemButton>
-      </Link>
+      {
+        (isAdmin ==="user") && <Link to="/ordersStatusSohozDjr">
+          <ListItemButton>
+            <ListItemIcon>
+              <ShoppingCartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Orders Status" />
+          </ListItemButton>
+        </Link>
+      }
 
-      <ListItemButton>
-        <ListItemIcon>
-          <CurrencyExchangeIcon />
-        </ListItemIcon>
-        <ListItemText primary="Today Cost" />
-      </ListItemButton>
+      {
+        (isAdmin ==="user") && <Link to="/trackRiderSohozDjr">
 
-      <Link to="/ridersAcceptedOrdersSohozDjr">
-        <ListItemButton>
-          <ListItemIcon>
-            <DirectionsBikeOutlinedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Accepted Orders" />
-        </ListItemButton>
-      </Link>
+          <ListItemButton>
+            <ListItemIcon>
+              <DirectionsBikeOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Track Rider" />
+          </ListItemButton>
+        </Link>
+      }
 
 
-      <ListItemButton>
-        <ListItemIcon>
-          <BarChartIcon />
-        </ListItemIcon>
-        <ListItemText primary="Summary" />
-      </ListItemButton>
 
-      <ListItemButton>
-        <ListItemIcon>
-          <ShoppingCartIcon />
-        </ListItemIcon>
-        <ListItemText primary="Orders dsdfd" />
-      </ListItemButton>
+
+
 
       <Divider></Divider>
-      <ListItemButton>
-        <ListItemIcon>
-          <AddTaskOutlinedIcon />
-        </ListItemIcon>
-        <ListItemText primary="Manage Task" />
-      </ListItemButton>
-
-      {/* <ListItemButton>
+      {
+        (isAdmin == "admin" || isAdmin == "manager") &&
+        <ListItemButton>
           <ListItemIcon>
-            <CampaignOutlinedIcon />
+            <AddTaskOutlinedIcon />
           </ListItemIcon>
-        <ListItemText primary="Update Rate" />
-        </ListItemButton> */}
-      <ListItemButton>
-        <ListItemIcon>
-          <AssignmentIcon />
-        </ListItemIcon>
-        <ListItemText primary="Collected List" />
-      </ListItemButton>
+          <ListItemText primary="Manage Task" />
+        </ListItemButton>
+
+      }
+      {
+        (isAdmin == "admin" || isAdmin == "manager") &&
+        <ListItemButton>
+          <ListItemIcon>
+            <AssignmentIcon />
+          </ListItemIcon>
+          <ListItemText primary="Collected List" />
+        </ListItemButton>
+      }
     </>
   )
 }

@@ -19,11 +19,11 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 // import { mainListItems, secondaryListItems } from './listItems';
 // import Chart from './Chart';
-import Deposits from './Deposits';
-import { ListItems  } from './ListItems';
-import Orders from './Orders';
+// import Deposits from './Deposits';
+import { ListItems } from './ListItems';
+// import Orders from './Orders';
 import { useState } from 'react';
-import  sohoz  from '../assets/sohoz.png';
+import sohoz from '../assets/sohoz.png';
 
 
 
@@ -92,8 +92,8 @@ export default function DashboardHomeSohozDjr() {
           <Toolbar
             sx={{
               pr: '24px',
-              backgroundColor:"#FFF",
-              
+              backgroundColor: "#FFF",
+
             }}
           >
             <IconButton
@@ -106,7 +106,7 @@ export default function DashboardHomeSohozDjr() {
                 ...(open && { display: 'none' }),
               }}
             >
-              <MenuIcon sx={{color: "gray" }} />
+              <MenuIcon sx={{ color: "gray" }} />
             </IconButton>
             <Typography
               component="h1"
@@ -115,11 +115,11 @@ export default function DashboardHomeSohozDjr() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-               Dashboard
+              Dashboard
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon sx={{color: "gray" }} />
+                <NotificationsIcon sx={{ color: "gray" }} />
               </Badge>
             </IconButton>
           </Toolbar>
@@ -138,9 +138,9 @@ export default function DashboardHomeSohozDjr() {
               variant="h6"
               color="inherit"
               noWrap
-              sx={{ flexGrow: 1 , marginLeft : "0px" , color: "gray"}}
+              sx={{ flexGrow: 1, marginLeft: "0px", color: "gray" }}
             >
-               <img src={sohoz} alt="sohoz logo " className='h-[45px]' />
+              <img src={sohoz} alt="sohoz logo " className='h-[45px]' />
             </Typography>
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
@@ -150,7 +150,7 @@ export default function DashboardHomeSohozDjr() {
           <List component="nav">
             <ListItems></ListItems>
             {/* <Divider sx={{ my: 1 }} /> */}
-            
+
           </List>
         </Drawer>
         <Box
@@ -166,44 +166,43 @@ export default function DashboardHomeSohozDjr() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Chart */}
               <Grid item xs={12} md={8} lg={9}>
                 <Paper
                   sx={{
-                    p: 2,
+                    p: 1,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: "auto",
                   }}
                 >
-                  <p>hello</p>
-                  {/* <Chart /> */}
+                  <iframe src="https://www.youtube.com/embed/pG__3QHDZDM?si=3yEqd21-j4cQoW9V" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
+
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
               <Grid item xs={12} md={4} lg={3}>
                 <Paper
                   sx={{
-                    p: 2,
+                    p: 1,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: "auto",
                   }}
                 >
-                  <Deposits />
+                  <iframe  src="https://www.youtube.com/embed/_fNAK_-yjLo?si=YkooxIVuisTpH250" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
                 </Paper>
               </Grid>
               {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
+              {/* <Grid item xs={12}>
+                <Paper sx={{ p:0, display: 'flex', flexDirection: 'column' }}>
+                <iframe  src="https://www.youtube.com/embed/_fNAK_-yjLo?si=YkooxIVuisTpH250" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </Paper>
-              </Grid>
+              </Grid> */}
 
             </Grid>
-            {/* <Copyright sx={{ pt: 4 }} /> */}
           </Container>
         </Box>
       </Box>

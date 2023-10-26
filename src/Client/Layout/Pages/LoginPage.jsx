@@ -25,19 +25,21 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 // import Social from '../../Components/Social/Social';
 import SocialLogin from '../../Components/Social/SocialLogin';
+// import { WestIcon } from '@mui/icons-material/West';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Developed By © '}
-            <Link className = "text-[#2976d2] underline font-semibold text-[12px]" to="https://www.facebook.com/joysutradhoor">
-                Joy Sutradhor
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+// function Copyright(props) {
+//     return (
+//         <Typography variant="body2" color="text.secondary" align="center" {...props}>
+//             {'Developed By © '}
+//             <Link className = "text-[#2976d2] underline font-semibold text-[12px]" to="https://www.facebook.com/joysutradhoor">
+//                 Joy Sutradhor
+//             </Link>{' '}
+//             {new Date().getFullYear()}
+//             {'.'}
+//         </Typography>
+//     );
+// }
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -64,7 +66,7 @@ export default function LoginPage() {
         handleloginUser(data.loginEmail, data.loginPassword)
             .then((result) => {
                 const data = result.user;
-                console.log(data)
+                console.log(data , "from login page")
                 Swal.fire({
                     position: 'top-center',
                     icon: 'success',
@@ -84,7 +86,7 @@ export default function LoginPage() {
                     autoClose: 2000, // Close the notification after 3 seconds (adjust as needed)
                 });
             });
-        };
+    };
 
 
 
@@ -93,18 +95,24 @@ export default function LoginPage() {
             <ToastContainer />
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
+                <Link to="/">
+                    <ArrowBackIcon sx={{ mt: 6, ml: 1, position: 'absolute' }} ></ArrowBackIcon>
+                </Link>
+                
                 <Box
                     sx={{
-                        marginTop: 2,
+                        marginTop: 0,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
+                        height: "100vh"
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+
+                    <Avatar sx={{ mt: 6, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5" sx={{ mt: 1 }}>
                         Login
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
@@ -122,7 +130,7 @@ export default function LoginPage() {
                         <FormControl variant="outlined" fullWidth>
                             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                             <OutlinedInput
-                       
+
                                 autoComplete="new-password"
                                 {...register("loginPassword", { required: true, minLength: 6 })}
                                 id="outlined-adornment-password"
@@ -170,7 +178,7 @@ export default function LoginPage() {
                         <SocialLogin></SocialLogin>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 4, mb: 2 }} />
+                {/* <Copyright sx={{ mt: 4, mb: 2 }} /> */}
             </Container>
         </ThemeProvider>
     );

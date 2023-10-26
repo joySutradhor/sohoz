@@ -20,6 +20,7 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import { Link } from 'react-router-dom';
+import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
 
 export default function UsersListSohozDjr() {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -32,6 +33,7 @@ export default function UsersListSohozDjr() {
         return res.json();
     });
 
+    // make admin
     const handleMakeAdmin = (_id, name) => {
         fetch(`http://localhost:5000/users/admin/${_id}`, {
             method: "PATCH",
@@ -47,6 +49,7 @@ export default function UsersListSohozDjr() {
             });
     };
 
+    // make manager
     const handleMakeManager = (_id, name) => {
         fetch(`http://localhost:5000/users/manager/${_id}`, {
             method: "PATCH",
@@ -56,6 +59,22 @@ export default function UsersListSohozDjr() {
                 refetch();
                 if (Userdata.modifiedCount) {
                     setSnackbarMessage(`${name} is now a manager`);
+                    setSnackbarSeverity('success');
+                    setSnackbarOpen(true);
+                }
+            });
+    };
+
+    // make rider 
+    const handleMakeRider = (_id, name) => {
+        fetch(`http://localhost:5000/users/rider/${_id}`, {
+            method: "PATCH",
+        })
+            .then((res) => res.json())
+            .then((Userdata) => {
+                refetch();
+                if (Userdata.modifiedCount) {
+                    setSnackbarMessage(`${name} is now a Rider`);
                     setSnackbarSeverity('success');
                     setSnackbarOpen(true);
                 }
@@ -160,6 +179,7 @@ export default function UsersListSohozDjr() {
                                 <div className='flex flex-col space-y-2 '>
                                     <button onClick={() => handleMakeAdmin(_id, name)}><AdminPanelSettingsOutlinedIcon sx={{ color: "#4D88A8" }}></AdminPanelSettingsOutlinedIcon></button>
                                     <button onClick={() => handleMakeManager(_id, name)}><ManageAccountsOutlinedIcon sx={{ color: "#4D88A8" }} ></ManageAccountsOutlinedIcon></button>
+                                    <button onClick={() => handleMakeRider(_id, name)}><DirectionsBikeIcon sx={{ color: "#4D88A8" }} ></DirectionsBikeIcon></button>
                                     <button onClick={() => handleDelete(_id, name)}><DeleteOutlineOutlinedIcon sx={{ color: "#F88379" }} ></DeleteOutlineOutlinedIcon></button>
                                 </div>
                             </ListItem>

@@ -14,7 +14,7 @@ import Main from './Client/Layout/Main';
 import Home from './Client/Layout/Home/Home';
 import AuthProviders from './Client/Providers/Providers';
 import Profile from './Client/Layout/Pages/Profile';
-import Dashboard from './Dashboard/Dashboard';
+// import Dashboard from './Dashboard/Dashboard';
 import RegisterPage from './Client/Layout/Pages/RegisterPage';
 import LoginPage from './Client/Layout/Pages/LoginPage';
 import DashboardHomeSohozDjr from './Dashboard/DashboardHomeSohozDjr';
@@ -29,6 +29,11 @@ import CompletedRiderOrderSohozDjr from './Dashboard/RidersOrdersSohozDjr/Comple
 import CheckOutSohozDjr from './Client/Layout/Home/OrderProcess/CheckOutSohozDjr/CheckOutSohozDjr';
 // import SubmitRiderOderSohozDjr from './Dashboard/RidersOrdersSohozDjr/CompletedRiderOrderSohozDjr';
 // import DashboardHome from './Dashboard/DashboardHomeSohozDjr';
+import PrivateRoute from './Client/Shared/PrivateRoute'
+import MyProfileSohozDjr from './Dashboard/UserDashboard/MyProfileSohozDjr';
+import OrdersStatusSohozDjr from './Dashboard/UserDashboard/OrdersStatusSohozDjr';
+import TrackRiderSohozDjr from './Dashboard/UserDashboard/TrackRiderSohozDjr';
+import CostDetailsSohozDjr from './Dashboard/CostDetailsSohozDjr/CostDetailsSohozDjr';
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
@@ -48,17 +53,14 @@ const router = createBrowserRouter([
         path: "loginPage",
         element: <LoginPage></LoginPage>
       },
-      {
-        path: "dashboard",
-        element: <Dashboard></Dashboard>
-      },
+      
       {
         path: "registerPage",
         element: <RegisterPage></RegisterPage>
       },
       {
         path: "dashboardHomeSohozDjr",
-        element: <DashboardHomeSohozDjr></DashboardHomeSohozDjr>
+        element: <PrivateRoute><DashboardHomeSohozDjr></DashboardHomeSohozDjr></PrivateRoute>
       },
       {
         path: "usersListSohozDjr",
@@ -73,25 +75,40 @@ const router = createBrowserRouter([
         element: <CollectDataSohozDjr></CollectDataSohozDjr>
       },
       {
-        path : "ridersOrderrdersSohozDjr",
-        element:<RidersOrdersSohozDjr/>,
+        path: "ridersOrderrdersSohozDjr",
+        element: <RidersOrdersSohozDjr />,
       },
       {
-        path : "completedRiderOrderSohozDjr/:orderId",
-        element : <CompletedRiderOrderSohozDjr></CompletedRiderOrderSohozDjr>, 
-        // loader : ({params}) => fetch(`http://localhost:5000/temporaryNewCustomer/${params.orderId}`)
+        path: "completedRiderOrderSohozDjr/:orderId",
+        element: <CompletedRiderOrderSohozDjr></CompletedRiderOrderSohozDjr>,
       },
       {
-        path : "customerDataSohozDjr",
-        element : <CustomerDataSohozDjr></CustomerDataSohozDjr>
+        path: "customerDataSohozDjr",
+        element: <CustomerDataSohozDjr></CustomerDataSohozDjr>
       },
       {
-        path : "ridersAcceptedOrdersSohozDjr",
-        element : <RidersAcceptedOrdersSohozDjr></RidersAcceptedOrdersSohozDjr>
+        path: "ridersAcceptedOrdersSohozDjr",
+        element: <RidersAcceptedOrdersSohozDjr></RidersAcceptedOrdersSohozDjr>
       },
       {
-        path : "userPlaceOrderSohozDjr/:id",
-        element : <CheckOutSohozDjr></CheckOutSohozDjr>
+        path: "userPlaceOrderSohozDjr/:id",
+        element: <CheckOutSohozDjr></CheckOutSohozDjr>
+      },
+      {
+        path : "myprofileSohozDjr",
+        element : <MyProfileSohozDjr></MyProfileSohozDjr>
+      } ,
+      {
+        path : "ordersStatusSohozDjr",
+        element : <OrdersStatusSohozDjr></OrdersStatusSohozDjr>
+      },
+      {
+        path : "trackRiderSohozDjr",
+        element : <TrackRiderSohozDjr></TrackRiderSohozDjr>
+      },
+      {
+        path : "CostDetailsSohozDjr",
+        element : <CostDetailsSohozDjr></CostDetailsSohozDjr>
       }
 
     ]

@@ -28,6 +28,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Social from '../../Components/Social/Social';
 import { AuthContext } from '../../Providers/Providers';
 import Swal from 'sweetalert2';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -129,21 +130,25 @@ export default function RegisterPage() {
       <ToastContainer />
       <Container  component="main" maxWidth="xs">
         <CssBaseline />
+        <Link to="/">
+                    <ArrowBackIcon sx={{ mt: 6, ml: 1, position: 'absolute' }} ></ArrowBackIcon>
+                </Link>
         <Box
           sx={{
-            marginTop: 2,
+            marginTop: 0,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            height : "100vh"
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 2, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 , }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField

@@ -17,20 +17,8 @@ import { ToastContainer } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import WestIcon from '@mui/icons-material/West';
-// import FormControl from '@mui/material/FormControl';
-// import Input from '@mui/material/Input';
-// import OutlinedInput from '@mui/material/OutlinedInput';
-// import InputLabel from '@mui/material/InputLabel';
-// import InputAdornment from '@mui/material/InputAdornment';
-// import Visibility from '@mui/icons-material/Visibility';
-// import VisibilityOff from '@mui/icons-material/VisibilityOff';
-// import IconButton from '@mui/material/IconButton';
-
 import 'react-toastify/dist/ReactToastify.css';
 
-// import Social from '../../Components/Social/Social';
-// import { AuthContext } from '../../Providers/Providers';
-// import Swal from 'sweetalert2';
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
