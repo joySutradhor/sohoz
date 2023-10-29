@@ -99,7 +99,7 @@ export default function UsersSohozDjr() {
 
     const checkAndGenerateOrderId = async () => {
         const getRandomOrderId = async () => {
-            const randomOrderId = Math.floor(Math.random() * (10 - 5 + 1) + 10);
+            const randomOrderId = Math.floor(Math.random() * (100000000000000000 - 1000 + 1) + 1000);
             const response = await fetch(`http://localhost:5000/temporaryNewCustomer/${randomOrderId}`);
             const responseData = await response.json();
 
@@ -120,18 +120,7 @@ export default function UsersSohozDjr() {
         event.preventDefault();
         const dealerPrice = parseFloat(document.getElementById('dillerPrice').value);
         const sellerPrice = parseFloat(document.getElementById('sellerPrice').value);
-        // const orderId = generatedOrderId;
-        // const user = userId ;
-        // const brandName = brand;
-        // const name = fullName;
-        // const userPhone = phone;
-        // const userAddress = address;
-        // const addressCodeValue = addressCode;
-        // const quantityValue = quantity;
-        // const profitValue = profit;
-        // console.log( dealerPrice ,sellerPrice , orderId ,  brandName ,name , userPhone ,userAddress , addressCodeValue ,quantityValue  , profitValue , user )
-        // const dealerPrice = parseFloat(data.dillerPrice);
-        // const sellerPrice = parseFloat(data.sellerPrice);
+
 
         if (!isNaN(dealerPrice) && !isNaN(sellerPrice)) {
             if (sellerPrice < dealerPrice) {
