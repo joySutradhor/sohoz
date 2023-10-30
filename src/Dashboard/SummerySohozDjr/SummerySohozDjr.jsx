@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import { Badge } from '@mui/material';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { Link } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
 export default function DashboardHomeSohozDjr() {
+    const [totalCostsum, setTotalCostSum] = useState(null);
     const [data, setData] = useState(null);
     const [totalDillerPrice, setTotalDillerPrice] = useState(0);
     const [totalSellerPrice, setTotalSellerPrice] = useState(0);
@@ -27,6 +31,7 @@ export default function DashboardHomeSohozDjr() {
         async function fetchData() {
             try {
                 const response = await fetch('http://localhost:5000/completerOrderData');
+
 
                 if (!response.ok) {
                     // throw an Error(`HTTP error! Status: ${response.status}`);
@@ -132,8 +137,25 @@ export default function DashboardHomeSohozDjr() {
 
         fetchData();
     }, []);
+    useEffect(() => {
+        async function fetchCostDetails() {
+            try {
+                const costDetailsRes = await fetch('http://localhost:5000/costDetailsSohozDjr');
+                const costDetailsData = await costDetailsRes.json();
+                setTotalCostSum(costDetailsData.totalCostSum);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
 
-    console.log(totalProfitBy_Id)
+        fetchCostDetails();
+    }, []);
+
+    // show rider profit 
+    const totalProfitData = Object.entries(totalProfitBy_Id).map(([itemId, totalProfit]) => ({
+        itemId,
+        totalProfit,
+    }));
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -152,64 +174,94 @@ export default function DashboardHomeSohozDjr() {
                     }}
                 >
                     <Container maxWidth="lg" sx={{ mt: 1, mb: 2 }}>
-                        <div>
-                            <p>back</p>
-                            <h2 className='pb-4 pt-2 text-md font-poppins text-gray-300'>Dashboard Summary</h2>
+                        <div className='flex  gap-x-3'>
+                            <Link className='mt-[10px] text-gray-600' to="/dashboardHomeSohozDjr" ><KeyboardBackspaceIcon></KeyboardBackspaceIcon></Link>
+                            <h2 className='pb-4 pt-2 text-xl font-poppins text-gray-300'> Dashboard Summary</h2>
                         </div>
                         <Grid container spacing={1}>
-                           
+
                             <Grid item xs={12} md={4} lg={3}>
                                 <Paper
                                     sx={{
-                                        p: 1,
+                                        p: 2,
                                         display: 'flex',
                                         flexDirection: 'column',
-                                        height: "auto",
+                                        height: 'auto',
+                                        position: 'relative', // Add relative positioning
                                     }}
                                 >
-                                    <h1> Payment Totals </h1>
-                                    <p>Cash: {cashPaymentTotal.toLocaleString()} taka</p>
-                                    <p>Bkash: {bkashPaymentTotal.toLocaleString()} taka</p>
-                                    <p>Nagad: {nagadPaymentTotal.toLocaleString()} taka</p>
-                                    <p>{totalTotalProfit.toLocaleString()} taka</p>
+                                    <Badge
+                                        badgeContent={` ${totalCompletedOrders} Orders`}
+                                        color="primary"
+                                        sx={{
+                                            position: 'absolute',
+                                            top: 28,
+                                            right: 50,
+                                            padding: 20
+                                        }}
+                                    />
+                                    <h1 className='text-md text-gray-400 font-poppins'>Payment Totals #</h1>
+                                    <p className='text-gray-400 '>Cash: {cashPaymentTotal.toLocaleString()} taka</p>
+                                    <p className='text-gray-400'>Bkash: {bkashPaymentTotal.toLocaleString()} taka</p>
+                                    <p className='text-gray-400 pb-1'>Nagad: {nagadPaymentTotal.toLocaleString()} taka</p>
+                                    <span className='border-t-2 border-dashed border-green-200  inline'></span>
+                                    <p className='pt-1 text-gray-400'>Profit : {totalTotalProfit.toLocaleString()} taka</p>
+                                    <p className='py-1 text-gray-400'>Cost : {totalCostsum?.toLocaleString()} taka</p>
+                                    <span className='border-t-2 py-0 border-dashed border-green-200 inline'></span>
+                                    <p className={`pt-1 text-sm font-poppins ${totalTotalProfit - totalCostsum >= 0 ? 'text-green-500' : 'text-red-500'
+                                        }`}>
+                                        {totalTotalProfit - totalCostsum >= 0 ? (
+                                            `Net Profit : ${Number((totalTotalProfit - totalCostsum).toFixed(2)).toLocaleString()} taka`
+                                        ) : (
+                                            `Loss : ${Number((totalCostsum - totalTotalProfit).toFixed(2)).toLocaleString()} taka`
+                                        )}
+                                    </p>
+
+
                                 </Paper>
                             </Grid>
+
+
                             <Grid item xs={12} md={4} lg={3}>
                                 <Paper
                                     sx={{
-                                        p: 1,
+                                        p: 2,
                                         display: 'flex',
                                         flexDirection: 'column',
                                         height: "auto",
                                     }}
                                 >
                                     <div className='flex gap-2'>
-                                        <Grid item xs={6} md={4} lg={3}>
-                                            <Paper
-                                                sx={{
-                                                    p: 1,
-                                                    display: 'flex',
-                                                    flexDirection: 'column',
-                                                    height: "auto",
-                                                }}
-                                            >
-                                                <h1>Total Sells</h1>
-                                                <p>{totalSellerPrice.toLocaleString()}</p>
-                                            </Paper>
-                                        </Grid>
-                                        <Grid item xs={6} md={4} lg={3}>
-                                            <Paper
-                                                sx={{
-                                                    p: 1,
-                                                    display: 'flex',
-                                                    flexDirection: 'column',
-                                                    height: "auto",
-                                                }}
-                                            >
-                                                <h1>Total Diller </h1>
-                                                <p>{totalDillerPrice.toLocaleString()}</p>
-                                            </Paper>
-                                        </Grid>
+                                        <div>
+                                            <h2 className='text-md text-gray-400 font-poppins pb-2' >Business Summery#</h2>
+                                            <p className='text-gray-400' >Total Sells : {totalSellerPrice.toLocaleString()} Taka</p>
+                                            <p className='text-gray-400' >Total Transation : {totalDillerPrice.toLocaleString()} Taka</p>
+                                            <p className='text-gray-400' >Total Cost : {totalCostsum?.toLocaleString()} Taka</p>
+                                            <p className='text-gray-400'>  Profit : {totalTotalProfit.toLocaleString()} taka</p>
+                                        </div>
+
+                                    </div>
+                                </Paper>
+                            </Grid>
+
+                            <Grid item xs={12} md={4} lg={3}>
+                                <Paper
+                                    sx={{
+                                        p: 2,
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        height: "auto",
+                                    }}
+                                >
+                                    <div className='flex gap-2'>
+                                        <div>
+                                            <h2 className='text-md text-gray-400 font-poppins pb-2' >Riders Summery#</h2>
+                                            {totalProfitData.map(({ itemId, totalProfit }) => (
+                                                <p key={itemId} className='text-gray-400'>
+                                                    Rider #{itemId} : {totalProfit.toLocaleString()} taka
+                                                </p>
+                                            ))}
+                                        </div>
                                     </div>
                                 </Paper>
                             </Grid>
@@ -219,92 +271,40 @@ export default function DashboardHomeSohozDjr() {
                                 <Grid item xs={12} md={4} lg={3} key={dilerPointId}>
                                     <Paper
                                         sx={{
-                                            p: 1,
+                                            p: 2,
                                             display: 'flex',
                                             flexDirection: 'column',
-                                            height: "auto",
+                                            height: 'auto',
+                                            position: 'relative',
                                         }}
                                     >
-                                        <h1>Point {dilerPointId}</h1>
-                                        <p>{dillerPrice.toLocaleString()} taka</p>
+                                        <Badge
+                                            badgeContent={` ${totalCompletedOrdersByDilerPoint[dilerPointId]} Orders`}
+                                            color="primary"
+                                            sx={{
+                                                position: 'absolute',
+                                                top: 28,
+                                                right: 50,
+                                                p: 20
+                                            }}
+                                        />
+                                        <h1 className='text-md font-poppins text-gray-400 pb-2'>Point Code : #{dilerPointId}</h1>
+                                        <p className='text-gray-400' >Transaction : {dillerPrice.toLocaleString()} Taka</p>
+
+                                        <p className='text-gray-400 '>Details#</p>
+                                        {/* Add Brand Quantity for Point here if it exists */}
+                                        {brandDataByDilerPoint[dilerPointId] && (
+                                            <ul style={{ listStyleType: 'square', marginLeft: '10px', padding: '0' }}>
+                                                {Object.entries(brandDataByDilerPoint[dilerPointId]).map(([brandName, quantity]) => (
+                                                    <li className='text-gray-400' key={brandName} style={{ margin: '0px 25px' }}>
+                                                        {brandName}: {quantity} Pcs
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
                                     </Paper>
                                 </Grid>
                             ))}
-
-                            {/* Display the sum of completedOrders for each dilerPoint */}
-                            {Object.entries(totalCompletedOrdersByDilerPoint).map(([dilerPointId, completedOrders]) => (
-                                <Grid item xs={12} md={4} lg={3} key={dilerPointId}>
-                                    <Paper
-                                        sx={{
-                                            p: 1,
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            height: "auto",
-                                        }}
-                                    >
-                                        <h1>Point {dilerPointId}</h1>
-                                        <p>{completedOrders} Orders</p>
-                                    </Paper>
-                                </Grid>
-                            ))}
-
-                            {/* Display the sum of brand quantity for each dilerPoint */}
-                            {Object.entries(brandDataByDilerPoint).map(([dilerPointId, brandData]) => (
-                                <Grid item xs={12} md={4} lg={3} key={dilerPointId}>
-                                    <Paper
-                                        sx={{
-                                            p: 1,
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            height: "auto",
-                                        }}
-                                    >
-                                        <h1>Brand Quantity for Point {dilerPointId}</h1>
-                                        {Object.entries(brandData).map(([brandName, quantity]) => (
-                                            <p key={brandName}>{brandName}: {quantity} quantity</p>
-                                        ))}
-                                    </Paper>
-                                </Grid>
-                            ))}
-
-                            {Object.entries(totalProfitBy_Id).map(([itemId, totalProfit]) => (
-
-                                <Grid item xs={12} md={4} lg={3} key={itemId}>
-                                    <Paper
-                                        sx={{
-                                            p: 1,
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            height: "auto",
-                                        }}
-                                    >
-                                        <h1>Profit for {itemId} </h1>
-                                        <p>{totalProfit.toLocaleString()} taka</p>
-
-                                    </Paper>
-                                </Grid>
-
-                            ))}
-
-
-
-
-                            <Grid item xs={12} md={4} lg={3}>
-                                <Paper
-                                    sx={{
-                                        p: 1,
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        height: "auto",
-                                    }}
-                                >
-                                    <h1> Completed </h1>
-                                    <p>{totalCompletedOrders} Orders</p>
-                                </Paper>
-                            </Grid>
-
-
-
                         </Grid>
                     </Container>
                 </Box>
