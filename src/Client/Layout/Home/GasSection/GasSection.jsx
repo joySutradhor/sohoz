@@ -10,7 +10,6 @@ const GasSection = () => {
             return response.json()
         },
     })
-    console.log(data)
     return (
         <div className="pb-4  space-y-1">
             <h1 className="py-2 pl-2 text-md text-gray-400 font-semibold">Hot Poducts</h1>

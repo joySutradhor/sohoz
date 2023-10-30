@@ -35,6 +35,7 @@ import OrdersStatusSohozDjr from './Dashboard/UserDashboard/OrdersStatusSohozDjr
 import TrackRiderSohozDjr from './Dashboard/UserDashboard/TrackRiderSohozDjr';
 import CostDetailsSohozDjr from './Dashboard/CostDetailsSohozDjr/CostDetailsSohozDjr';
 import SummerySohozDjr from './Dashboard/SummerySohozDjr/SummerySohozDjr';
+import SubmitRiderLocationSohozDjr from './Dashboard/SubmitRiderLocationSohozDjr/SubmitRiderLocationSohozDjr';
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
@@ -114,6 +115,10 @@ const router = createBrowserRouter([
       {
         path : "SummerySohozDjr",
         element : <SummerySohozDjr></SummerySohozDjr>
+      },
+      {
+        path : "submitRiderLocationSohozDjr",
+        element : <SubmitRiderLocationSohozDjr></SubmitRiderLocationSohozDjr>
       }
 
     ]

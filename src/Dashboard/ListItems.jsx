@@ -17,6 +17,7 @@ import { Divider } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from './../Client/Providers/Providers';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 
 export const ListItems = () => {
 
@@ -27,14 +28,11 @@ export const ListItems = () => {
     const fetchData = async () => {
       const response = await fetch(`http://localhost:5000/users/role/${user?.email}`);
       const data = await response.json();
-      console.log(data)
       return data;
     };
 
     fetchData().then(data => setIsAdmin(data.role));
   }, [user]);
-
-  console.log(isAdmin);
 
 
 
@@ -118,17 +116,6 @@ export const ListItems = () => {
       }
 
       {
-        isAdmin === "rider" && <Link to="/ridersAcceptedOrdersSohozDjr">
-          <ListItemButton>
-            <ListItemIcon>
-              <DirectionsBikeOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Accepted Orders" />
-          </ListItemButton>
-        </Link>
-      }
-
-      {
         (isAdmin === "admin" || isAdmin === "manager") && <Link to="/SummerySohozDjr">
         <ListItemButton>
             <ListItemIcon>
@@ -170,6 +157,17 @@ export const ListItems = () => {
               <DirectionsBikeOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Track Rider" />
+          </ListItemButton>
+        </Link>
+      }
+      {
+        (isAdmin === "rider") && <Link to="/submitRiderLocationSohozDjr">
+
+          <ListItemButton>
+            <ListItemIcon>
+              <AddLocationAltIcon />
+            </ListItemIcon>
+            <ListItemText primary="Submit Location"/>
           </ListItemButton>
         </Link>
       }

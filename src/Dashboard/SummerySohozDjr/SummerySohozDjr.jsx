@@ -13,7 +13,7 @@ const defaultTheme = createTheme();
 
 export default function DashboardHomeSohozDjr() {
     const [totalCostsum, setTotalCostSum] = useState(null);
-    const [data, setData] = useState(null);
+    const [, setData] = useState(null);
     const [totalDillerPrice, setTotalDillerPrice] = useState(0);
     const [totalSellerPrice, setTotalSellerPrice] = useState(0);
     const [totalCompletedOrders, setTotalCompletedOrders] = useState(0);
