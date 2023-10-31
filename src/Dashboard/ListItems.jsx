@@ -8,21 +8,20 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import AddHomeOutlinedIcon from '@mui/icons-material/AddHomeOutlined';
 import Groups2OutlinedIcon from '@mui/icons-material/Groups2Outlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
-import DirectionsBikeOutlinedIcon from '@mui/icons-material/DirectionsBikeOutlined';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import { Link } from 'react-router-dom';
-import { Divider } from '@mui/material';
+import { Badge, Divider } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from './../Client/Providers/Providers';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 
 export const ListItems = () => {
 
   const { user } = useContext(AuthContext);
   const [isAdmin, setIsAdmin] = useState("");
+  const [completedOrdersCount, setCompletedOrdersCount] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +33,17 @@ export const ListItems = () => {
     fetchData().then(data => setIsAdmin(data.role));
   }, [user]);
 
-
+  useEffect(() => {
+    // Fetch completed orders count from the server
+    fetch('http://localhost:5000/completedOrdersCount')
+      .then((response) => response.json())
+      .then((data) => {
+        setCompletedOrdersCount(data?.completedOrdersCount);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   return (
 
@@ -97,9 +106,11 @@ export const ListItems = () => {
         isAdmin === "rider" && <Link to="/ridersOrderrdersSohozDjr">
           <ListItemButton>
             <ListItemIcon>
+              <Badge badgeContent={completedOrdersCount} color="primary" >
               <ShoppingCartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Your Orders" />
+            </Badge>
+            </ListItemIcon>           
+              <ListItemText primary="Your Orders" />
           </ListItemButton>
         </Link>
       }
@@ -117,7 +128,7 @@ export const ListItems = () => {
 
       {
         (isAdmin === "admin" || isAdmin === "manager") && <Link to="/SummerySohozDjr">
-        <ListItemButton>
+          <ListItemButton>
             <ListItemIcon>
               <BarChartIcon />
             </ListItemIcon>
@@ -148,35 +159,6 @@ export const ListItems = () => {
           </ListItemButton>
         </Link>
       }
-
-      {
-        (isAdmin === "user") && <Link to="/trackRiderSohozDjr">
-
-          <ListItemButton>
-            <ListItemIcon>
-              <DirectionsBikeOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Track Rider" />
-          </ListItemButton>
-        </Link>
-      }
-      {
-        (isAdmin === "rider") && <Link to="/submitRiderLocationSohozDjr">
-
-          <ListItemButton>
-            <ListItemIcon>
-              <AddLocationAltIcon />
-            </ListItemIcon>
-            <ListItemText primary="Submit Location"/>
-          </ListItemButton>
-        </Link>
-      }
-
-
-
-
-
-
       <Divider></Divider>
       {
         (isAdmin == "admin" || isAdmin == "manager") &&

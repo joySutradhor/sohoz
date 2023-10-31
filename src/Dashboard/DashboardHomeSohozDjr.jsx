@@ -17,11 +17,7 @@ import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-// import { mainListItems, secondaryListItems } from './listItems';
-// import Chart from './Chart';
-// import Deposits from './Deposits';
 import { ListItems } from './ListItems';
-// import Orders from './Orders';
 import { useState } from 'react';
 import sohoz from '../assets/sohoz.png';
 
@@ -78,11 +74,12 @@ const defaultTheme = createTheme();
 
 export default function DashboardHomeSohozDjr() {
   const [open, setOpen] = useState(true);
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
-
+ 
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -118,7 +115,7 @@ export default function DashboardHomeSohozDjr() {
               Dashboard
             </Typography>
             <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={0} color="secondary">
                 <NotificationsIcon sx={{ color: "gray" }} />
               </Badge>
             </IconButton>
@@ -195,12 +192,6 @@ export default function DashboardHomeSohozDjr() {
                   <iframe  src="https://www.youtube.com/embed/_fNAK_-yjLo?si=YkooxIVuisTpH250" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
                 </Paper>
               </Grid>
-              {/* Recent Orders */}
-              {/* <Grid item xs={12}>
-                <Paper sx={{ p:0, display: 'flex', flexDirection: 'column' }}>
-                <iframe  src="https://www.youtube.com/embed/_fNAK_-yjLo?si=YkooxIVuisTpH250" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </Paper>
-              </Grid> */}
 
             </Grid>
           </Container>

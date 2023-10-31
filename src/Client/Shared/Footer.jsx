@@ -9,9 +9,9 @@ import Fab from '@mui/material/Fab';
 import AddHomeOutlinedIcon from '@mui/icons-material/AddHomeOutlined';
 import { Link } from 'react-router-dom';
 import Badge from '@mui/material/Badge';
-import DirectionsBikeOutlinedIcon from '@mui/icons-material/DirectionsBikeOutlined';
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import Person3OutlinedIcon from '@mui/icons-material/Person3Outlined';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
-import PhotoLibraryOutlinedIcon from '@mui/icons-material/PhotoLibraryOutlined';
 import CallModal from '../Components/CallModal/CallModal';
 
 
@@ -41,19 +41,20 @@ export default function Footer() {
             <Link to="/"> <AddHomeOutlinedIcon></AddHomeOutlinedIcon> </Link>
           </IconButton>
           <IconButton color="inherit" sx={{ mr: 1 , color: "#777" }} aria-label="open drawer">
-            <Link to="/"> <PhotoLibraryOutlinedIcon></PhotoLibraryOutlinedIcon> </Link>
+            <Link to="/"> <DashboardOutlinedIcon></DashboardOutlinedIcon> </Link>
           </IconButton>
           <StyledFab  aria-label="add" sx={{ background: "white" }}>
             <CallModal></CallModal>
           </StyledFab>
           <Box sx={{ flexGrow: 1 }} />
+          
           <IconButton sx={{ mr: 1 , color: "#777" }} color="inherit">
-            <Link to=""><DirectionsBikeOutlinedIcon /></Link>
-          </IconButton>
-          <IconButton sx={{ mr: 1 , color: "#777" }} color="inherit">
-            <Badge badgeContent={1} color="error">
+            <Badge badgeContent={0} color="error">
               <Link to=""><AddShoppingCartOutlinedIcon /></Link>
             </Badge>
+          </IconButton>
+          <IconButton sx={{ mr: 1 , color: "#777" }} color="inherit">
+            <Link to=""><Person3OutlinedIcon /></Link>
           </IconButton>
 
         </Toolbar>
