@@ -74,7 +74,7 @@ export default function CustomerDataSohozDjr() {
             confirmButtonText: "Yes, submit it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch("http://localhost:5000/customerDataSohozDjr", {
+                fetch("https://sohozserver.onrender.com/customerDataSohozDjr", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"

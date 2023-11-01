@@ -50,7 +50,7 @@ export default function CostDetailsSohozDjr() {
         };
   
         try {
-          const response = await fetch("http://localhost:5000/costDetailsSohozDjr", {
+          const response = await fetch("https://sohozserver.onrender.com/costDetailsSohozDjr", {
             method: "POST",
             headers: {
               "content-type": "application/json"

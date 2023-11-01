@@ -30,7 +30,7 @@ export default function DashboardHomeSohozDjr() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch('http://localhost:5000/completerOrderData');
+                const response = await fetch('https://sohozserver.onrender.com/completerOrderData');
 
 
                 if (!response.ok) {
@@ -140,7 +140,7 @@ export default function DashboardHomeSohozDjr() {
     useEffect(() => {
         async function fetchCostDetails() {
             try {
-                const costDetailsRes = await fetch('http://localhost:5000/costDetailsSohozDjr');
+                const costDetailsRes = await fetch('https://sohozserver.onrender.com/costDetailsSohozDjr');
                 const costDetailsData = await costDetailsRes.json();
                 setTotalCostSum(costDetailsData.totalCostSum);
             } catch (error) {

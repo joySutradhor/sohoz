@@ -100,7 +100,7 @@ export default function UsersSohozDjr() {
     const checkAndGenerateOrderId = async () => {
         const getRandomOrderId = async () => {
             const randomOrderId = Math.floor(Math.random() * (100000000000000000 - 1000 + 1) + 1000);
-            const response = await fetch(`http://localhost:5000/temporaryNewCustomer/${randomOrderId}`);
+            const response = await fetch(`https://sohozserver.onrender.com/temporaryNewCustomer/${randomOrderId}`);
             const responseData = await response.json();
 
             if (!responseData.exists) {
@@ -147,7 +147,7 @@ export default function UsersSohozDjr() {
                     status: "pending",
                 };
 
-                const response = await fetch("http://localhost:5000/temporaryNewCustomer", {
+                const response = await fetch("https://sohozserver.onrender.com/temporaryNewCustomer", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
@@ -205,7 +205,7 @@ export default function UsersSohozDjr() {
 
     const handleOrderSearch = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/customerDataSohozDjr/${searchQuery}`);
+            const response = await fetch(`https://sohozserver.onrender.com/customerDataSohozDjr/${searchQuery}`);
             if (response.ok) {
                 const userData = await response.json();
                 // setSearchResults(userData);
@@ -234,11 +234,11 @@ export default function UsersSohozDjr() {
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Link to="/dashboardHomeSohozDjr">
-                    <WestIcon sx={{ mt: 6, ml: 1, position: 'absolute', color: "#1976E5" }}></WestIcon>
+                    <WestIcon sx={{ mt: 3, ml: 1, position: 'absolute', color: "#1976E5" }}></WestIcon>
                 </Link>
                 <Box
                     sx={{
-                        paddingTop: 6,
+                        paddingTop: 2,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',

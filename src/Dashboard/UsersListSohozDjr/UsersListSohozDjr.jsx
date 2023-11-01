@@ -29,13 +29,13 @@ export default function UsersListSohozDjr() {
     const [emailSearch, setEmailSearch] = useState('');
 
     const { data, refetch } = useQuery(["users"], async () => {
-        const res = await fetch("http://localhost:5000/users");
+        const res = await fetch("https://sohozserver.onrender.com/users");
         return res.json();
     });
 
     // make admin
     const handleMakeAdmin = (_id, name) => {
-        fetch(`http://localhost:5000/users/admin/${_id}`, {
+        fetch(`https://sohozserver.onrender.com/users/admin/${_id}`, {
             method: "PATCH",
         })
             .then((res) => res.json())
@@ -51,7 +51,7 @@ export default function UsersListSohozDjr() {
 
     // make manager
     const handleMakeManager = (_id, name) => {
-        fetch(`http://localhost:5000/users/manager/${_id}`, {
+        fetch(`https://sohozserver.onrender.com/users/manager/${_id}`, {
             method: "PATCH",
         })
             .then((res) => res.json())
@@ -67,7 +67,7 @@ export default function UsersListSohozDjr() {
 
     // make rider 
     const handleMakeRider = (_id, name) => {
-        fetch(`http://localhost:5000/users/rider/${_id}`, {
+        fetch(`https://sohozserver.onrender.com/users/rider/${_id}`, {
             method: "PATCH",
         })
             .then((res) => res.json())
@@ -90,7 +90,7 @@ export default function UsersListSohozDjr() {
             cancelButtonText: 'No, cancel',
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/users/${_id}`, {
+                fetch(`https://sohozserver.onrender.com/users/${_id}`, {
                     method: 'DELETE',
                 })
                     .then((res) => res.json())

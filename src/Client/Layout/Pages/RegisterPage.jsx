@@ -85,7 +85,7 @@ export default function RegisterPage() {
                     .then(() => {
                         const saveUser = {name: data.name , phone : data.phone , email : data.email , role : "user"}
                         console.log(saveUser)
-                        fetch("http://localhost:5000/users" , {
+                        fetch("https://sohozserver.onrender.com/users" , {
                             method : "POST" , 
                             headers : {
                                 "content-type" : "application/json"

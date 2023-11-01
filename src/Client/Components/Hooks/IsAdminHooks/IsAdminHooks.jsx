@@ -7,7 +7,7 @@ const DashboardHooks = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(`http://localhost:5000/users/role/${user?.email}`);
+            const response = await fetch(`https://sohozserver.onrender.com/users/role/${user?.email}`);
             const data = await response.json();
             console.log(data)
             return data;

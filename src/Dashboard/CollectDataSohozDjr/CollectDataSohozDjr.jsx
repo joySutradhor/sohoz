@@ -49,7 +49,7 @@ export default function CollectDataSohozDjr() {
     console.log(data.name, data.phone, data.brandName)
     const saveUser = { name: data.name, phone: data.phone, brand: data.brandName, role: "marketting" }
     console.log(saveUser)
-    fetch("http://localhost:5000/collectData", {
+    fetch("https://sohozserver.onrender.com/collectData", {
       method: "POST",
       headers: {
         "content-type": "application/json"

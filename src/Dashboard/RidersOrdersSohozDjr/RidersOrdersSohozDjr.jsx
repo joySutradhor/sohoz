@@ -21,7 +21,7 @@ import { AuthContext } from './../../Client/Providers/Providers';
 export default function RidersOrderrdersSohozDjr() {
     const { user } = useContext(AuthContext)
     const { data, refetch } = useQuery(["temporaryNewCustomer"], async () => {
-        const res = await fetch("http://localhost:5000/temporaryNewCustomer/pending");
+        const res = await fetch("https://sohozserver.onrender.com/temporaryNewCustomer/pending");
         return res.json();
     });
 
@@ -41,7 +41,7 @@ export default function RidersOrderrdersSohozDjr() {
             cancelButtonText: 'Cancel',
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/temporaryNewCustomer/progress/${_id}`, {
+                fetch(`https://sohozserver.onrender.com/temporaryNewCustomer/progress/${_id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',

@@ -6,7 +6,7 @@ const Upcoming = () => {
     const { data } = useQuery({
         queryKey: ['upcomingSohozDjr'],
         queryFn: async () => {
-            const response = await fetch('http://localhost:5000/upcomingSohozDjr')
+            const response = await fetch('https://sohozserver.onrender.com/upcomingSohozDjr')
             return response.json()
         },
     })

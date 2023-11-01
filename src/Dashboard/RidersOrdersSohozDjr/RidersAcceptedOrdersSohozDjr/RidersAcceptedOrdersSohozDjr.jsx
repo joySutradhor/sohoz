@@ -13,7 +13,7 @@ const RidersAcceptedOrdersSohozDjr = () => {
 
     useEffect(() => {
         // Fetch the progress data
-        fetch("http://localhost:5000/temporaryNewCustomer/progress")
+        fetch("https://sohozserver.onrender.com/temporaryNewCustomer/progress")
             .then((res) => res.json())
             .then((data) => {
                 setAcceptedData(data);

@@ -5,7 +5,7 @@ const Test = () => {
     const { data } = useQuery({
         queryKey: ['cylinders'],
         queryFn: async () => {
-            const response = await fetch('http://localhost:5000/cylinders')
+            const response = await fetch('https://sohozserver.onrender.com/cylinders')
             return response.json()
         },
     })

@@ -15,7 +15,7 @@ const Social = () => {
                 console.log(loggedUser , loggedUser.photoURL)
 
                 const saveUser = { name: loggedUser.displayName, email: loggedUser.email, url: loggedUser.photoURL, role: "user" }
-                fetch("http://localhost:5000/users", {
+                fetch("https://sohozserver.onrender.com/users", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"

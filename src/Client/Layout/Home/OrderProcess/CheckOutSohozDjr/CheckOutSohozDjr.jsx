@@ -1,112 +1,224 @@
-import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
-import Paper from '@mui/material/Paper';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import AddressFormSohozDjr from '../AddressFormSohozDjr/AddressFormSohozDjr';
-import PaymentFormSohozDjr from '../PaymentFormSohozDjr/PaymentFormSohozDjr';
-import ReviewSohozDjr from '../ReviewSohozDjr/ReviewSohozDjr';
-// import AddressForm from './AddressForm';
-// import PaymentForm from './PaymentForm';
-// import Review from './Review';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import 'react-toastify/dist/ReactToastify.css';
+import {
+  Button,
+  Container,
+  CssBaseline,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+  FormControl,
+  Box,
+  Avatar,
+} from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { MuiTelInput } from 'mui-tel-input';
+import { ToastContainer } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
+import WestIcon from '@mui/icons-material/West';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
+// import dayjs from 'dayjs';
+// import Swal from 'sweetalert2';
 
-const steps = ['Order address', 'Payment', 'Review order'];
-
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <AddressFormSohozDjr />;
-    case 1:
-      return <PaymentFormSohozDjr />;
-    case 2:
-      return <ReviewSohozDjr />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
+const defaultTheme = createTheme();
 
 export default function CheckOutSohozDjr() {
-  const [activeStep, setActiveStep] = React.useState(0);
+  const { register, handleSubmit } = useForm();
+  const [manualBrand, setManualBrand] = useState('');
+  const [UserPhone, setUserPhone] = useState('');
+  // const navigate = useNavigate();
 
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
+  const handleChange = (newPhone) => {
+    setUserPhone(newPhone);
   };
 
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
+  // const onSubmit = (formData) => {
+  //   const createOrderFromApp = {
+  //     name: formData.name,
+  //     phone: formData.phone,
+  //     brandName: formData.brandName,
+  //     quantity: formData.quantity,
+  //     address: formData.address,
+  //     addressCode: formData.addressCode
+  //   };
+  //   console.log(createOrderFromApp, "total order");
+
+  //   Swal.fire({
+  //     text: "Do You want Add a Customer",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, submit it!"
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       fetch("https://sohozserver.onrender.com/customerDataSohozDjr", {
+  //         method: "POST",
+  //         headers: {
+  //           "content-type": "application/json"
+  //         },
+  //         body: JSON.stringify(createOrderFromApp)
+  //       })
+  //         .then((response) => {
+  //           if (response.status === 409) {
+  //             // Customer already exists, show an error message
+  //             return response.json().then((data) => {
+  //               Swal.fire({
+  //                 text: data.error,
+  //                 icon: "error"
+  //               });
+  //             });
+  //           }
+  //           if (response.ok) {
+
+  //             // Successful submission, perform any desired actions
+  //             Swal.fire({
+  //               text: "Your Order is Completed",
+  //               icon: 'success',
+  //               showCancelButton: false,
+  //               confirmButtonColor: '#3085d6',
+  //               confirmButtonText: 'Yes, Got it!'
+  //             }).then((result) => {
+  //               if (result.isConfirmed) {
+  //                 // refetch()
+  //                 navigate("/dashboardHomeSohozDjr")
+  //               }
+  //             })
+
+  //           }
+  //         })
+  //         .catch((error) => {
+  //           console.error("Error:", error);
+  //         });
+  //     }
+  //   });
+  // };
 
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <AppBar
-        position="absolute"
-        color="default"
-        elevation={0}
-        sx={{
-          position: 'relative',
-          borderBottom: (t) => `1px solid ${t.palette.divider}`,
-        }}
-      >
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Company name
+    <ThemeProvider theme={defaultTheme}>
+      <ToastContainer />
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Link to="/dashboardHomeSohozDjr">
+          <WestIcon sx={{ mt: 2, ml: 1, position: 'absolute', color: "#1976E5" }}></WestIcon>
+        </Link>
+        <Box
+          sx={{
+            paddingTop: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, background: "#1976D2" }}>
+            <AddShoppingCartIcon sx={{ color: "white" }} />
+          </Avatar>
+          <Typography component="h1" variant="h5" sx={{ color: "gray" }}>
+            Order Now
           </Typography>
-        </Toolbar>
-      </AppBar>
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <Paper  sx={{ my: { xs: 0, md: 6 }, p:1 }}>
-          <Typography component="h1" variant="h6" align="center">
-            Checkout
-          </Typography>
-          <Stepper activeStep={activeStep} sx={{ pt: 2, pb: 5 }}>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          {activeStep === steps.length ? (
-            <React.Fragment>
-              <Typography variant="h5" gutterBottom>
-                Thank you for your order.
-              </Typography>
-              <Typography variant="subtitle1">
-                Your order number is #2001539. We have emailed your order
-                confirmation, and will send you an update when your order has
-                shipped.
-              </Typography>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              {getStepContent(activeStep)}
-              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                {activeStep !== 0 && (
-                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                    Back
-                  </Button>
-                )}
+          {/* <Typography component="h1" variant="p" sx={{ color: "gray", mt: 1 , fontSize: "14px" }}>
+                        Last ID : {userIds}
+                    </Typography> */}
 
-                <Button
-                  variant="contained"
-                  onClick={handleNext}
-                  sx={{ mt: 3, ml: 1 }}
-                >
-                  {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                </Button>
-              </Box>
-            </React.Fragment>
-          )}
-        </Paper>
+          <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
+            <Grid container spacing={2} justifyContent="flex-end">
+              <Grid item xs={6} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  {...register("name", { required: true, maxLength: 30 })}
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="Full Name"
+
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Brand Name</InputLabel>
+                  <Select
+                    {...register("brandName", { required: true })}
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={manualBrand}
+                    // || (data ? data.brandName : '')
+                    label="Brand Name"
+                    onChange={(event) => {
+                      setManualBrand(event.target.value);
+                    }}
+                  >
+                    <MenuItem value="Omera">Omera</MenuItem>
+                    <MenuItem value="Petromax">Petromax</MenuItem>
+                    <MenuItem value="Beximco">Beximco</MenuItem>
+                    <MenuItem value="Basundhara">Basundhara</MenuItem>
+                    <MenuItem value="Jmi">Jmi</MenuItem>
+                    <MenuItem value="Fresh">Fresh</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <MuiTelInput
+                  id="outlined-helperText"
+                  label="Phone"
+                  required
+                  {...register("phone", { required: true, maxLength: 20 })}
+                  fullWidth
+                  defaultCountry="BD"
+                  value={UserPhone} // Set the value using the UserPhone state
+                  onChange={handleChange}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="address"
+                  label="User Address"
+                  {...register("address", { required: true })}
+
+                />
+              </Grid>
+
+              <Grid item xs={6}>
+                <TextField
+
+                  fullWidth
+                  id="addressCode"
+                  label="Address Code"
+                  {...register("addressCode")}
+
+                />
+              </Grid>
+
+              <Grid item xs={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="quantity"
+                  label="Quantity "
+                  {...register("quantity", { required: true })}
+
+                />
+              </Grid>
+
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 1 }}
+            >
+              ORDER NOW
+            </Button>
+          </Box>
+        </Box>
       </Container>
-    </React.Fragment>
+    </ThemeProvider>
   );
 }

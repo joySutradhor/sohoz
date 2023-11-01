@@ -53,7 +53,7 @@ export default function CompletedRiderOrderSohozDjr() {
     // todo neeed to get single data form server 
 
     const { data, isLoading, isError, refetch } = useQuery(["temporaryNewCustomer"], async () => {
-        const res = await fetch(`http://localhost:5000/temporaryNewCustomer`);
+        const res = await fetch(`https://sohozserver.onrender.com/temporaryNewCustomer`);
         const rawData = await res.json();
 
         const filteredData = rawData.find(item => item.orderId === orderId);
@@ -102,14 +102,14 @@ export default function CompletedRiderOrderSohozDjr() {
             confirmButtonText: 'Yes, submit it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch("http://localhost:5000/completerOrderData", {
+                fetch("https://sohozserver.onrender.com/completerOrderData", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
                     },
                     body: JSON.stringify(completeOrder),
                 });
-                fetch(`http://localhost:5000/temporaryNewCustomer/completed/${data._id}`, {
+                fetch(`https://sohozserver.onrender.com/temporaryNewCustomer/completed/${data._id}`, {
                     method: 'PATCH',
                 })
                     .then((res) => res.json())

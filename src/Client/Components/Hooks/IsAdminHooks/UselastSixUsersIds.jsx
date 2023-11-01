@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const UseLastSixUserIds = () => {
   const { data, isLoading, isError, refetch } = useQuery(["lastSixUserIds"], async () => {
-    const res = await fetch(`http://localhost:5000/lastSixUserIds`);
+    const res = await fetch(`https://sohozserver.onrender.com/lastSixUserIds`);
     const rawData = await res.json();
     return rawData;
   });
