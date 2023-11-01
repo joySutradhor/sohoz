@@ -15,7 +15,6 @@ import { Link } from 'react-router-dom';
 import { Badge, Divider } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from './../Client/Providers/Providers';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export const ListItems = () => {
 
@@ -126,39 +125,6 @@ export const ListItems = () => {
         </Link>
       }
 
-      {
-        (isAdmin === "admin" || isAdmin === "manager") && <Link to="/SummerySohozDjr">
-          <ListItemButton>
-            <ListItemIcon>
-              <BarChartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Summary" />
-          </ListItemButton>
-        </Link>
-
-      }
-
-      {
-        (isAdmin === "user") && <Link to="/myprofileSohozDjr">
-          <ListItemButton>
-            <ListItemIcon>
-              <AccountCircleIcon />
-            </ListItemIcon>
-            <ListItemText primary="My Profile" />
-          </ListItemButton>
-        </Link>
-      }
-
-      {
-        (isAdmin === "user") && <Link to="/ordersStatusSohozDjr">
-          <ListItemButton>
-            <ListItemIcon>
-              <ShoppingCartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Orders Status" />
-          </ListItemButton>
-        </Link>
-      }
       <Divider></Divider>
       {
         (isAdmin == "admin" || isAdmin == "manager") &&

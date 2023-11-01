@@ -12,14 +12,16 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
+// import Paper from '@mui/material/Paper';
 // import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { ListItems } from './ListItems';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import sohoz from '../assets/sohoz.png';
+import { AuthContext } from '../Client/Providers/Providers';
+import SummerySohozDjr from './SummerySohozDjr/SummerySohozDjr';
 
 
 
@@ -74,11 +76,22 @@ const defaultTheme = createTheme();
 
 export default function DashboardHomeSohozDjr() {
   const [open, setOpen] = useState(true);
+  const { user } = useContext(AuthContext);
+  const [isAdmin, setIsAdmin] = useState("");
 
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(`https://sohozserver.onrender.com/users/role/${user?.email}`);
+      const data = await response.json();
+      return data;
+    };
+
+    fetchData().then(data => setIsAdmin(data.role));
+  }, [user]);
  
 
   return (
@@ -146,8 +159,6 @@ export default function DashboardHomeSohozDjr() {
           <Divider />
           <List component="nav">
             <ListItems></ListItems>
-            {/* <Divider sx={{ my: 1 }} /> */}
-
           </List>
         </Drawer>
         <Box
@@ -163,36 +174,13 @@ export default function DashboardHomeSohozDjr() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
+          <Container maxWidth="lg" sx={{ mt: 3, mb: 1 , p:0 }}>
             <Grid container spacing={3}>
               {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 1,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: "auto",
-                  }}
-                >
-                  <iframe src="https://www.youtube.com/embed/pG__3QHDZDM?si=3yEqd21-j4cQoW9V" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
-
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 1,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: "auto",
-                  }}
-                >
-                  <iframe  src="https://www.youtube.com/embed/_fNAK_-yjLo?si=YkooxIVuisTpH250" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
-                </Paper>
-              </Grid>
-
+              {
+                (isAdmin == "admin") ? <SummerySohozDjr></SummerySohozDjr> : <p>rider</p>
+              }
+ 
             </Grid>
           </Container>
         </Box>

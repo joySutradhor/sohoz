@@ -16,10 +16,7 @@ import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOutlined';
 import KeyboardTabOutlinedIcon from '@mui/icons-material/KeyboardTabOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-import AddIcCallOutlinedIcon from '@mui/icons-material/AddIcCallOutlined';
-// import CallOutlinedIcon from '@material-ui/icons/CallOutlined';
-// import KeyboardTabOutlinedIcon from '@material-ui/icons/KeyboardTabOutlined';
-// import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
+import InfoIcon from '@mui/icons-material/Info';
 import { AuthContext } from './../Providers/Providers';
 import { useContext } from "react";
 import { Link } from 'react-router-dom';
@@ -118,29 +115,31 @@ export default function Header() {
 
 
       {/* ittem for Dashboard */}
-      <Link to="/dashboardHomeSohozDjr">
-        <MenuItem sx={{ color: "#777" }}>
-          <IconButton
-            size="samll"
-            aria-label="account of current user"
-            aria-controls="primary-search-account-menu"
-            aria-haspopup="true"
-            color="text.secondary"
-          >
-            <DashboardOutlinedIcon></DashboardOutlinedIcon>
-          </IconButton>
-          <p>Dashborad</p>
-        </MenuItem>
-      </Link>
+      {
+        user && <Link to="/dashboardHomeSohozDjr">
+          <MenuItem sx={{ color: "#777" }}>
+            <IconButton
+              size="samll"
+              aria-label="account of current user"
+              aria-controls="primary-search-account-menu"
+              aria-haspopup="true"
+              color="text.secondary"
+            >
+              <DashboardOutlinedIcon></DashboardOutlinedIcon>
+            </IconButton>
+            <p>Dashborad</p>
+          </MenuItem>
+        </Link>
+      }
       {/* End Of Dashbord Item */}
 
       {/* item for Call now */}
       <Link>
         <MenuItem sx={{ color: "#777" }}>
           <IconButton size="small" aria-label="call now" color="text.secondary">
-            <AddIcCallOutlinedIcon></AddIcCallOutlinedIcon>
+            <InfoIcon></InfoIcon>
           </IconButton>
-          <p>Call Now</p>
+          <p>About Us</p>
         </MenuItem>
       </Link>
       {/* End Of callnow item */}

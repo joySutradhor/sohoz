@@ -6,12 +6,12 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Badge } from '@mui/material';
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import { Link } from 'react-router-dom';
+// import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+// import { Link } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
-export default function DashboardHomeSohozDjr() {
+export default function SummerySohozDjr() {
     const [totalCostsum, setTotalCostSum] = useState(null);
     const [, setData] = useState(null);
     const [totalDillerPrice, setTotalDillerPrice] = useState(0);
@@ -170,14 +170,15 @@ export default function DashboardHomeSohozDjr() {
                                 : theme.palette.grey[900],
                         flexGrow: 1,
                         height: '100vh',
-                        overflow: 'auto',
+                        // overflow: 'auto',
+                       
                     }}
                 >
-                    <Container maxWidth="lg" sx={{ mt: 1, mb: 2 }}>
-                        <div className='flex  gap-x-3'>
+                    <Container maxWidth="lg" sx={{ mt: 0, mb: 2 , pr:0}}>
+                        {/* <div className='flex  gap-x-3'>
                             <Link className='mt-[10px] text-gray-600' to="/dashboardHomeSohozDjr" ><KeyboardBackspaceIcon></KeyboardBackspaceIcon></Link>
                             <h2 className='pb-4 pt-2 text-xl font-poppins text-gray-300'> Dashboard Summary</h2>
-                        </div>
+                        </div> */}
                         <Grid container spacing={1}>
 
                             <Grid item xs={12} md={4} lg={3}>
