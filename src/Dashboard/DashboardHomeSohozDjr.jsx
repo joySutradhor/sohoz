@@ -176,7 +176,10 @@ export default function DashboardHomeSohozDjr() {
             <Grid container spacing={3}>
               {/* Chart */}
               {
-                (isAdmin == "admin") ? <SummerySohozDjr></SummerySohozDjr> : <RiderSummerySohozDjr></RiderSummerySohozDjr>
+                (isAdmin == "admin" || isAdmin == "manager") && <SummerySohozDjr></SummerySohozDjr> 
+              }
+              {
+                (isAdmin == "rider") && <RiderSummerySohozDjr></RiderSummerySohozDjr>
               }
  
             </Grid>
