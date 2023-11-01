@@ -22,6 +22,7 @@ import { useContext, useEffect, useState } from 'react';
 import sohoz from '../assets/sohoz.png';
 import { AuthContext } from '../Client/Providers/Providers';
 import SummerySohozDjr from './SummerySohozDjr/SummerySohozDjr';
+import RiderSummerySohozDjr from './RiderSummerySohozDjr/RiderSummerySohozDjr';
 
 
 
@@ -178,7 +179,7 @@ export default function DashboardHomeSohozDjr() {
             <Grid container spacing={3}>
               {/* Chart */}
               {
-                (isAdmin == "admin") ? <SummerySohozDjr></SummerySohozDjr> : <p>rider</p>
+                (isAdmin == "admin") ? <SummerySohozDjr></SummerySohozDjr> : <RiderSummerySohozDjr></RiderSummerySohozDjr>
               }
  
             </Grid>

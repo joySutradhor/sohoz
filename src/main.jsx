@@ -32,7 +32,7 @@ import CheckOutSohozDjr from './Client/Layout/Home/OrderProcess/CheckOutSohozDjr
 // import PrivateRoute from './Client/Shared/PrivateRoute'
 import MyProfileSohozDjr from './Dashboard/UserDashboard/MyProfileSohozDjr';
 import OrdersStatusSohozDjr from './Dashboard/UserDashboard/OrdersStatusSohozDjr';
-import TrackRiderSohozDjr from './Dashboard/UserDashboard/TrackRiderSohozDjr';
+// import TrackRiderSohozDjr from './Dashboard/UserDashboard/TrackRiderSohozDjr';
 import CostDetailsSohozDjr from './Dashboard/CostDetailsSohozDjr/CostDetailsSohozDjr';
 import SummerySohozDjr from './Dashboard/SummerySohozDjr/SummerySohozDjr';
 // import SubmitRiderLocationSohozDjr from './Dashboard/SubmitRiderLocationSohozDjr/SubmitRiderLocationSohozDjr';
@@ -103,10 +103,6 @@ const router = createBrowserRouter([
       {
         path : "ordersStatusSohozDjr",
         element : <OrdersStatusSohozDjr></OrdersStatusSohozDjr>
-      },
-      {
-        path : "trackRiderSohozDjr",
-        element : <TrackRiderSohozDjr></TrackRiderSohozDjr>
       },
       {
         path : "CostDetailsSohozDjr",
