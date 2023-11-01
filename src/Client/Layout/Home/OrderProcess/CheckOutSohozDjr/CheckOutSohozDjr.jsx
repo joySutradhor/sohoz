@@ -28,7 +28,9 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 const defaultTheme = createTheme();
 
 export default function CheckOutSohozDjr() {
-  const { register, handleSubmit } = useForm();
+  // toDo : handleSubmit need user after register
+  const { register,  } = useForm(); 
+
   const [manualBrand, setManualBrand] = useState('');
   const [UserPhone, setUserPhone] = useState('');
   // const navigate = useNavigate();
@@ -125,7 +127,9 @@ export default function CheckOutSohozDjr() {
                         Last ID : {userIds}
                     </Typography> */}
 
-          <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
+
+                    {/* toDo : onSubmit={handleSubmit(onSubmit)} this line will after noValidate */}
+          <Box component="form" noValidate  sx={{ mt: 3 }}>
             <Grid container spacing={2} justifyContent="flex-end">
               <Grid item xs={6} sm={6}>
                 <TextField
