@@ -18,7 +18,7 @@ import {
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { MuiTelInput } from 'mui-tel-input';
 import { ToastContainer } from 'react-toastify';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import WestIcon from '@mui/icons-material/West';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
@@ -106,7 +106,7 @@ export default function CheckOutSohozDjr() {
       <ToastContainer />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Link to="/dashboardHomeSohozDjr">
+        <Link to="/">
           <WestIcon sx={{ mt: 2, ml: 1, position: 'absolute', color: "#1976E5" }}></WestIcon>
         </Link>
         <Box
