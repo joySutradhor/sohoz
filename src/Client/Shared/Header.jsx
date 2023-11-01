@@ -20,7 +20,6 @@ import InfoIcon from '@mui/icons-material/Info';
 import { AuthContext } from './../Providers/Providers';
 import { useContext } from "react";
 import { Link } from 'react-router-dom';
-import sohoz from "../../assets/sohoz.png"
 import Swal from 'sweetalert2';
 
 
@@ -200,7 +199,7 @@ export default function Header() {
               aria-label="open drawer"
               sx={{ mr: 1, color: "#333333" }}
             >
-              <Link to="/"> <img src={sohoz} alt="sohoz Logo" className='h-[45px]' /></Link>
+              <Link to="/"> <img src="https://i.ibb.co/g6q9pSs/sohoz.webp" alt="sohoz Logo" className='h-[45px]' /></Link>
             </IconButton>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

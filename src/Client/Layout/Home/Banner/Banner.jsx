@@ -31,7 +31,7 @@ export default function Banner() {
         className="mySwiper"
       >
         {/* <SwiperSlide><img src="https://i.ibb.co/9V3CXx9/b-min.jpg" alt="" /></SwiperSlide> */}
-        <SwiperSlide><img src="https://i.ibb.co/pbjYC1g/Hot-Line-min.jpg" alt="" /></SwiperSlide>
+        <SwiperSlide><img src="https://i.ibb.co/wc3Qwxr/banner.webp" alt="" /></SwiperSlide>
       </Swiper>
     </>
   );

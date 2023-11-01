@@ -12,14 +12,11 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-// import Paper from '@mui/material/Paper';
-// import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { ListItems } from './ListItems';
 import { useContext, useEffect, useState } from 'react';
-import sohoz from '../assets/sohoz.png';
 import { AuthContext } from '../Client/Providers/Providers';
 import SummerySohozDjr from './SummerySohozDjr/SummerySohozDjr';
 import RiderSummerySohozDjr from './RiderSummerySohozDjr/RiderSummerySohozDjr';
@@ -151,7 +148,7 @@ export default function DashboardHomeSohozDjr() {
               noWrap
               sx={{ flexGrow: 1, marginLeft: "0px", color: "gray" }}
             >
-              <img src={sohoz} alt="sohoz logo " className='h-[45px]' />
+              <img src="https://i.ibb.co/g6q9pSs/sohoz.webp" alt="sohoz logo " className='h-[45px]' />
             </Typography>
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
