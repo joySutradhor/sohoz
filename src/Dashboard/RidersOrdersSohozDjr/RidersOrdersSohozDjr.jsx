@@ -22,6 +22,7 @@ export default function RidersOrderrdersSohozDjr() {
     const { user } = useContext(AuthContext)
     const { data, refetch } = useQuery(["temporaryNewCustomer"], async () => {
         const res = await fetch("https://sohozserver.onrender.com/temporaryNewCustomer/pending");
+        console.log(data)
         return res.json();
     });
 
@@ -50,6 +51,7 @@ export default function RidersOrderrdersSohozDjr() {
                 })
                     .then((res) => res.json())
                     .then((userData) => {
+                        
                         refetch();
                         if (userData.modifiedCount) {
                             Swal.fire({

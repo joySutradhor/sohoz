@@ -91,9 +91,7 @@ export default function UsersSohozDjr() {
         checkAndGenerateOrderId().then(() => {
             setIsCopied(false);
 
-            // if (orderIdRef.current) {
-            //     setValue('orderId', generatedOrderId);
-            // }
+
         });
     };
 
@@ -121,6 +119,18 @@ export default function UsersSohozDjr() {
         const dealerPrice = parseFloat(document.getElementById('dillerPrice').value);
         const sellerPrice = parseFloat(document.getElementById('sellerPrice').value);
 
+        if (!userId || !brand || !fullName || !phone || !address || !addressCode || !quantity || isNaN(dealerPrice) || isNaN(sellerPrice) || !generatedOrderId) {
+            // Show an error message or handle the empty fields as needed
+            Swal.fire({
+                text: `Please Fill Empty Field`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Got it!'
+            })
+            return;
+        }
 
         if (!isNaN(dealerPrice) && !isNaN(sellerPrice)) {
             if (sellerPrice < dealerPrice) {
@@ -129,8 +139,7 @@ export default function UsersSohozDjr() {
                 setShowAlert(false);
                 const calculatedProfit = sellerPrice - dealerPrice;
                 setProfit(calculatedProfit.toFixed(2));
-                // data.profit = calculatedProfit.toFixed(2);
-                // data.brandName = brand;
+
 
                 const saveUser = {
                     userId: userId,
@@ -143,7 +152,7 @@ export default function UsersSohozDjr() {
                     dillerPrice: parseFloat(document.getElementById('dillerPrice').value),
                     sellerPrice: parseFloat(document.getElementById('sellerPrice').value),
                     profit: profit,
-                    quantity : quantity ,
+                    quantity: quantity,
                     status: "pending",
                 };
 
@@ -223,7 +232,7 @@ export default function UsersSohozDjr() {
             console.error(error);
         }
     };
-    // console.log(searchResults.userId)
+
 
 
 
@@ -250,10 +259,10 @@ export default function UsersSohozDjr() {
                     <Typography component="h1" variant="h5">
                         Create New Order
                     </Typography>
-                    <Typography component="h1" variant="p" sx={{ color: "gray", mt: 1, fontSize: "14px" }}>
+                    <Typography component="h1" variant="p" sx={{ color: "gray", mt: 0, fontSize: "14px" }}>
                         Last ID: {userIds}
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <div className="">
@@ -287,7 +296,7 @@ export default function UsersSohozDjr() {
                                     </div>
                                 </div>
                             </Grid>
-                            <Grid item xs={6} sx={{ mt: 1, mb: 1 }}>
+                            <Grid item xs={6} sx={{ mt: 0, mb: 0 }}>
                                 <Button variant="contained" onClick={generateRandomOrderId}>Generate</Button>
                             </Grid>
                             <Grid item xs={12}>
@@ -455,7 +464,7 @@ export default function UsersSohozDjr() {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 1 }}
+                            sx={{ mt: 2, mb: 1 }}
                         >
                             Submit Data
                         </Button>
